@@ -1,12 +1,7 @@
 import React from 'react';
 import { scaleCoords } from '../utils/functions';
 
-const Sky = () => {
-    const backgroundStyle = {
-        display: 'inline',
-        fill: '#000000',
-    };
-
+const ScrollingBackground = () => {
     const starStyle = {
         display: 'inline',
         fill: '#0004d6',
@@ -19,13 +14,10 @@ const Sky = () => {
     };
     const circleStarR = scaleCoords(0.75077206);
 
-
     const bgWidth = scaleCoords(201.29155);
     const bgHeight = scaleCoords(206.86189);
     const bgOffsetX = 0 - (bgWidth/2);
     const bgOffsetY = 0 - bgHeight;
-
-    console.log(`bgWidth:${bgWidth} bgHeight:${bgHeight} bgOffsetX:${bgOffsetX} bgOffsetY:${bgOffsetY}`);
 
     const getRandomInt = (min, max) => {
         const minCeiled = Math.ceil(min);
@@ -49,29 +41,17 @@ const Sky = () => {
         });
     }
 
-    let startPathIdx = 0;
-    let startCircleIdx = 0;
-    
     return (
-        <g id="background">
-            <rect
-                style={backgroundStyle}
-                id="background"
-                width={bgWidth}
-                height={bgHeight}
-                x={bgOffsetX}
-                y={bgOffsetY}
-            />
-
-            { aryRandomPathStars.map(starCoords => (
-                <path d={`m ${starCoords.x},${starCoords.y} ${starPath}`} style={starStyle} id={`pointStar${startPathIdx++}`} />
+        <g id="starryBackGround">
+            { aryRandomPathStars.map((starCoords, index) => (
+                <path d={`m ${starCoords.x},${starCoords.y} ${starPath}`} style={starStyle} key={`pointStar${index}`} id={`pointStar${index}`} />
             ))}
 
-            { aryRandomCircleStars.map(starCoords => (
-                <circle cx={starCoords.x} cy={starCoords.y} r={circleStarR} style={circleStar} id={`circleStar${startCircleIdx++}`} />
+            { aryRandomCircleStars.map((starCoords, index) => (
+                <circle cx={starCoords.x} cy={starCoords.y} r={circleStarR} style={circleStar} key={`circleStar${index}`} id={`circleStar${index}`} />
             ))}
         </g>
     );
 };
 
-export default Sky;
+export default ScrollingBackground;

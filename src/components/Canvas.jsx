@@ -8,9 +8,6 @@ const Canvas = () => {
     const gameHeight = 1200;
     const viewBox = [0 - (window.innerWidth / 2), 100 - gameHeight, window.innerWidth, gameHeight];
     storeViewBox(viewBox);
-    const circleStar = {
-        fill: '#F00',
-    };
     const shipPosition = {
         x: 0,
         y: -375,
@@ -24,7 +21,6 @@ const Canvas = () => {
         >   
             <ScrollingBackground />
             <Ship position={shipPosition} />
-            <circle cx={-200} cy={-600} r={30} style={circleStar} />
         </svg>
     );
 };

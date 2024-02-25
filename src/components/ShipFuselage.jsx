@@ -25,8 +25,6 @@ const ShipFuselage = props => {
     const bottomBlockStyle = {
         fill: '#f9f9f9',
     };
-    console.log(`bottomCenterWhiteX: ${basePositionX} plus: ${scaleCoords(0.93265)}`);
-    console.log(`bottomCenterWhiteY: ${basePositionY} plus: ${scaleCoords(7.21913)}`);
     return (
         <g id="ShipFuselage">
             <path style={fusealageStyle} d={`m ${basePositionX},${basePositionY} h ${scaleCoords('0.93265 v -1.90261 h 0.70882 v 1.90261 h 0.914 v 11.78868 h -2.55547')} z`} id="fusealage" />

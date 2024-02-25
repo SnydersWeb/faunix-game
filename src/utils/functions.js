@@ -7,7 +7,6 @@ export const getScaleFactor = () => {
     return viewBoxStore.length === 4 ? (viewBoxStore[2] / defaultBGWidth) : 1;
 };
 export const scaleCoords = (rawCoords, scaleFactor = getScaleFactor()) => {
-    // console.log(`rawCoords: ${rawCoords}`);
     let parseCoords = ``;
     if(Number(rawCoords)) {
         parseCoords = `${rawCoords}`;
@@ -30,7 +29,6 @@ export const scaleCoords = (rawCoords, scaleFactor = getScaleFactor()) => {
             return currItem;
         }
     });
-    // console.log(`scaledCoords: ${retArray.join(' ')}`);
     return retArray.join(' ');
 };
 
