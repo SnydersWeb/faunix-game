@@ -72,6 +72,8 @@ App.propTypes = {
       y: PropTypes.number.isRequired,
     }).isRequired,
     shipMoving: PropTypes.oneOf(['left', 'right', 'none']).isRequired,
+    pylonMoveFactor: PropTypes.number,
+    pylonMoveIn: PropTypes.bool,    
     shipFire: PropTypes.arrayOf(PropTypes.shape({
       x: PropTypes.number.isRequired,
       y: PropTypes.number.isRequired,

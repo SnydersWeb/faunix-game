@@ -17,8 +17,8 @@ const ShipBottomRightPylon = props => {
 
     return (
         <g id="bottomRightPylon">
-            <path style={redPylonStyle} d={`m ${basePositionX + Number(scaleCoords(1.70786))},${basePositionY + Number(scaleCoords(7.45626))} ${scaleCoords('4.71895,5.06973 v -3.09395 l -4.71895,-4.65105')} z`} id="bottomRightPylonRed" />
-            <rect style={whitePylonStyle} id="bottomRightPylonWhite" width={scaleCoords(0.78343964)} height={scaleCoords(5.3534088)} x={basePositionX + Number(scaleCoords(5.95859))} y={basePositionY + Number(scaleCoords(7.25467))} />
+            <path style={redPylonStyle} d={`m ${basePositionX + scaleCoords(1.70786)},${basePositionY + scaleCoords(7.45626)} ${scaleCoords('4.71895,5.06973 v -3.09395 l -4.71895,-4.65105')} z`} id="bottomRightPylonRed" />
+            <rect style={whitePylonStyle} id="bottomRightPylonWhite" width={scaleCoords(0.78343964)} height={scaleCoords(5.3534088)} x={basePositionX + scaleCoords(5.95859)} y={basePositionY + scaleCoords(7.25467)} />
         </g>        
     );
 };

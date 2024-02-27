@@ -29,7 +29,11 @@ export const scaleCoords = (rawCoords, scaleFactor = getScaleFactor()) => {
             return currItem;
         }
     });
-    return retArray.join(' ');
+    if(retArray.length > 1) {
+        return retArray.join(' ');
+    } else {
+        return Number(retArray.join(''));
+    }
 };
 
 

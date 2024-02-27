@@ -10,7 +10,8 @@ const initialGameState = {
         y: -375,
     },
     shipMoving: 'none',
-    movingInterval: 0,
+    pylonMoveFactor: 0,
+    pylonMoveIn: false,
     shipFire: [],
 };
 

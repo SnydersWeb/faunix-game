@@ -4,7 +4,6 @@ import { scaleCoords } from '../utils/functions';
 class ScrollingBackground extends Component {
     constructor(props) {
         super(props);
-
         
         const getRandomInt = (min, max) => {
             const minCeiled = Math.ceil(min);
@@ -16,9 +15,8 @@ class ScrollingBackground extends Component {
         const bgHeight = scaleCoords(206.86189);
         const bgOffsetX = 0 - (bgWidth/2);
         const bgOffsetY = 0 - bgHeight;
-
         
-        const xMax = Number(bgOffsetX) + Number(bgWidth) - 20;
+        const xMax = bgOffsetX + bgWidth - 20;
         this.aryRandomPathStars = [];
         for(let i = 0, j = 25; i < j; i++) {
             this.aryRandomPathStars.push({

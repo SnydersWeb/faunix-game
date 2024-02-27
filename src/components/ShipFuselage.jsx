@@ -28,12 +28,12 @@ const ShipFuselage = props => {
     return (
         <g id="ShipFuselage">
             <path style={fusealageStyle} d={`m ${basePositionX},${basePositionY} h ${scaleCoords('0.93265 v -1.90261 h 0.70882 v 1.90261 h 0.914 v 11.78868 h -2.55547')} z`} id="fusealage" />
-            <rect style={bottomCenterWhiteStyle} id="bottomCenterWhite" width={scaleCoords(0.70881999)} height={scaleCoords(2.7979465)} x={basePositionX + Number(scaleCoords(0.93265))} y={basePositionY + Number(scaleCoords(7.21913))} />
-            <rect style={topCenterWhiteStyle} id="topCenterWhite" width={scaleCoords(0.70881999)} height={scaleCoords(3.4508007)} x={basePositionX + Number(scaleCoords(0.93265))} y={basePositionY + Number(scaleCoords(1.84708))} />
-            <rect style={topCenterYellowStyle} id="topCenterYellow" width={scaleCoords(0.70881999)} height={scaleCoords(1.8093387)} x={basePositionX + Number(scaleCoords(0.93265))} y={basePositionY + Number(scaleCoords(2.6678))} />
-            <rect style={bottomBlockStyle} id="bottomLeft" width={scaleCoords(0.78341788)} height={scaleCoords(1.6228091)} x={basePositionX + Number(scaleCoords(-0.78342))} y={basePositionY + Number(scaleCoords(10.89377))} />
-            <rect style={bottomBlockStyle} id="bottomRight" width={scaleCoords(0.78341788)} height={scaleCoords(1.6228091)} x={basePositionX + Number(scaleCoords(2.57934))} y={basePositionY + Number(scaleCoords(10.89377))} />
-            <rect style={bottomBlockStyle} id="bottomCenter" width={scaleCoords(0.78341788)} height={scaleCoords(1.6228091)} x={basePositionX + Number(scaleCoords(0.89796))} y={basePositionY + Number(scaleCoords(10.89377))} />
+            <rect style={bottomCenterWhiteStyle} id="bottomCenterWhite" width={scaleCoords(0.70881999)} height={scaleCoords(2.7979465)} x={basePositionX + scaleCoords(0.93265)} y={basePositionY + scaleCoords(7.21913)} />
+            <rect style={topCenterWhiteStyle} id="topCenterWhite" width={scaleCoords(0.70881999)} height={scaleCoords(3.4508007)} x={basePositionX + scaleCoords(0.93265)} y={basePositionY + scaleCoords(1.84708)} />
+            <rect style={topCenterYellowStyle} id="topCenterYellow" width={scaleCoords(0.70881999)} height={scaleCoords(1.8093387)} x={basePositionX + scaleCoords(0.93265)} y={basePositionY + scaleCoords(2.6678)} />
+            <rect style={bottomBlockStyle} id="bottomLeft" width={scaleCoords(0.78341788)} height={scaleCoords(1.6228091)} x={basePositionX + scaleCoords(-0.78342)} y={basePositionY + scaleCoords(10.89377)} />
+            <rect style={bottomBlockStyle} id="bottomRight" width={scaleCoords(0.78341788)} height={scaleCoords(1.6228091)} x={basePositionX + scaleCoords(2.57934)} y={basePositionY + scaleCoords(10.89377)} />
+            <rect style={bottomBlockStyle} id="bottomCenter" width={scaleCoords(0.78341788)} height={scaleCoords(1.6228091)} x={basePositionX + scaleCoords(0.89796)} y={basePositionY + scaleCoords(10.89377)} />
         </g>
     );
 };
