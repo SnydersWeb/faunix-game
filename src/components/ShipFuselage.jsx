@@ -6,6 +6,7 @@ class ShipFuselage extends Component {
     constructor(props) {
         super(props);
 
+        this.basePartName = 'shipFuselage';
         this.fusealageStyle = {
             display: 'inline',
             fill: '#ff0000',
@@ -28,7 +29,7 @@ class ShipFuselage extends Component {
 
         this.fusealagePath = scaleCoords('0.93265 v -1.90261 h 0.70882 v 1.90261 h 0.914 v 11.78868 h -2.55547');
         
-        this.shipCenter = scaleCoords(0.93265);
+        this.shipCenter = scaleCoords(0.8900);
         this.shipCenterBlockW = scaleCoords(0.70881999);
         this.shipCenterBottomWhiteH = scaleCoords(2.7979465);
         this.shipCenterBottomWhiteY = scaleCoords(7.21913);
@@ -51,13 +52,13 @@ class ShipFuselage extends Component {
 
         return (
             <g id={this.basePartName}>
-                <path style={this.fusealageStyle} d={`m ${basePositionX},${basePositionY} h ${this.fusealagePath} z`} id="fusealage" />
-                <rect style={this.bottomCenterWhiteStyle} id="bottomCenterWhite" width={this.shipCenterBlockW} height={this.shipCenterBottomWhiteH} x={basePositionX + this.shipCenter} y={basePositionY + this.shipCenterBottomWhiteY} />
-                <rect style={this.topCenterWhiteStyle} id="topCenterWhite" width={this.shipCenterBlockW} height={this.shipCenterTopWhiteH} x={basePositionX + this.shipCenter} y={basePositionY + this.shipCenterTopWhiteY} />
-                <rect style={this.topCenterYellowStyle} id="topCenterYellow" width={this.shipCenterBlockW} height={this.shipCenterTopYellowH} x={basePositionX + this.shipCenter} y={basePositionY + this.shipCenterTopYellowY} />
-                <rect style={this.bottomBlockStyle} id="bottomLeft" width={this.bottomBlockW} height={this.bottomBlockH} x={basePositionX + this.bottomBlockLeftXBase} y={basePositionY + this.bottomBlockYBase} />
-                <rect style={this.bottomBlockStyle} id="bottomRight" width={this.bottomBlockW} height={this.bottomBlockH} x={basePositionX + this.bottomBlockRightXBase} y={basePositionY + this.bottomBlockYBase} />
-                <rect style={this.bottomBlockStyle} id="bottomCenter" width={this.bottomBlockW} height={this.bottomBlockH} x={basePositionX + this.bottomBlockCentXBase} y={basePositionY + this.bottomBlockYBase} />
+                <path style={this.fusealageStyle} d={`m ${basePositionX},${basePositionY} h ${this.fusealagePath} z`} id={`${this.basePartName}Body`} />
+                <rect style={this.bottomCenterWhiteStyle} id={`${this.basePartName}BottomCenterWhite`} width={this.shipCenterBlockW} height={this.shipCenterBottomWhiteH} x={basePositionX + this.shipCenter} y={basePositionY + this.shipCenterBottomWhiteY} />
+                <rect style={this.topCenterWhiteStyle} id={`${this.basePartName}TopCenterWhite`} width={this.shipCenterBlockW} height={this.shipCenterTopWhiteH} x={basePositionX + this.shipCenter} y={basePositionY + this.shipCenterTopWhiteY} />
+                <rect style={this.topCenterYellowStyle} id={`${this.basePartName}TopCenterYellow`} width={this.shipCenterBlockW} height={this.shipCenterTopYellowH} x={basePositionX + this.shipCenter} y={basePositionY + this.shipCenterTopYellowY} />
+                <rect style={this.bottomBlockStyle} id={`${this.basePartName}BottomLeft`} width={this.bottomBlockW} height={this.bottomBlockH} x={basePositionX + this.bottomBlockLeftXBase} y={basePositionY + this.bottomBlockYBase} />
+                <rect style={this.bottomBlockStyle} id={`${this.basePartName}BottomRight`} width={this.bottomBlockW} height={this.bottomBlockH} x={basePositionX + this.bottomBlockRightXBase} y={basePositionY + this.bottomBlockYBase} />
+                <rect style={this.bottomBlockStyle} id={`${this.basePartName}BottomCenter`} width={this.bottomBlockW} height={this.bottomBlockH} x={basePositionX + this.bottomBlockCentXBase} y={basePositionY + this.bottomBlockYBase} />
             </g>
         );
     }
