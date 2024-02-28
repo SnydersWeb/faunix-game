@@ -1,26 +1,41 @@
-import React from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { scaleCoords } from '../utils/functions';
 
-const ShipTopLeftPylon = props => {
-    const basePositionX = props.position.x; //108.56032
-    const basePositionY = props.position.y; //210.49629
-    
-    const redPylonStyle = {
-        fill: '#ff0000',
-        stroke: 'none',
-    };
-    const whitePylonStyle = {
-        fill: '#ffffff',
-        stroke: 'none',
-    };
+class ShipTopLeftPylon extends Component {
+    constructor(props) {
+        super(props);
 
-    return (
-        <g id="topLeftPylon">
-            <path style={redPylonStyle} d={`m ${basePositionX + scaleCoords(1.36235)},${basePositionY + scaleCoords(4.68554)} ${scaleCoords('-4.6073,-4.65105 v 2.56479 l 4.74686,4.84644')} z`} id="topLeftPylonRed" />
-            <rect style={whitePylonStyle} id="topLeftPylonWhite" width={scaleCoords(0.93264884)} height={scaleCoords(4.4767156)} x={basePositionX + scaleCoords(-3.65545)} y={basePositionY + scaleCoords(0.00011)} />
-        </g>
-    );
+        this.basePartName = 'topLeftPylon';
+        this.rPylonStyle = {
+            fill: '#ff0000',
+            stroke: 'none',
+        };
+        this.wPylonStyle = {
+            fill: '#ffffff',
+            stroke: 'none',
+        };
+
+        this.rPylonPath = scaleCoords('-4.6073,-4.65105 v 2.56479 l 4.74686,4.84644');
+        this.rPlyonXBase = scaleCoords(1.36235);
+        this.rPlyonYBase = scaleCoords(4.68554);
+        this.wPylonW = scaleCoords(0.78343964);
+        this.wPylonH = scaleCoords(4.4767156);
+        this.wPylonXBase = scaleCoords(-3.65545);
+        this.wPylonYBase = scaleCoords(0.00011);
+    }
+
+    render() {       
+        const basePositionX = this.props.position.x; //108.56032
+        const basePositionY = this.props.position.y; //210.49629
+
+        return (
+            <g id={this.basePartName}>
+                <path style={this.rPylonStyle} d={`m ${basePositionX + this.rPlyonXBase},${basePositionY + this.rPlyonYBase} ${this.rPylonPath} z`} id={`${this.basePartName}Red`} />
+                <rect style={this.wPylonStyle} id={`${this.basePartName}White`} width={this.wPylonW} height={this.wPylonH} x={basePositionX + this.wPylonXBase} y={basePositionY + this.wPylonYBase} />
+            </g>
+        );
+    }
 };
 
 ShipTopLeftPylon.propTypes = {

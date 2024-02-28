@@ -28,33 +28,32 @@ class ScrollingBackground extends Component {
             });
         }
 
-    }
-
-    render() {
-        const bgStyle = {
+        this.bgStyle = {
             fill: '#000'
         };        
-        const starStyle = {
+        this.starStyle = {
             display: 'inline',
             fill: '#0004d6',
         };
-        const starPath = scaleCoords('-0.26148,4.07365 -4.066423,0.35761 4.073653,0.26148 0.3576,4.06642 0.26148,-4.07366 4.06642,-0.3576 -4.07365,-0.26148 z');
+        this.starPath = scaleCoords('-0.26148,4.07365 -4.066423,0.35761 4.073653,0.26148 0.3576,4.06642 0.26148,-4.07366 4.06642,-0.3576 -4.07365,-0.26148 z');
                         
-        const circleStarStyle = {
+        this.circleStarStyle = {
             display: 'inline',
             fill: '#0004d6',
         };
-        const circleStarR = scaleCoords(0.75077206);
+        this.circleStarR = scaleCoords(0.75077206);
+    }
 
+    render() {       
         return (
             <g id="starryBackGround">
-                <rect width={this.width} height={this.height} x={0} y={0} style={bgStyle} />
+                <rect width={this.width} height={this.height} x={0} y={0} style={this.bgStyle} />
                 { this.aryRandomPathStars.map((starCoords, index) => (
-                    <path d={`m ${starCoords.x},${starCoords.y} ${starPath}`} style={starStyle} key={`pointStar${index}`} id={`pointStar${index}`} />
+                    <path d={`m ${starCoords.x},${starCoords.y} ${this.starPath}`} style={this.starStyle} key={`pointStar${index}`} id={`pointStar${index}`} />
                 ))}
 
                 { this.aryRandomCircleStars.map((starCoords, index) => (
-                    <circle cx={starCoords.x} cy={starCoords.y} r={circleStarR} style={circleStarStyle} key={`circleStar${index}`} id={`circleStar${index}`} />
+                    <circle cx={starCoords.x} cy={starCoords.y} r={this.circleStarR} style={this.circleStarStyle} key={`circleStar${index}`} id={`circleStar${index}`} />
                 ))}
             </g>
         );

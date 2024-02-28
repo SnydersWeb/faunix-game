@@ -21,7 +21,7 @@ const moveShip = (state, newStateData) => {
 
         // Boundry checking so we don't run off our play area
         // the 10 is a little bit of a "fuddge factor" since the first coodinate of the ship isn't center
-        if (shipPosition.x + moveX > (canvas.x - scaleShipWidth - 10) || shipPosition.x + moveX < 0 + scaleShipWidth) {
+        if (shipPosition.x + moveX > (canvas.x - (scaleShipWidth * 1.5)) || shipPosition.x + moveX < 0 + scaleShipWidth) {
             moveX = 0;
         }
 
