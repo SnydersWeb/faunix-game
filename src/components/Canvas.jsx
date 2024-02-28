@@ -1,24 +1,29 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { gameHeight } from '../utils/constants';
-import { storeViewBox } from '../utils/functions';
+import { widthHeightRatio } from '../utils/constants';
+import { storeCanvas } from '../utils/functions';
 import ScrollingBackground from './ScrollingBackground';
 import Ship from './Ship';
 
 const Canvas = props => {
-    const viewBox = [0 - (window.innerWidth / 2), 100 - gameHeight, window.innerWidth, gameHeight];
-    storeViewBox(viewBox);
+    const { innerHeight } = window;
+    const canvasHeight = innerHeight;
+    const canvasWidth = canvasHeight * widthHeightRatio;
+    storeCanvas({
+        x: canvasWidth,
+        y: canvasHeight
+    });
+    
     const { shipPosition } = props.gameState;
     const { shipMoving } = props.gameState;
     const { pylonMoveFactor } = props.gameState;
 
-    // console.log(`viewBox: ${viewBox}`);
-    // console.dir(props);
     return (
         <svg
             id='fauxnix-canvas'
-            preserveAspectRatio='xMaxYMax none'
-            viewBox={viewBox}
+            width={canvasWidth}
+            height={canvasHeight}
+            preserveAspectRatio='xMinYMid meet'
         >   
             <ScrollingBackground />
             <Ship position={shipPosition} moving={shipMoving} pylonMoveFactor={pylonMoveFactor} />

@@ -17,3 +17,10 @@ html, body {
   overflow: show;
   height: 100%;
 }
+
+svg {
+  display: block;
+  margin: auto;
+  border-left: 1px #FC0 solid;
+  border-right: 1px #FC0 solid;
+}

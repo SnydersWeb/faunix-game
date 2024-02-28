@@ -27,7 +27,7 @@ const Ship = props => {
         topLeftPylonPos = _setMovement(topLeftPylonPos, -pylonMoveFactor);
         botRightPylonPos = _setMovement(botRightPylonPos, pylonMoveFactor);
         botLeftPylonPos = _setMovement(botLeftPylonPos, -pylonMoveFactor);
-    } 
+    }
 
     return (
         <g id="ship">

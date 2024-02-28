@@ -1,10 +1,14 @@
-let viewBoxStore = [];
-export const storeViewBox = viewBox => {
-    viewBoxStore = viewBox;
+import { baseGfxHeight } from './constants';
+
+let canvas = {};
+export const storeCanvas = canDims => {
+    canvas = canDims;
+};
+export const getCanvas = () => {
+    return canvas;
 };
 export const getScaleFactor = () => {
-    const defaultBGWidth = 201;
-    return viewBoxStore.length === 4 ? (viewBoxStore[2] / defaultBGWidth) : 1;
+    return canvas.y / baseGfxHeight;
 };
 export const scaleCoords = (rawCoords, scaleFactor = getScaleFactor()) => {
     let parseCoords = ``;

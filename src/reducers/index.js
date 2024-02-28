@@ -2,12 +2,17 @@ import { MOVE_SHIP, SHOOT, START_GAME } from '../actions';
 import moveShip from './moveShip';
 import shoot from './shoot';
 import startGame from './startGame';
+import { widthHeightRatio } from '../utils/constants';
+
+const { innerHeight } = window;
+const canvasHeight = innerHeight;
+const canvasWidth = canvasHeight * widthHeightRatio;
 
 const initialGameState = {
     started: true,
     shipPosition: {
-        x: 0,
-        y: -375,
+        x: canvasWidth / 2,
+        y: canvasHeight - 100,
     },
     shipMoving: 'none',
     pylonMoveFactor: 0,

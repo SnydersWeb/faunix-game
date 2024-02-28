@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { scaleCoords } from '../utils/functions';
+import { scaleCoords, getCanvas } from '../utils/functions';
 
 class ScrollingBackground extends Component {
     constructor(props) {
@@ -11,37 +11,36 @@ class ScrollingBackground extends Component {
             return Math.floor(Math.random() * (maxFloored - minCeiled) + minCeiled); 
         };
 
-        const bgWidth = scaleCoords(201.29155);
-        const bgHeight = scaleCoords(206.86189);
-        const bgOffsetX = 0 - (bgWidth/2);
-        const bgOffsetY = 0 - bgHeight;
+        const canvasSize = getCanvas();
         
-        const xMax = bgOffsetX + bgWidth - 20;
         this.aryRandomPathStars = [];
         for(let i = 0, j = 25; i < j; i++) {
             this.aryRandomPathStars.push({
-                x: getRandomInt(bgOffsetX, xMax),
-                y: getRandomInt(bgOffsetY + 100, -100)
+                x: getRandomInt(0, canvasSize.x),
+                y: getRandomInt(0, canvasSize.y)
             });
         }
         this.aryRandomCircleStars = [];
         for(let i = 0, j = 50; i < j; i++) {
             this.aryRandomCircleStars.push({
-                x: getRandomInt(bgOffsetX, xMax),
-                y: getRandomInt(bgOffsetY + 100, -100)
+                x: getRandomInt(0, canvasSize.x),
+                y: getRandomInt(0, canvasSize.y)
             });
         }
 
     }
 
     render() {
+        const bgStyle = {
+            fill: '#000'
+        };        
         const starStyle = {
             display: 'inline',
             fill: '#0004d6',
         };
         const starPath = scaleCoords('-0.26148,4.07365 -4.066423,0.35761 4.073653,0.26148 0.3576,4.06642 0.26148,-4.07366 4.06642,-0.3576 -4.07365,-0.26148 z');
                         
-        const circleStar = {
+        const circleStarStyle = {
             display: 'inline',
             fill: '#0004d6',
         };
@@ -49,12 +48,13 @@ class ScrollingBackground extends Component {
 
         return (
             <g id="starryBackGround">
+                <rect width={this.width} height={this.height} x={0} y={0} style={bgStyle} />
                 { this.aryRandomPathStars.map((starCoords, index) => (
                     <path d={`m ${starCoords.x},${starCoords.y} ${starPath}`} style={starStyle} key={`pointStar${index}`} id={`pointStar${index}`} />
                 ))}
 
                 { this.aryRandomCircleStars.map((starCoords, index) => (
-                    <circle cx={starCoords.x} cy={starCoords.y} r={circleStarR} style={circleStar} key={`circleStar${index}`} id={`circleStar${index}`} />
+                    <circle cx={starCoords.x} cy={starCoords.y} r={circleStarR} style={circleStarStyle} key={`circleStar${index}`} id={`circleStar${index}`} />
                 ))}
             </g>
         );

@@ -1,13 +1,31 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Canvas from './components/Canvas';
+import { storeCanvas } from './utils/functions';
+import { widthHeightRatio } from './utils/constants';
 
 class App extends Component {
   constructor(props) {
     super(props);
     this.keyDown = this.keyDown.bind(this);
   }
-  
+
+  componentDidMount() {
+    window.onresize = () => {
+      const cnv = document.getElementById('fauxnix-canvas');
+      const { innerHeight } = window;
+      const canvasHeight = innerHeight;
+      const canvasWidth = canvasHeight * widthHeightRatio;
+      storeCanvas({
+          x: canvasWidth,
+          y: canvasHeight
+      });
+      cnv.style.width = `${canvasWidth}px`;
+      cnv.style.height = `${canvasHeight}px`;
+    };
+    window.onresize();
+  }
+
   keyDown(command) {
     if(/shoot/.test(command)) {
       console.log(`Apps.Js - shoot!: ${command}`);
