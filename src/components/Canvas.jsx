@@ -18,7 +18,8 @@ const Canvas = props => {
     const { shipPosition } = props.gameState;
     const { shipMoving } = props.gameState;
     const { pylonMoveFactor } = props.gameState;
-
+    const { background } = props.gameState;
+    
     return (
         <svg
             id='fauxnix-canvas'
@@ -26,14 +27,22 @@ const Canvas = props => {
             height={canvasHeight}
             preserveAspectRatio='xMinYMid meet'
         >   
-            <ScrollingBackground />
+            <ScrollingBackground 
+                lgStarsPos={ background.lgStarsPos } 
+                mdStarsPos={ background.mdStarsPos } 
+                smStarsPos={ background.smStarsPos } 
+            />
             { props.gameState.shipFire.map(bullet => (
                 <ShipBullet
                     key={bullet.id}
                     position={bullet.position}
                 />
             ))}
-            <Ship position={shipPosition} moving={shipMoving} pylonMoveFactor={pylonMoveFactor} />
+            <Ship 
+                position={shipPosition} 
+                moving={shipMoving} 
+                pylonMoveFactor={pylonMoveFactor} 
+            />
         </svg>
     );
 };
@@ -55,6 +64,23 @@ Canvas.propTypes = {
             }).isRequired,
             id: PropTypes.number.isRequired,
         })).isRequired,
+        background: PropTypes.shape({
+            lgStarsPos: PropTypes.arrayOf(PropTypes.shape({
+                    x:  PropTypes.number.isRequired,
+                    y:  PropTypes.number.isRequired,
+                }).isRequired,
+            ).isRequired,
+            mdStarsPos: PropTypes.arrayOf(PropTypes.shape({
+                    x:  PropTypes.number.isRequired,
+                    y:  PropTypes.number.isRequired,
+                }).isRequired,
+            ).isRequired,
+            smStarsPos: PropTypes.arrayOf(PropTypes.shape({
+                    x:  PropTypes.number.isRequired,
+                    y:  PropTypes.number.isRequired,
+                }).isRequired,
+            ).isRequired,  
+        }).isRequired,
     }).isRequired,
     startGame: PropTypes.func.isRequired,
 };

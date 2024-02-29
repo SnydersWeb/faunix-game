@@ -3,11 +3,35 @@ import moveObjects from './moveObjects';
 import moveShip from './moveShip';
 import shoot from './shoot';
 import startGame from './startGame';
-import { widthHeightRatio } from '../utils/constants';
+import { widthHeightRatio, numLgStars, numMdStars, numSmStars } from '../utils/constants';
+import { getRandomInt } from '../utils/functions';
 
 const { innerHeight } = window;
 const canvasHeight = innerHeight;
 const canvasWidth = canvasHeight * widthHeightRatio;
+
+//Initialize our stars
+const aryLgStars = [];
+for(let i = 0, j = numLgStars; i < j; i++) {
+    aryLgStars.push({
+        x: getRandomInt(0, canvasWidth),
+        y: getRandomInt(0, canvasHeight)
+    });
+}
+const aryMdStars = [];
+for(let i = 0, j = numMdStars; i < j; i++) {
+    aryMdStars.push({
+        x: getRandomInt(0, canvasWidth),
+        y: getRandomInt(0, canvasHeight)
+    });
+}
+const arySmStars = [];
+for(let i = 0, j = numSmStars; i < j; i++) {
+    arySmStars.push({
+        x: getRandomInt(0, canvasWidth),
+        y: getRandomInt(0, canvasHeight)
+    });
+}
 
 const initialGameState = {
     started: true,
@@ -19,6 +43,11 @@ const initialGameState = {
     pylonMoveFactor: 0,
     pylonMoveIn: false,
     shipFire: [],
+    background: {
+        lgStarsPos: aryLgStars,
+        mdStarsPos: aryMdStars,
+        smStarsPos: arySmStars,
+    },
 };
 
 const initialState = {

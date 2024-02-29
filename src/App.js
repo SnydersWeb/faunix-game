@@ -103,6 +103,23 @@ App.propTypes = {
       }).isRequired,
       id: PropTypes.number.isRequired,
     })).isRequired,
+    background: PropTypes.shape({
+      lgStarsPos: PropTypes.arrayOf(PropTypes.shape({
+              x:  PropTypes.number.isRequired,
+              y:  PropTypes.number.isRequired
+          }).isRequired,
+      ).isRequired,
+      mdStarsPos: PropTypes.arrayOf(PropTypes.shape({
+              x:  PropTypes.number.isRequired,
+              y:  PropTypes.number.isRequired
+          }).isRequired,
+      ).isRequired,
+      smStarsPos: PropTypes.arrayOf(PropTypes.shape({
+              x:  PropTypes.number.isRequired,
+              y:  PropTypes.number.isRequired
+          }).isRequired,
+      ).isRequired,  
+    }).isRequired,
   }).isRequired,
   moveShip: PropTypes.func.isRequired,
   shoot: PropTypes.func.isRequired,
