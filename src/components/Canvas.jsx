@@ -4,6 +4,7 @@ import { widthHeightRatio } from '../utils/constants';
 import { storeCanvas } from '../utils/functions';
 import ScrollingBackground from './ScrollingBackground';
 import Ship from './Ship';
+import ShipBullet from './ShipBullet';
 
 const Canvas = props => {
     const { innerHeight } = window;
@@ -26,6 +27,12 @@ const Canvas = props => {
             preserveAspectRatio='xMinYMid meet'
         >   
             <ScrollingBackground />
+            { props.gameState.shipFire.map(bullet => (
+                <ShipBullet
+                    key={bullet.id}
+                    position={bullet.position}
+                />
+            ))}
             <Ship position={shipPosition} moving={shipMoving} pylonMoveFactor={pylonMoveFactor} />
         </svg>
     );
@@ -42,8 +49,10 @@ Canvas.propTypes = {
         pylonMoveIn: PropTypes.bool,    
         shipMoving: PropTypes.oneOf(['left', 'right', 'none']).isRequired,
         shipFire: PropTypes.arrayOf(PropTypes.shape({
-            x: PropTypes.number.isRequired,
-            y: PropTypes.number.isRequired,
+            position: PropTypes.shape({
+                x: PropTypes.number.isRequired,
+                y: PropTypes.number.isRequired,
+            }).isRequired,
             id: PropTypes.number.isRequired,
         })).isRequired,
     }).isRequired,

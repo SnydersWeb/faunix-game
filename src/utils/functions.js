@@ -23,7 +23,7 @@ export const scaleCoords = (rawCoords, scaleFactor = getScaleFactor()) => {
             if(/,/g.test(currItem)) { // item is a coordinate set x,y
                 const commaCoords = currItem.split(',');
                 const commaCoordRet = commaCoords.map(coord => {
-                    return Number(coord) * scaleFactor
+                    return Number(coord) * scaleFactor;
                 });
                 return commaCoordRet.join(',');
             } else {

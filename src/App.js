@@ -11,6 +11,10 @@ class App extends Component {
   }
 
   componentDidMount() {
+    const self = this;
+    setInterval(() => {
+        self.props.moveObjects();
+    }, 10);
     window.onresize = () => {
       const cnv = document.getElementById('fauxnix-canvas');
       const { innerHeight } = window;
@@ -28,7 +32,7 @@ class App extends Component {
 
   keyDown(command) {
     if(/shoot/.test(command)) {
-      console.log(`Apps.Js - shoot!: ${command}`);
+      this.props.shoot(command);
     } else if(/right|left|none/.test(command)) {
       this.props.moveShip(command);
     } else {
@@ -93,13 +97,16 @@ App.propTypes = {
     pylonMoveFactor: PropTypes.number,
     pylonMoveIn: PropTypes.bool,    
     shipFire: PropTypes.arrayOf(PropTypes.shape({
-      x: PropTypes.number.isRequired,
-      y: PropTypes.number.isRequired,
+      position: PropTypes.shape({
+          x: PropTypes.number.isRequired,
+          y: PropTypes.number.isRequired,
+      }).isRequired,
       id: PropTypes.number.isRequired,
     })).isRequired,
   }).isRequired,
   moveShip: PropTypes.func.isRequired,
   shoot: PropTypes.func.isRequired,
+  moveObjects: PropTypes.func.isRequired,
   startGame: PropTypes.func.isRequired,
 };
 

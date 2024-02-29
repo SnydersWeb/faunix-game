@@ -1,6 +1,7 @@
 export const START_GAME = 'START_GAME';
 export const SHOOT = 'SHOOT'
 export const MOVE_SHIP = 'MOVE_SHIP'
+export const MOVE_OBJECTS = 'MOVE_OBJECTS';
 
 export const moveShip = shipMoveDirection => ({
     type: MOVE_SHIP,
@@ -10,6 +11,10 @@ export const moveShip = shipMoveDirection => ({
 export const shoot = shipPosition => ({
     type: SHOOT,
     shipPosition,
+});
+
+export const moveObjects = () => ({
+    type: MOVE_OBJECTS,
 });
 
 export const startGame = () => ({

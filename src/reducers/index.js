@@ -1,4 +1,5 @@
-import { MOVE_SHIP, SHOOT, START_GAME } from '../actions';
+import { MOVE_SHIP, SHOOT, MOVE_OBJECTS, START_GAME } from '../actions';
+import moveObjects from './moveObjects';
 import moveShip from './moveShip';
 import shoot from './shoot';
 import startGame from './startGame';
@@ -30,6 +31,8 @@ const reducer = (state = initialState, action) => {
             return moveShip(state, action);
         case SHOOT:
             return shoot(state, action);
+        case MOVE_OBJECTS:
+            return moveObjects(state, action);
         case START_GAME: 
             return startGame(state, action);
         default:

@@ -3,8 +3,8 @@ import { shipMoveRate } from '../utils/constants';
 import { scaleCoords, getCanvas } from '../utils/functions';
 import { shipPylongWiggleDist, shipPylongWiggleSpeed, shipWidth } from '../utils/constants';
 
-const moveShip = (state, newStateData) => {
-    const { shipMoveDirection } = newStateData;
+const moveShip = (state, action) => {
+    const { shipMoveDirection } = action;
     const { shipPosition } = state.gameState;
     let { pylonMoveFactor } = state.gameState;
     let { pylonMoveIn } = state.gameState;

@@ -1,12 +1,18 @@
-const shoot = (state, action) => {
+import { scaleCoords } from '../utils/functions';
+import { bulletLength, shipBarrelLength, activeBulletCount } from '../utils/constants';
+
+const shoot = state => {
     const { shipFire } = state.gameState;
-    if(shipFire.length >= 1) return state; //only 1 bullet on screen
+    const { shipPosition } = state.gameState;
     
-    const { x, y } = action.shipPosition;
+    if(shipFire.length >= activeBulletCount) return state; //only 1 bullet on screen
+    
+    const { x, y } = shipPosition;
+    const yPos = y - (scaleCoords(bulletLength) + scaleCoords(shipBarrelLength));
     const id = (new Date()).getTime();
+
     const shipBullet = {
-        position: { x: 0, y: 0 },
-        startPosition: { x: x, y: y },
+        position: { x: x, y: yPos },
         id,
     };
 
