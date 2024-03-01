@@ -43,6 +43,15 @@ const initialGameState = {
     pylonMoveFactor: 0,
     pylonMoveIn: false,
     shipFire: [],
+    birds: [
+        {
+            position: {
+                x: canvasWidth / 2,
+                y: canvasHeight * .1,
+            },
+            id: 1,
+        }
+    ],
     background: {
         lgStarsPos: aryLgStars,
         mdStarsPos: aryMdStars,

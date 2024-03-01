@@ -17,7 +17,7 @@ class ScrollingBackground extends Component {
                         
         this.mdStarStyle = {
             display: 'inline',
-            fill: '#0055D4',
+            fill: '#0044AA',
         };
         this.mdCircleStarR = scaleCoords(0.75077206);
 

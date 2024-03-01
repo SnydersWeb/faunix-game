@@ -5,6 +5,7 @@ import { storeCanvas } from '../utils/functions';
 import ScrollingBackground from './ScrollingBackground';
 import Ship from './Ship';
 import ShipBullet from './ShipBullet';
+import Bird from './Bird';
 
 const Canvas = props => {
     const { innerHeight } = window;
@@ -43,6 +44,13 @@ const Canvas = props => {
                 moving={shipMoving} 
                 pylonMoveFactor={pylonMoveFactor} 
             />
+            { props.gameState.birds.map(bird => (
+                <Bird
+                    key={bird.id}
+                    id={bird.id}
+                    position={bird.position}
+                />
+            ))}
         </svg>
     );
 };
@@ -58,6 +66,13 @@ Canvas.propTypes = {
         pylonMoveIn: PropTypes.bool,    
         shipMoving: PropTypes.oneOf(['left', 'right', 'none']).isRequired,
         shipFire: PropTypes.arrayOf(PropTypes.shape({
+            position: PropTypes.shape({
+                x: PropTypes.number.isRequired,
+                y: PropTypes.number.isRequired,
+            }).isRequired,
+            id: PropTypes.number.isRequired,
+        })).isRequired,
+        birds: PropTypes.arrayOf(PropTypes.shape({
             position: PropTypes.shape({
                 x: PropTypes.number.isRequired,
                 y: PropTypes.number.isRequired,

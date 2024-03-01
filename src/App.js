@@ -103,6 +103,13 @@ App.propTypes = {
       }).isRequired,
       id: PropTypes.number.isRequired,
     })).isRequired,
+    birds: PropTypes.arrayOf(PropTypes.shape({
+        position: PropTypes.shape({
+            x: PropTypes.number.isRequired,
+            y: PropTypes.number.isRequired,
+        }).isRequired,
+        id: PropTypes.number.isRequired,
+    })).isRequired,
     background: PropTypes.shape({
       lgStarsPos: PropTypes.arrayOf(PropTypes.shape({
               x:  PropTypes.number.isRequired,
