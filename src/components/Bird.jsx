@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { birdLegWingDegRatio, birdEyeWiggle, birdBeakWiggle, birdFaceChangeTimeSec, birdWingFlapSpeedDeg, birdWingMaxDeg, birdFlapSpeedSec } from '../utils/constants';
+import { birdLegWingDegRatio, birdEyeWiggle, birdBeakWiggle, birdFaceChangeTimeSec, birdWingFlapSpeedDegMin, birdWingFlapSpeedDegMax, birdWingMaxDeg, birdFlapSpeedSec } from '../utils/constants';
 import { scaleCoords } from '../utils/functions';
 import PropTypes from 'prop-types';
 import BirdFootRight from './BirdLegRight';
@@ -64,7 +64,7 @@ class Bird extends Component {
         }
 
         //Now work on flapping
-        const flapDeg = this.getRandom(3, birdWingFlapSpeedDeg);
+        const flapDeg = this.getRandom(birdWingFlapSpeedDegMin, birdWingFlapSpeedDegMax);
         if(now - this.flapTimeStamp > (1000 * birdFlapSpeedSec)) {
             if (/down/.test(this.flapDir)) {
                 this.flapDeg += flapDeg;
