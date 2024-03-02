@@ -31,9 +31,9 @@ class App extends Component {
   }
 
   keyDown(command) {
-    if(/shoot/.test(command)) {
+    if (/shoot/.test(command)) {
       this.props.shoot(command);
-    } else if(/right|left|none/.test(command)) {
+    } else if (/right|left|none/.test(command)) {
       this.props.moveShip(command);
     } else {
       console.log(`Apps.Js - unknown: ${command}`);
@@ -94,8 +94,6 @@ App.propTypes = {
       y: PropTypes.number.isRequired,
     }).isRequired,
     shipMoving: PropTypes.oneOf(['left', 'right', 'none']).isRequired,
-    pylonMoveFactor: PropTypes.number,
-    pylonMoveIn: PropTypes.bool,    
     shipFire: PropTypes.arrayOf(PropTypes.shape({
       position: PropTypes.shape({
           x: PropTypes.number.isRequired,

@@ -26,6 +26,7 @@ export const shipWidth = 4.75;
 export const shipMoveRate = 2;
 export const shipPylongWiggleDist = .5;
 export const shipPylongWiggleSpeed = 1;
+export const shipPylonTimeSec = .025;
 
 // Bird related vars
 export const numBirds = 5;

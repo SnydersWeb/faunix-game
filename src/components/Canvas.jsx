@@ -18,7 +18,6 @@ const Canvas = props => {
     
     const { shipPosition } = props.gameState;
     const { shipMoving } = props.gameState;
-    const { pylonMoveFactor } = props.gameState;
     const { background } = props.gameState;
     
     return (
@@ -42,7 +41,6 @@ const Canvas = props => {
             <Ship 
                 position={shipPosition} 
                 moving={shipMoving} 
-                pylonMoveFactor={pylonMoveFactor} 
             />
             { props.gameState.birds.map(bird => (
                 <Bird
@@ -67,8 +65,6 @@ Canvas.propTypes = {
             x: PropTypes.number.isRequired,
             y: PropTypes.number.isRequired,
         }).isRequired,
-        pylonMoveFactor: PropTypes.number,
-        pylonMoveIn: PropTypes.bool,    
         shipMoving: PropTypes.oneOf(['left', 'right', 'none']).isRequired,
         shipFire: PropTypes.arrayOf(PropTypes.shape({
             position: PropTypes.shape({
@@ -111,14 +107,6 @@ Canvas.propTypes = {
         }).isRequired,
     }).isRequired,
     startGame: PropTypes.func.isRequired,
-};
-
-
-Canvas.defaultProps = {
-    gameState: {
-        pylonMoveFactor: 0,
-        pylonMoveIn: false,
-    }
 };
 
 export default Canvas;

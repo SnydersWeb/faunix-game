@@ -12,15 +12,15 @@ export const getScaleFactor = () => {
 };
 export const scaleCoords = (rawCoords, scaleFactor = getScaleFactor()) => {
     let parseCoords = ``;
-    if(Number(rawCoords)) {
+    if (Number(rawCoords)) {
         parseCoords = `${rawCoords}`;
     } else {
         parseCoords = rawCoords;
     }
     const coordSets = parseCoords.split(' '); // first, split it by " "
     const retArray = coordSets.map(currItem => {
-        if(/\d/g.test(currItem)) { // item contains a number
-            if(/,/g.test(currItem)) { // item is a coordinate set x,y
+        if (/\d/g.test(currItem)) { // item contains a number
+            if (/,/g.test(currItem)) { // item is a coordinate set x,y
                 const commaCoords = currItem.split(',');
                 const commaCoordRet = commaCoords.map(coord => {
                     return Number(coord) * scaleFactor;
@@ -33,16 +33,14 @@ export const scaleCoords = (rawCoords, scaleFactor = getScaleFactor()) => {
             return currItem;
         }
     });
-    if(retArray.length > 1) {
+    if (retArray.length > 1) {
         return retArray.join(' ');
     } else {
         return Number(retArray.join(''));
     }
 };
 export const getRandomInt = (min, max) => {
-    const minCeiled = Math.ceil(min);
-    const maxFloored = Math.floor(max);
-    return Math.floor(Math.random() * (maxFloored - minCeiled) + minCeiled); 
+    return Math.random() * (max - min) + min;
 };
 export const checkCollision = (rectA, rectB) => (
     rectA.x1 < rectB.x2 && rectA.x2 > rectB.x1 && 

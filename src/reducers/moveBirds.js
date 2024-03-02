@@ -1,22 +1,18 @@
 import { birdMaxVel, birdMinVel, birdWidth } from '../utils/constants';
-import { scaleCoords, getCanvas } from '../utils/functions';
+import { scaleCoords, getCanvas, getRandomInt } from '../utils/functions';
 
 const moveBirds = (birds) => {
-    if(birds.length === 0) {
+    if (birds.length === 0) {
         return birds;
     }
     
-    const getRandom = (min, max) => {
-        return Math.random() * (max - min) + min;
-    }
-
     const birdsChanges = birds.filter(bird => (
         /gone/.test(bird.status) === false
     )).map(bird => {
         const { x, y } = bird.position;
         const canvas = getCanvas();
         const { fltDir } = bird;
-        let change = scaleCoords(getRandom(birdMinVel, birdMaxVel));
+        let change = scaleCoords(getRandomInt(birdMinVel, birdMaxVel));
         change = /left/.test(fltDir) ? (0 - change) : change;
         const scaleBirdWith = scaleCoords(birdWidth);
 

@@ -2,7 +2,7 @@ import { scaleCoords } from '../utils/functions';
 import { bulletVelocity } from '../utils/constants';
 
 const moveShipBullets = (shipBullets) => {
-    if(shipBullets.length === 0) {
+    if (shipBullets.length === 0) {
         return shipBullets;
     }
     const velocity = scaleCoords(bulletVelocity);

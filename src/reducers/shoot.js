@@ -5,7 +5,7 @@ const shoot = state => {
     const { shipFire } = state.gameState;
     const { shipPosition } = state.gameState;
     
-    if(shipFire.length >= activeBulletCount) return state; //only 1 bullet on screen
+    if (shipFire.length >= activeBulletCount) return state; //only 1 bullet on screen
     
     const { x, y } = shipPosition;
     const yPos = y - (scaleCoords(bulletLength) + scaleCoords(shipBarrelLength));

@@ -12,21 +12,21 @@ const canvasWidth = canvasHeight * widthHeightRatio;
 
 //Initialize our stars
 const aryLgStars = [];
-for(let i = 0, j = numLgStars; i < j; i++) {
+for (let i = 0, j = numLgStars; i < j; i++) {
     aryLgStars.push({
         x: getRandomInt(0, canvasWidth),
         y: getRandomInt(0, canvasHeight)
     });
 }
 const aryMdStars = [];
-for(let i = 0, j = numMdStars; i < j; i++) {
+for (let i = 0, j = numMdStars; i < j; i++) {
     aryMdStars.push({
         x: getRandomInt(0, canvasWidth),
         y: getRandomInt(0, canvasHeight)
     });
 }
 const arySmStars = [];
-for(let i = 0, j = numSmStars; i < j; i++) {
+for (let i = 0, j = numSmStars; i < j; i++) {
     arySmStars.push({
         x: getRandomInt(0, canvasWidth),
         y: getRandomInt(0, canvasHeight)
@@ -35,7 +35,7 @@ for(let i = 0, j = numSmStars; i < j; i++) {
 
 const aryBirds = [];
 let birdYPos = canvasHeight * .075;
-for(let i = 1, j = numBirds; i <= j; i++) {
+for (let i = 1, j = numBirds; i <= j; i++) {
     const retVal = {
         position: {
             x: canvasWidth * (i / 10),
@@ -62,8 +62,6 @@ const initialGameState = {
         y: canvasHeight - 100,
     },
     shipMoving: 'none',
-    pylonMoveFactor: 0,
-    pylonMoveIn: false,
     shipFire: [],
     birds: aryBirds,
     background: {
