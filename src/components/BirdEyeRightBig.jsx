@@ -8,9 +8,6 @@ class BirdEyeRightBig extends Component {
         this.id = props.id;
         this.basePartName = 'birdEyeRightBig';
         
-        this.hiddenStyle = {
-            display: 'none',
-        };
         this.bigEyeWhiteStyle = {
             fill: '#f4d7d7',
             stroke: 'none',
@@ -31,13 +28,12 @@ class BirdEyeRightBig extends Component {
     }
 
     render() {       
-        const basePositionX = this.props.position.x; //108.56032
-        const basePositionY = this.props.position.y; //210.49629
-
+        const { x, y } = this.props.position;        
+        
         return (
-            <g id={`${this.basePartName}${this.id}`} style={this.hiddenStyle}>
-                <circle style={this.bigEyeWhiteStyle} id={`${this.basePartName}EyeWhite${this.id}`} cx={basePositionX + this.rightBigEyeX} cy={basePositionY + this.rightBigEyeY} r={this.rightBigEyeRad} />
-                <circle style={this.bigEyePupilStyle} id={`${this.basePartName}EyePupil${this.id}`} cx={basePositionX + this.rightBigEyePupilX} cy={basePositionY + this.rightBigEyePupilY} r={this.rightBigEyePupilRad} />
+            <g id={`${this.basePartName}${this.id}`}>
+                <circle style={this.bigEyeWhiteStyle} id={`${this.basePartName}EyeWhite${this.id}`} cx={x + this.rightBigEyeX} cy={y + this.rightBigEyeY} r={this.rightBigEyeRad} />
+                <circle style={this.bigEyePupilStyle} id={`${this.basePartName}EyePupil${this.id}`} cx={x + this.rightBigEyePupilX} cy={y + this.rightBigEyePupilY} r={this.rightBigEyePupilRad} />
             </g>
         );
     }

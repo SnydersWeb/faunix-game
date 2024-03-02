@@ -26,9 +26,7 @@ class ShipBottomRightPylon extends Component {
     }
 
     render() {       
-        const basePositionX = this.props.position.x; //108.56032
-        const basePositionY = this.props.position.y; //210.49629
-
+        const basePositionX = this.props.position.x;        const basePositionY = this.props.position.y;
         return (
             <g id={this.basePartName}>
                 <path style={this.rPylonStyle} d={`m ${basePositionX + this.rPlyonXBase},${basePositionY + this.rPlyonYBase} ${this.rPylonPath} z`} id={`${this.basePartName}Red`} />

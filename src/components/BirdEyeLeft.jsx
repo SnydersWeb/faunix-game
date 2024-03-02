@@ -28,13 +28,13 @@ class BirdEyeLeft extends Component {
     }
 
     render() {       
-        const basePositionX = this.props.position.x; //108.56032
-        const basePositionY = this.props.position.y; //210.49629
-
+        const { x, y } = this.props.position;        
+        const { pupilWiggle } = this.props;
+        
         return (
             <g id={`${this.basePartName}${this.id}`}>
-                <circle style={this.regEyeWhiteStyle} id={`${this.basePartName}EyeWhite${this.id}`} cx={basePositionX + this.leftEyeX} cy={basePositionY + this.leftEyeY} r={this.leftEyeRad} />
-                <circle style={this.regEyePupilStyle} id={`${this.basePartName}EyePupil${this.id}`} cx={basePositionX + this.leftEyePupilX} cy={basePositionY + this.leftEyePupilY} r={this.leftEyePupilRad} />
+                <circle style={this.regEyeWhiteStyle} id={`${this.basePartName}EyeWhite${this.id}`} cx={x + this.leftEyeX} cy={y + this.leftEyeY} r={this.leftEyeRad} />
+                <circle style={this.regEyePupilStyle} id={`${this.basePartName}EyePupil${this.id}`} cx={x + this.leftEyePupilX + pupilWiggle} cy={y + this.leftEyePupilY} r={this.leftEyePupilRad} />
             </g>
         );
     }
@@ -45,7 +45,12 @@ BirdEyeLeft.propTypes = {
         x:  PropTypes.number.isRequired,
         y:  PropTypes.number.isRequired
     }).isRequired,
+    pupilWiggle: PropTypes.number,
     id: PropTypes.number.isRequired,
+};
+
+BirdEyeLeft.defaultProps = {
+    pupilWiggle: 0,
 };
 
 export default BirdEyeLeft;

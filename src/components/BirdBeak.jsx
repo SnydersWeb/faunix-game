@@ -19,9 +19,9 @@ class BirdBeak extends Component {
         };
 
         this.beakBaseX = scaleCoords(-0.00512);
-        this.beakBaseY = scaleCoords(9.033674);
+        this.beakBaseY = scaleCoords(9.133674);
         this.beakBaseRadX = scaleCoords(1.8029888);
-        this.beakBaseRadY = scaleCoords(2.2947128);
+        this.beakBaseRadY = scaleCoords(2.1047128);
         this.beakUpperX = scaleCoords(0.02767);
         this.beakUpperY = scaleCoords(6.706181);
         this.beakUpperPath = scaleCoords('c 1.04901,0.03278 1.73743,1.081794 1.73743,1.999679 0,0.917884 -1.01532,-1.124883 -1.80299,0.557288 -0.62376,-1.694334 -1.73741,0.328471 -1.73743,-0.491721 -2e-5,-0.950668 0.68842,-2.098024 1.80299,-2.065243');
@@ -31,14 +31,14 @@ class BirdBeak extends Component {
     }
 
     render() {       
-        const basePositionX = this.props.position.x; //108.56032
-        const basePositionY = this.props.position.y; //210.49629
+        const { x, y } = this.props.position;
+        const { beakWiggle } = this.props;
         
         return (
             <g id={`${this.basePartName}${this.id}`}>
-                <ellipse style={this.beakBaseStyle} id={`${this.basePartName}Base${this.id}`} cx={basePositionX + this.beakBaseX} cy={basePositionY + this.beakBaseY} rx={this.beakBaseRadX} ry={this.beakBaseRadY} />
-                <path style={this.beakStyle} d={`m ${basePositionX + this.beakUpperX},${basePositionY + this.beakUpperY} ${this.beakUpperPath} z`} id={`${this.basePartName}Upper${this.id}`} />
-                <path style={this.beakStyle} d={`m ${basePositionX + this.beakLowerX},${basePositionY + this.beakLowerY} ${this.beakLowerPath} z`} id={`${this.basePartName}Lower${this.id}`} />
+                <ellipse style={this.beakBaseStyle} id={`${this.basePartName}Base${this.id}`} cx={x + this.beakBaseX} cy={y + this.beakBaseY} rx={this.beakBaseRadX} ry={this.beakBaseRadY} />
+                <path style={this.beakStyle} d={`m ${x + this.beakUpperX},${y + this.beakUpperY - beakWiggle} ${this.beakUpperPath} z`} id={`${this.basePartName}Upper${this.id}`} />
+                <path style={this.beakStyle} d={`m ${x + this.beakLowerX},${y + this.beakLowerY + beakWiggle} ${this.beakLowerPath} z`} id={`${this.basePartName}Lower${this.id}`} />
             </g>
         );
     }
@@ -49,7 +49,13 @@ BirdBeak.propTypes = {
         x:  PropTypes.number.isRequired,
         y:  PropTypes.number.isRequired
     }).isRequired,
+    beakWiggle: PropTypes.number,
     id: PropTypes.number.isRequired,
 };
+
+BirdBeak.defaultProps = {
+    beakWiggle: 0,
+};
+
 
 export default BirdBeak;

@@ -20,11 +20,32 @@ class BirdWingLeft extends Component {
     }
 
     render() {       
-        const basePositionX = this.props.position.x; //108.56032
-        const basePositionY = this.props.position.y; //210.49629
-
+        const { x, y } = this.props.position;    
+        
+        const { rotDeg } = this.props;
+        const { scale } = this.props;
+        let transform = '';
+        // SnyderD - Less than ideal here.. seems rotating AND scaling is very problematic here.  So let's do either/or with scaling 
+        // taking the priority - once it's back to full scale it'll start flapping again normally.
+        if (scale < 1) {
+            transform = `scale(${scale})`;
+            this.wingStyle = {
+                ...this.wingStyle,
+                opacity: .4,
+                transformBox: 'fill-box',
+                transformOrigin: '100% 100%',
+            };
+        } else {
+            transform = `rotate(${rotDeg} ${x} ${y})`;
+        }
+        
         return (
-            <path style={this.wingStyle} d={`m ${basePositionX + this.leftWingX},${basePositionY + this.leftWingY} ${this.leftWingPath} z`} id={`${this.basePartName}${this.id}`} />
+            <path 
+                style={this.wingStyle} 
+                d={`m ${x + this.leftWingX},${y + this.leftWingY} ${this.leftWingPath} z`} 
+                id={`${this.basePartName}${this.id}`} 
+                transform={`${transform}`}
+            />
         );
     }
 };
@@ -35,6 +56,13 @@ BirdWingLeft.propTypes = {
         y:  PropTypes.number.isRequired
     }).isRequired,
     id: PropTypes.number.isRequired,
+    scale: PropTypes.number,
+    rotDeg: PropTypes.number,
+};
+
+BirdWingLeft.defaultProps = {
+    scale: 1,
+    rotDeg: 0,
 };
 
 export default BirdWingLeft;

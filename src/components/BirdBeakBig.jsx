@@ -8,9 +8,6 @@ class BirdBeakBig extends Component {
         this.id = props.id;
         this.basePartName = 'birdBeakBig';
         
-        this.hiddenStyle = {
-            display: 'none',
-        };
         this.bigBeakBaseStyle = {
             fill: '#000000',
             stroke: 'none',
@@ -28,9 +25,9 @@ class BirdBeakBig extends Component {
         };
 
         this.bigBeakBaseX = scaleCoords(0.04313);
-        this.bigBeakBaseY = scaleCoords(9.934362);
+        this.bigBeakBaseY = scaleCoords(9.994362);
         this.bigBeakBaseRadX = scaleCoords(3.1379397);
-        this.bigBeakBaseRadY = scaleCoords(3.6048067);
+        this.bigBeakBaseRadY = scaleCoords(3.5848067);
         this.bigBeakToungeX = scaleCoords(0.06515);
         this.bigBeakToungeY = scaleCoords(9.897916);
         this.bigBeakToungePath = scaleCoords('c -0.84295,-0.277125 -1.19509,-0.01358 -1.06152,0.707684 0.16083,0.868525 0.41814,1.962215 0.90069,2.058715 0.48251,0.0965 0.93285,-0.93285 1.0937,-1.962213 0.15426,-0.987281 -0.0899,-1.138243 -0.93287,-0.804186');
@@ -44,15 +41,14 @@ class BirdBeakBig extends Component {
     }
 
     render() {       
-        const basePositionX = this.props.position.x; //108.56032
-        const basePositionY = this.props.position.y; //210.49629
-
+        const { x, y } = this.props.position;        
+        
         return (
-            <g id={`${this.basePartName}${this.id}`} style={this.hiddenStyle}>
-                <ellipse style={this.bigBeakBaseStyle} id={`${this.basePartName}Base${this.id}`} cx={basePositionX + this.bigBeakBaseX} cy={basePositionY + this.bigBeakBaseY} rx={this.bigBeakBaseRadX} ry={this.bigBeakBaseRadY} />
-                <path style={this.bigBeakToungueStyle} d={`m ${basePositionX + this.bigBeakToungeX},${basePositionY + this.bigBeakToungeY} ${this.bigBeakToungePath} z`} id={`${this.basePartName}Tongue${this.id}`} />
-                <path style={this.bigBeakStyle} d={`m ${basePositionX + this.bigBeakUpperX},${basePositionY + this.bigBeakUpperY} ${this.bigBeakUpperPath} z`} id={`${this.basePartName}Upper${this.id}`} />
-                <path style={this.bigBeakStyle} d={`m ${basePositionX + this.bigBeakLowerX},${basePositionY + this.bigBeakLowerY} ${this.bigBeakLowerPath} z`} id={`${this.basePartName}Lower${this.id}`} />
+            <g id={`${this.basePartName}${this.id}`}>
+                <ellipse style={this.bigBeakBaseStyle} id={`${this.basePartName}Base${this.id}`} cx={x + this.bigBeakBaseX} cy={y + this.bigBeakBaseY} rx={this.bigBeakBaseRadX} ry={this.bigBeakBaseRadY} />
+                <path style={this.bigBeakToungueStyle} d={`m ${x + this.bigBeakToungeX},${y + this.bigBeakToungeY} ${this.bigBeakToungePath} z`} id={`${this.basePartName}Tongue${this.id}`} />
+                <path style={this.bigBeakStyle} d={`m ${x + this.bigBeakUpperX},${y + this.bigBeakUpperY} ${this.bigBeakUpperPath} z`} id={`${this.basePartName}Upper${this.id}`} />
+                <path style={this.bigBeakStyle} d={`m ${x + this.bigBeakLowerX},${y + this.bigBeakLowerY} ${this.bigBeakLowerPath} z`} id={`${this.basePartName}Lower${this.id}`} />
             </g>
         );
     }

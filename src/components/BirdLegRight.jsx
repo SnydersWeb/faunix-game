@@ -20,11 +20,17 @@ class BirdFootRight extends Component {
     }
 
     render() {       
-        const basePositionX = this.props.position.x; //108.56032
-        const basePositionY = this.props.position.y; //210.49629
-
+        const { x, y } = this.props.position;
+        const { rotDeg } = this.props;
+        let transform = `rotate(${rotDeg} ${x} ${y})`;
+        
         return (
-            <path style={this.footStyle} d={`m ${basePositionX + this.rightFootX},${basePositionY + this.rightFootY} ${this.rightFootPath} z`} id={`${this.basePartName}${this.id}`} />
+            <path 
+                style={this.footStyle} 
+                d={`m ${x + this.rightFootX},${y + this.rightFootY} ${this.rightFootPath} z`} 
+                id={`${this.basePartName}${this.id}`} 
+                transform={`${transform}`}
+            />
         );
     }
 };
@@ -35,6 +41,11 @@ BirdFootRight.propTypes = {
         y:  PropTypes.number.isRequired
     }).isRequired,
     id: PropTypes.number.isRequired,
+    rotDeg: PropTypes.number,
+};
+
+BirdFootRight.defaultProps = {
+    rotDeg: 0,
 };
 
 export default BirdFootRight;

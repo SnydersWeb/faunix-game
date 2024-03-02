@@ -1,4 +1,5 @@
 import moveShipBullets from './moveShipBullets';
+import moveBirds from './moveBirds';
 import { scaleCoords, getCanvas } from '../utils/functions';
 import { lgStarVelocity, mdStarVelocity, smStarVelocity } from '../utils/constants';
 
@@ -30,8 +31,14 @@ const moveObjects = (state, action) => {
     const { shipFire } = state.gameState;
     
     let bullets = [];
-    if(shipFire.length > 0) {
+    if (shipFire.length > 0) {
         bullets = moveShipBullets(shipFire);
+    }
+
+    const { birds } = state.gameState;
+    let birdUpdates = [];
+    if (birds.length > 0) {
+        birdUpdates = moveBirds(birds);
     }
 
     // Handle background stuffs
@@ -48,6 +55,7 @@ const moveObjects = (state, action) => {
         gameState: {
             ...state.gameState,
             shipFire: [...bullets],
+            birds: [...birdUpdates],
             background: {
                 smStarsPos: newSmStarPos,
                 mdStarsPos: newMdStarPos,
@@ -55,7 +63,7 @@ const moveObjects = (state, action) => {
             }
         },
     };
-
+    
     return newState;
 }
 

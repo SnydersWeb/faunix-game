@@ -19,11 +19,10 @@ class BirdBody extends Component {
     }
 
     render() {       
-        const basePositionX = this.props.position.x; //108.56032
-        const basePositionY = this.props.position.y; //210.49629
+        const { x, y } = this.props.position;        
         
         return (
-            <path style={this.bodyStyle} d={`m ${basePositionX},${basePositionY} ${this.bodyPath} z`} id={`${this.basePartName}${this.id}`} />
+            <path style={this.bodyStyle} d={`m ${x},${y} ${this.bodyPath} z`} id={`${this.basePartName}${this.id}`} />
         );
     }
 };

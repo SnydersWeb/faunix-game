@@ -3,7 +3,7 @@ import moveObjects from './moveObjects';
 import moveShip from './moveShip';
 import shoot from './shoot';
 import startGame from './startGame';
-import { widthHeightRatio, numLgStars, numMdStars, numSmStars } from '../utils/constants';
+import { widthHeightRatio, numLgStars, numMdStars, numSmStars,  numBirds, birdVertSpacing } from '../utils/constants';
 import { getRandomInt } from '../utils/functions';
 
 const { innerHeight } = window;
@@ -33,6 +33,22 @@ for(let i = 0, j = numSmStars; i < j; i++) {
     });
 }
 
+const aryBirds = [];
+let birdYPos = canvasHeight * .075;
+for(let i = 1, j = numBirds + 1; i < j; i++) {
+    const retVal = {
+        position: {
+            x: canvasWidth * (i / 10),
+            y: birdYPos,
+        },
+        id: i,
+        direction: 'right',
+        status: 'normal',
+    }
+    aryBirds.push(retVal);
+    birdYPos += canvasHeight * birdVertSpacing;
+}
+
 const initialGameState = {
     started: true,
     shipPosition: {
@@ -43,15 +59,7 @@ const initialGameState = {
     pylonMoveFactor: 0,
     pylonMoveIn: false,
     shipFire: [],
-    birds: [
-        {
-            position: {
-                x: canvasWidth / 2,
-                y: canvasHeight * .1,
-            },
-            id: 1,
-        }
-    ],
+    birds: aryBirds,
     background: {
         lgStarsPos: aryLgStars,
         mdStarsPos: aryMdStars,

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Canvas from './components/Canvas';
 import { storeCanvas } from './utils/functions';
-import { widthHeightRatio } from './utils/constants';
+import { widthHeightRatio, updateInterval } from './utils/constants';
 
 class App extends Component {
   constructor(props) {
@@ -14,7 +14,7 @@ class App extends Component {
     const self = this;
     setInterval(() => {
         self.props.moveObjects();
-    }, 10);
+    }, updateInterval);
     window.onresize = () => {
       const cnv = document.getElementById('fauxnix-canvas');
       const { innerHeight } = window;
