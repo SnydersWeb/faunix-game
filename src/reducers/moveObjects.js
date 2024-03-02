@@ -25,7 +25,6 @@ const moveStars = (aryStars, moveFactor, playField) => {
 const moveObjects = (state, action) => {
     if (state.gameState.started === false) return state;
     const playFieldSize = getCanvas();
-    // console.dir(playFieldSize);
     
     // Handle bullets fired
     const { shipFire } = state.gameState;
@@ -40,6 +39,10 @@ const moveObjects = (state, action) => {
     if (birds.length > 0) {
         birdUpdates = moveBirds(birds);
     }
+
+    // const objectsDestroyed = checkCollisions(cannonBalls, flyingObjects);
+    // const birdsDestroyed = objectsDestroyed.map(object => (object.cannonBallId));
+    // const flyingDiscsDestroyed = objectsDestroyed.map(object => (object.flyingDiscId));
 
     // Handle background stuffs
     const { background } = state.gameState;

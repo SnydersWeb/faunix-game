@@ -109,6 +109,14 @@ App.propTypes = {
             y: PropTypes.number.isRequired,
         }).isRequired,
         id: PropTypes.number.isRequired,
+        fltDir: PropTypes.oneOf(['left', 'right']).isRequired,
+        status: PropTypes.oneOf(['normal', 'flee', 'enter', 'struck', 'gone']).isRequired,
+        fleeStatus: PropTypes.number.isRequired,
+        statusTime: PropTypes.number.isRequired,
+        wings: PropTypes.shape({ //Scaler value for wing if hit. 1 is full scale
+            left: PropTypes.number.isRequired,
+            right: PropTypes.number.isRequired,
+        }).isRequired,
     })).isRequired,
     background: PropTypes.shape({
       lgStarsPos: PropTypes.arrayOf(PropTypes.shape({

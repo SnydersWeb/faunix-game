@@ -15,9 +15,9 @@ const moveBirds = (birds) => {
     )).map(bird => {
         const { x, y } = bird.position;
         const canvas = getCanvas();
-        const { direction } = bird;
+        const { fltDir } = bird;
         let change = scaleCoords(getRandom(birdMinVel, birdMaxVel));
-        change = /left/.test(direction) ? (0 - change) : change;
+        change = /left/.test(fltDir) ? (0 - change) : change;
         const scaleBirdWith = scaleCoords(birdWidth);
 
         // Boundry checking so we don't run off our play area
@@ -39,9 +39,8 @@ const moveBirds = (birds) => {
                 x: x + change,
                 y: y,
             },
-            direction: dirChange ? newDir : direction,
+            fltDir: dirChange ? newDir : fltDir,
         };
-
     });            
     
     return birdsChanges;

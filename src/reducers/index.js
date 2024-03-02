@@ -35,15 +35,21 @@ for(let i = 0, j = numSmStars; i < j; i++) {
 
 const aryBirds = [];
 let birdYPos = canvasHeight * .075;
-for(let i = 1, j = numBirds + 1; i < j; i++) {
+for(let i = 1, j = numBirds; i <= j; i++) {
     const retVal = {
         position: {
             x: canvasWidth * (i / 10),
             y: birdYPos,
         },
         id: i,
-        direction: 'right',
+        fltDir: 'right',
         status: 'normal',
+        fleeStatus: 1,
+        statusTime: 0,
+        wings: {
+            left: 1,
+            right: 1,
+        },
     }
     aryBirds.push(retVal);
     birdYPos += canvasHeight * birdVertSpacing;

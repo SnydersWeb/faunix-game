@@ -48,14 +48,14 @@ class Bird extends Component {
         const { position } = this.props;
         const { left, right } = this.props.wings;
         const { status } = this.props;
-        const { direction } = this.props;
+        const { fltDir } = this.props;
         const { fleeStatus } = this.props;
-
+        
         //This will vary our birds faces to make them look less static/boring
         if (/normal/.test(status)) {
             if(now - this.faceChangeStamp > (1000 * birdFaceChangeTimeSec)) {
                 this.faceChangeEyes = scaleCoords(this.getRandom(0.001, birdEyeWiggle));
-                if (/left/.test(direction)) {
+                if (/left/.test(fltDir)) {
                     this.faceChangeEyes = 0 - this.faceChangeEyes;
                 }
                 this.faceChangeBeak = scaleCoords(this.getRandom(-birdBeakWiggle, birdBeakWiggle));
@@ -64,14 +64,15 @@ class Bird extends Component {
         }
 
         //Now work on flapping
+        const flapDeg = this.getRandom(3, birdWingFlapSpeedDeg);
         if(now - this.flapTimeStamp > (1000 * birdFlapSpeedSec)) {
             if (/down/.test(this.flapDir)) {
-                this.flapDeg += birdWingFlapSpeedDeg;
+                this.flapDeg += flapDeg;
                 if (this.flapDeg >= birdWingMaxDeg) {
                     this.flapDir = 'up';
                 }
             } else {
-                this.flapDeg -= birdWingFlapSpeedDeg;
+                this.flapDeg -= flapDeg;
                 if (this.flapDeg <= 0) {
                     this.flapDir = 'down';
                 }
@@ -119,28 +120,17 @@ class Bird extends Component {
 Bird.propTypes = {
     position: PropTypes.shape({
         x:  PropTypes.number.isRequired,
-        y:  PropTypes.number.isRequired
+        y:  PropTypes.number.isRequired,
     }).isRequired,
-    direction: PropTypes.oneOf(['left', 'right']),
+    fltDir: PropTypes.oneOf(['left', 'right']).isRequired,
     id: PropTypes.number.isRequired,
-    status: PropTypes.oneOf(['normal', 'flee', 'enter', 'struck', 'gone']),
-    fleeStatus: PropTypes.number,
-    statusTime: PropTypes.number,
+    status: PropTypes.oneOf(['normal', 'flee', 'enter', 'struck', 'gone']).isRequired,
+    fleeStatus: PropTypes.number.isRequired,
+    statusTime: PropTypes.number.isRequired,
     wings: PropTypes.shape({ //Scaler value for wing if hit. 1 is full scale
         left: PropTypes.number.isRequired,
         right: PropTypes.number.isRequired,
-    })
-};
-
-Bird.defaultProps = {
-    direction: 'right',
-    status: 'normal',
-    fleeStatus: 1,
-    statusTime: 0,
-    wings: {
-        left: 1,
-        right: 1,
-    }
+    }).isRequired,
 };
 
 export default Bird;

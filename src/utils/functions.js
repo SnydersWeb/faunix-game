@@ -44,5 +44,8 @@ export const getRandomInt = (min, max) => {
     const maxFloored = Math.floor(max);
     return Math.floor(Math.random() * (maxFloored - minCeiled) + minCeiled); 
 };
-
+export const checkCollision = (rectA, rectB) => (
+    rectA.x1 < rectB.x2 && rectA.x2 > rectB.x1 && 
+    rectA.y1 < rectB.y2 && rectA.y2 > rectB.y1
+);
 
