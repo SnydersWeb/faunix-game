@@ -6,19 +6,17 @@ const moveBirds = (birds) => {
         return birds;
     }
     
-    const birdsChanges = birds.filter(bird => (
-        /gone/.test(bird.status) === false
-    )).map(bird => {
+    const birdsChanges = birds.map(bird => {
         const { x, y } = bird.position;
         const canvas = getCanvas();
         const { fltDir } = bird;
         let change = scaleCoords(getRandomInt(birdMinVel, birdMaxVel));
         change = /left/.test(fltDir) ? (0 - change) : change;
         const scaleBirdWith = scaleCoords(birdWidth);
-
-        // Boundry checking so we don't run off our play area
         let dirChange = false;
         let newDir = '';
+
+        // Boundry checking so we don't run off our play area
         if (x + change > (canvas.x - scaleBirdWith)) {
             change = 0;
             dirChange = true;
@@ -28,7 +26,7 @@ const moveBirds = (birds) => {
             dirChange = true;
             newDir = 'right';
         }
-            
+        
         return {
             ...bird,
             position: {

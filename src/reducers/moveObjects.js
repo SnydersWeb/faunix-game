@@ -1,7 +1,8 @@
 import moveShipBullets from './moveShipBullets';
 import moveBirds from './moveBirds';
 import { scaleCoords, getCanvas } from '../utils/functions';
-import { lgStarVelocity, mdStarVelocity, smStarVelocity } from '../utils/constants';
+import { lgStarVelocity, mdStarVelocity, smStarVelocity, birdStruckTimeSec, birdWingRemoveTimeSec, birdFledTimeSec, birdFleeSpeed, birdWingRegrowSpeed, birdFleeRegrowEnterUpdate } from '../utils/constants';
+import detectBirdHits from './detectBirdHits';
 
 
 // SnyderD - the main purpose of this file is it's our main "animaion core" that handles all autonomous actions beyond
@@ -25,7 +26,8 @@ const moveStars = (aryStars, moveFactor, playField) => {
 const moveObjects = (state, action) => {
     if (state.gameState.started === false) return state;
     const playFieldSize = getCanvas();
-    
+    const now = (new Date()).getTime();
+
     // Handle bullets fired
     const { shipFire } = state.gameState;
     
@@ -40,10 +42,87 @@ const moveObjects = (state, action) => {
         birdUpdates = moveBirds(birds);
     }
 
-    // const objectsDestroyed = checkCollisions(cannonBalls, flyingObjects);
-    // const birdsDestroyed = objectsDestroyed.map(object => (object.cannonBallId));
-    // const flyingDiscsDestroyed = objectsDestroyed.map(object => (object.flyingDiscId));
+    const objectsDestroyed = detectBirdHits(shipFire, birds);
+    const bulletsDestroyed = objectsDestroyed.map(object => (object.bulletId));
+    const birdDamage = objectsDestroyed.map(object => ({ id: object.birdId, type: object.type }));
+    
+    //Delete the bullet from the screen if connected
+    bullets = bullets.filter(bullet => (bulletsDestroyed.indexOf(bullet.id)));
 
+    //Now handle general status updates
+    birdUpdates.forEach((bird) => {
+        const { status } = bird;
+        //First handle our bird damage
+        const damageBirds = birdDamage.filter(obj => ( obj.id === bird.id ));
+        if (damageBirds.length > 0) { //this intersects
+            bird.statusTime = now;
+            if (/left/.test(damageBirds[0].type)) {
+                bird.wings.left = .1;
+            } else if (/right/.test(damageBirds[0].type)) {
+                bird.wings.right = .1;
+            } else if (/body/.test(damageBirds[0].type)) {
+                bird.status = 'struck'; //bird hit!
+            }
+        }
+
+        //General updates
+        // console.log(`birdStatus:${birdUpdates.length}`);
+ 
+        if (/struck/.test(status)) {
+            if (bird.statusTime + (1000 * birdStruckTimeSec) < now) {
+                bird.status = 'flee';
+                bird.statusTime = now;
+            } 
+        } else if(/flee/.test(status)) {
+            if (bird.statusTime + (1000 * birdFleeRegrowEnterUpdate) < now) {
+                bird.statusTime = now;
+                if (bird.fleeStatus > 0) {
+                    bird.fleeStatus -= birdFleeSpeed;
+                } else {
+                    bird.status = 'gone';
+                }
+            }
+        } else if(/enter/.test(status)) {
+            if (bird.statusTime + (1000 * birdFleeRegrowEnterUpdate) < now) {
+                bird.statusTime = now;
+                if (bird.fleeStatus < 1) {
+                    bird.fleeStatus += birdFleeSpeed;
+                } else {
+                    bird.status = 'normal';
+                }
+            }
+        } else if(/gone/.test(status)) {
+            if (bird.statusTime + (1000 * birdFledTimeSec) < now) {
+                bird.statusTime = now;
+                bird.status = 'enter';
+                //Restore both wings
+                bird.wings.left = 1;
+                bird.wings.right = 1;
+                bird.wings.statusTime = now;
+            }
+        } else {
+            //Status "normal" - need code here to check wings and regrow them
+            const wingsRegrowthNeeded = (bird.wings.right < 1 || bird.wings.left < 1);
+            if (wingsRegrowthNeeded) {
+                const wingStatusTime = bird.wings.statusTime;
+                if (bird.statusTime + (1000 * birdWingRemoveTimeSec) < now) {
+                    //Code to regrow the wings by +=birdWingRegrowSpeed
+                    if (wingStatusTime + (1000 * birdFleeRegrowEnterUpdate) < now) {
+                        if (bird.wings.left < 1) {
+                            bird.wings.left += birdWingRegrowSpeed;
+                        }
+                        if (bird.wings.right < 1) {
+                            bird.wings.right += birdWingRegrowSpeed;
+                        }
+                        bird.wings.statusTime = now;
+                    }
+                }
+            }
+        }
+        
+    });
+
+    
     // Handle background stuffs
     const { background } = state.gameState;
     const smStarMove = scaleCoords(smStarVelocity);

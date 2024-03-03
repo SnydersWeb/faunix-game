@@ -20,9 +20,9 @@ class Bird extends Component {
         this.id = props.id;
         this.basePartName = 'bird';
 
-        this.style = {
+        this.baseStyle = {
             opacity: 1,
-            transformBox: 'view-box',
+            //transformBox: 'view-box',
             //transformOrigin: '100% 100%',
         };
 
@@ -77,17 +77,18 @@ class Bird extends Component {
         const legDeg = this.flapDeg * birdLegWingDegRatio;        
 
         let transform = ``;
+        let style = this.baseStyle;
         if (/flee|enter|gone/.test(status)) {
             transform += ` scale(${fleeStatus})`;
-            this.style = {
-                ...this.style,
+            style = {
+                ...this.baseStyle,
                 opacity: fleeStatus,
                 transformOrigin: `${position.x}px ${position.y}px`,
             };
         }    
         
         return (
-            <g id={`${this.basePartName}${this.id}`} style={this.style} transform={`${transform}`}>
+            <g id={`${this.basePartName}${this.id}`} style={style} transform={`${transform}`}>
                 <BirdFootLeft position={position} id={this.id} rotDeg={-legDeg} />
                 <BirdFootRight position={position} id={this.id} rotDeg={legDeg} />
                 <BirdWingLeft position={position} id={this.id} rotDeg={-this.flapDeg} scale={left} />
@@ -125,6 +126,7 @@ Bird.propTypes = {
     wings: PropTypes.shape({ //Scaler value for wing if hit. 1 is full scale
         left: PropTypes.number.isRequired,
         right: PropTypes.number.isRequired,
+        statusTime: PropTypes.number.isRequired,
     }).isRequired,
 };
 

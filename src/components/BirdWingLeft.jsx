@@ -25,11 +25,12 @@ class BirdWingLeft extends Component {
         const { rotDeg } = this.props;
         const { scale } = this.props;
         let transform = '';
+        let wingStyle = this.wingStyle;
         // SnyderD - Less than ideal here.. seems rotating AND scaling is very problematic here.  So let's do either/or with scaling 
         // taking the priority - once it's back to full scale it'll start flapping again normally.
         if (scale < 1) {
             transform = `scale(${scale})`;
-            this.wingStyle = {
+            wingStyle = {
                 ...this.wingStyle,
                 opacity: .4,
                 transformBox: 'fill-box',
@@ -41,7 +42,7 @@ class BirdWingLeft extends Component {
         
         return (
             <path 
-                style={this.wingStyle} 
+                style={wingStyle} 
                 d={`m ${x + this.leftWingX},${y + this.leftWingY} ${this.leftWingPath} z`} 
                 id={`${this.basePartName}${this.id}`} 
                 transform={`${transform}`}

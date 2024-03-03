@@ -86,6 +86,7 @@ Canvas.propTypes = {
             wings: PropTypes.shape({ //Scaler value for wing if hit. 1 is full scale
                 left: PropTypes.number.isRequired,
                 right: PropTypes.number.isRequired,
+                statusTime: PropTypes.number.isRequired,
             }).isRequired,
         })).isRequired,
         background: PropTypes.shape({

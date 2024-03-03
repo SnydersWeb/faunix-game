@@ -49,6 +49,7 @@ for (let i = 1, j = numBirds; i <= j; i++) {
         wings: {
             left: 1,
             right: 1,
+            statusTime: 0,
         },
     }
     aryBirds.push(retVal);
