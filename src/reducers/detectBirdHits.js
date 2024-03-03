@@ -51,9 +51,9 @@ const detectBirdHits = (shipFire, birds) => {
             }
             if (right === 1) {
                 rightWing = {
-                    x1: calculatedPosition.x + birdWingOffset,
+                    x1: calculatedPosition.x,
                     y1: calculatedPosition.y,
-                    x2: calculatedPosition.x + (birdWingOffset + birdWingWidthScaled),
+                    x2: calculatedPosition.x + birdWingWidthScaled,
                     y2: calculatedPosition.y + birdWingHeightScaled,
                 };
             }

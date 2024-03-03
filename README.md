@@ -1,70 +1,22 @@
-# Getting Started with Create React App
+# Fauxnix Game
+A simple game based on the 1980 hit game Phoenix!</br>
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Tech-Stack
+* Reactjs
+* SVG
 
-## Available Scripts
+## Description
+It has been 100 years since the great alien corruption of the beloved phoenix.  You and your fleet of warships were successful in wiping out the aliens who were twisting the phoenix, however, their legacy remains!  The aliens are no longer feeding the phoenix radioactive material that was making them bomb societies flat.  The problem is the mutated phoenix continues to multiply!  Your mission: your ship has been stripped of shields (budget cuts) and we can equip it with 100 doses of "Population Control".  You are to administer as many doses as you can before you run out and are forced to return to base. 
 
-In the project directory, you can run:
+### Screenshots
+![screehshot2](./src/screenshot.png)
 
-### `npm start`
+## Purpose
+My real purpose here was to deepen my knowledge of React and also familiarize myself with using SVG in the browser space.  Graphics were originally drawn in InkScape and then ported into the game.  To make everything fit I created a scaler function that can grow/shrink things down to fit depending on the size of your screen.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
-
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
-
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+## ToDo's 
+This game is now mostly functional however there is still some work remaining that will be completed soon:
+* Scoring
+* Limit shots
+* Title screen/click to start 
+* Unit tests
