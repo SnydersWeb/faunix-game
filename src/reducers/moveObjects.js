@@ -1,7 +1,7 @@
 import moveShipBullets from './moveShipBullets';
 import moveBirds from './moveBirds';
 import { scaleCoords, getCanvas } from '../utils/functions';
-import { lgStarVelocity, mdStarVelocity, smStarVelocity, birdStruckTimeSec, birdWingRemoveTimeSec, birdFledTimeSec, birdFleeSpeed, birdWingRegrowSpeed, birdFleeRegrowEnterUpdate } from '../utils/constants';
+import { lgStarVelocity, mdStarVelocity, smStarVelocity, birdStruckTimeSec, birdWingRemoveTimeSec, birdFledTimeSec, birdFleeSpeed, birdWingRegrowSpeed, birdFleeRegrowEnterUpdateSec } from '../utils/constants';
 import detectBirdHits from './detectBirdHits';
 
 
@@ -65,16 +65,14 @@ const moveObjects = (state, action) => {
             }
         }
 
-        //General updates
-        // console.log(`birdStatus:${birdUpdates.length}`);
- 
+        //Handle all conditions for our birds
         if (/struck/.test(status)) {
             if (bird.statusTime + (1000 * birdStruckTimeSec) < now) {
                 bird.status = 'flee';
                 bird.statusTime = now;
             } 
         } else if(/flee/.test(status)) {
-            if (bird.statusTime + (1000 * birdFleeRegrowEnterUpdate) < now) {
+            if (bird.statusTime + (1000 * birdFleeRegrowEnterUpdateSec) < now) {
                 bird.statusTime = now;
                 if (bird.fleeStatus > 0) {
                     bird.fleeStatus -= birdFleeSpeed;
@@ -83,7 +81,7 @@ const moveObjects = (state, action) => {
                 }
             }
         } else if(/enter/.test(status)) {
-            if (bird.statusTime + (1000 * birdFleeRegrowEnterUpdate) < now) {
+            if (bird.statusTime + (1000 * birdFleeRegrowEnterUpdateSec) < now) {
                 bird.statusTime = now;
                 if (bird.fleeStatus < 1) {
                     bird.fleeStatus += birdFleeSpeed;
@@ -100,14 +98,13 @@ const moveObjects = (state, action) => {
                 bird.wings.right = 1;
                 bird.wings.statusTime = now;
             }
-        } else {
-            //Status "normal" - need code here to check wings and regrow them
+        } else { //Status "normal" - need code here to check wings and regrow them
             const wingsRegrowthNeeded = (bird.wings.right < 1 || bird.wings.left < 1);
             if (wingsRegrowthNeeded) {
                 const wingStatusTime = bird.wings.statusTime;
                 if (bird.statusTime + (1000 * birdWingRemoveTimeSec) < now) {
                     //Code to regrow the wings by +=birdWingRegrowSpeed
-                    if (wingStatusTime + (1000 * birdFleeRegrowEnterUpdate) < now) {
+                    if (wingStatusTime + (1000 * birdFleeRegrowEnterUpdateSec) < now) {
                         if (bird.wings.left < 1) {
                             bird.wings.left += birdWingRegrowSpeed;
                         }

@@ -21,7 +21,7 @@ export const bulletVelocity = 2; //How fast bullet travels
 export const shipBarrelLength = 1.90261; //Used to adjust bullet origin point in ship
 export const shipPosGunOffset = 0.70882; //Used to adjust bullet origin point in ship
 export const shipWidth = 4.75; //Ship general width
-export const shipMoveRate = 2; //How fast the ship moves
+export const shipMoveRate = 2.25; //How fast the ship moves
 export const shipPylongWiggleDist = .5; //How long the little pylons on the ship move
 export const shipPylongWiggleSpeed = 1; //Rate of change for the pylons
 export const shipPylonTimeSec = .025; //Timeout value used per frame of the pylon movement
@@ -42,13 +42,13 @@ export const birdMaxVel = 0.9; //Max left/right speed
 export const birdMinVel = 0.01; //Min left/right speed
 export const birdFledTimeSec = 5;  //How long the bird stays away
 export const birdFleeSpeed = .1; //How fast does it scale down
-export const birdFleeRegrowEnterUpdate = .1; //This sets the delay betwen updates
+export const birdFleeRegrowEnterUpdateSec = .1; //This sets the delay betwen updates
 export const birdWingRegrowSpeed = .1; //How fast does the bird wing scale back
 export const birdWingRemoveTimeSec = 5; //How long does the bird wing stay blown off
 export const birdStruckTimeSec = 1; //How long does the bird stay in stuck state before fleeing
 export const birdHitSpotWidth = 13.736; //Main hit spot width
 export const birdHitSpotHeight = 13.736; //Main hit spot height
 export const birdWingWidth = 13.800; //Wing hit spot width
-export const birdWingHeight = 18.561; //Main hit spot width
+export const birdWingHeight = 18.561; //Wing hit spot height
 
 

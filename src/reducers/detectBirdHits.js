@@ -21,6 +21,18 @@ const detectBirdHits = (shipFire, birds) => {
         };
         const { left, right } = bird.wings; //Check the status of the wings before we count a "hit"
         const { status } = bird;
+        let leftWing = {
+            x1: calculatedPosition.x,
+            y1: calculatedPosition.y,
+            x2: calculatedPosition.x,
+            y2: calculatedPosition.y,
+        };
+        let rightWing = {
+            x1: calculatedPosition.x,
+            y1: calculatedPosition.y,
+            x2: calculatedPosition.x,
+            y2: calculatedPosition.y,
+        };
         
         if (/normal/.test(status)) { //only birds in "normal" should be "hittable"
             const mainBody = {
@@ -29,18 +41,22 @@ const detectBirdHits = (shipFire, birds) => {
                 x2: calculatedPosition.x + birdBodyWidthScaled/2,
                 y2: calculatedPosition.y + birdBodyHeightScaled,
             };
-            const leftWing = {
-                x1: calculatedPosition.x - (left * (birdWingOffset + birdWingWidthScaled)),
-                y1: calculatedPosition.y,
-                x2: calculatedPosition.x - (left * birdWingOffset),
-                y2: calculatedPosition.y + birdWingHeightScaled,
-            };        
-            const rightWing = {
-                x1: calculatedPosition.x + (right * birdWingOffset),
-                y1: calculatedPosition.y,
-                x2: calculatedPosition.x + (right * (birdWingOffset + birdWingWidthScaled)),
-                y2: calculatedPosition.y + birdWingHeightScaled,
-            };
+            if (left === 1) {
+                leftWing = {
+                    x1: calculatedPosition.x - (birdWingOffset + birdWingWidthScaled),
+                    y1: calculatedPosition.y,
+                    x2: calculatedPosition.x - birdWingOffset,
+                    y2: calculatedPosition.y + birdWingHeightScaled,
+                };        
+            }
+            if (right === 1) {
+                rightWing = {
+                    x1: calculatedPosition.x + birdWingOffset,
+                    y1: calculatedPosition.y,
+                    x2: calculatedPosition.x + (birdWingOffset + birdWingWidthScaled),
+                    y2: calculatedPosition.y + birdWingHeightScaled,
+                };
+            }
         
             shipFire.forEach((bullet) => {
                 const bulletBox = {
@@ -49,20 +65,29 @@ const detectBirdHits = (shipFire, birds) => {
                     x2: (bullet.position.x + bulletXOffsetScaled) + bulletWidthScaled,
                     y2: bullet.position.y - bulletHeightScaled,
                 };
+                let hit = false;
 
-                if (checkCollision(leftWing, bulletBox)) {
-                    objectsDestroyed.push({
-                        bulletId: bullet.id,
-                        birdId: bird.id,
-                        type: 'left'
-                    });
-                } else if (checkCollision(rightWing, bulletBox)) {
-                    objectsDestroyed.push({
-                        bulletId: bullet.id,
-                        birdId: bird.id,
-                        type: 'right'
-                    });
-                } else if (checkCollision(mainBody, bulletBox)) {
+                if (left === 1) {
+                    if (checkCollision(leftWing, bulletBox)) {
+                        hit = true;
+                        objectsDestroyed.push({
+                            bulletId: bullet.id,
+                            birdId: bird.id,
+                            type: 'left'
+                        });
+                    }
+                } 
+                if (left === 1) {
+                    if (checkCollision(rightWing, bulletBox)) {
+                        hit = true;
+                        objectsDestroyed.push({
+                            bulletId: bullet.id,
+                            birdId: bird.id,
+                            type: 'right'
+                        });
+                    }
+                } 
+                if (hit === false && checkCollision(mainBody, bulletBox)) {
                     objectsDestroyed.push({
                         bulletId: bullet.id,
                         birdId: bird.id,
