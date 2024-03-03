@@ -1,6 +1,11 @@
 # Fauxnix Game
 A simple game based on the 1980 hit game Phoenix!</br>
 
+## Controls
+* W or Left Arrow = Left
+* D or Right Arrow = Right
+* Space Bar = Fire!
+
 ## Tech-Stack
 * Reactjs
 * SVG
@@ -12,7 +17,8 @@ It has been 100 years since the great alien corruption of the beloved phoenix.  
 ![screehshot2](./src/screenshot.png)
 
 ## Purpose
-My real purpose here was to deepen my knowledge of React and also familiarize myself with using SVG in the browser space.  Graphics were originally drawn in InkScape and then ported into the game.  To make everything fit I created a scaler function that can grow/shrink things down to fit depending on the size of your screen.
+Deepen my knowledge of React, familiarize myself with using SVG in the browser space, and have fun doing something new and very different.  The graphics/SVG were originally drawn in InkScape and then ported into the game.  To make everything fit I created a scaler function that can grow/shrink things down depending on the size of your screen.</br>
+I learned quite a bit about getting into some components that were somewhat self-running - unlike previous React apps I've built that exclusively respond to user inputs. 
 
 ## ToDo's 
 This game is now mostly functional however there is still some work remaining that will be completed soon:
