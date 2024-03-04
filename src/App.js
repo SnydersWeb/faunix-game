@@ -7,7 +7,7 @@ import { widthHeightRatio, updateInterval } from './utils/constants';
 class App extends Component {
   constructor(props) {
     super(props);
-    this.keyDown = this.keyDown.bind(this);
+    this.keyDown = this.handleKeyDown.bind(this);
   }
 
   componentDidMount() {
@@ -30,29 +30,32 @@ class App extends Component {
     window.onresize();
   }
 
-  keyDown(command) {
+  handleKeyDown(command) {
     if (/shoot/.test(command)) {
-      this.props.shoot(command);
+      this.props.shoot();
     } else if (/right|left|none/.test(command)) {
       this.props.moveShip(command);
+    } else if (/start/.test(command)) {
+      this.props.startGame();
     } else {
       console.log(`Apps.Js - unknown: ${command}`);
     }
   }
 
   render() {
+    const { started } = this.props.gameState;
     window.onkeydown = (e) => {
       switch (e.key) {
         case "d":
         case "ArrowRight":
-          this.keyDown("right");
+          this.handleKeyDown("right");
           break;
         case "a":
         case "ArrowLeft":
-          this.keyDown("left");
+          this.handleKeyDown("left");
           break;
         case " ":
-          this.keyDown("shoot");
+          started ? this.handleKeyDown("shoot") : this.handleKeyDown("start");
           break;
         default:
           break;
@@ -63,11 +66,11 @@ class App extends Component {
       switch (e.key) {
         case "d":
         case "ArrowRight":
-          this.keyDown("none");
+          this.handleKeyDown("none");
           break;
         case "a":
         case "ArrowLeft":
-          this.keyDown("none");
+          this.handleKeyDown("none");
           break;
         default:
           break;

@@ -13,7 +13,7 @@ const ShotsRemaining = (props) => {
     };
 
     const position = {
-        x: canvas.x * .6,
+        x: canvas.x * .50,
         y: canvas.y * .04,
     };
     

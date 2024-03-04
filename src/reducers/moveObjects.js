@@ -23,8 +23,8 @@ const moveStars = (aryStars, moveFactor, playField) => {
 }
 
 
-const moveObjects = (state, action) => {
-    if (state.gameState.started === false) return state;
+const moveObjects = state => {
+    //if (state.gameState.started === false) return state;
     const playFieldSize = getCanvas();
     const now = (new Date()).getTime();
 
@@ -122,7 +122,6 @@ const moveObjects = (state, action) => {
         }
         
     });
-
     
     // Handle background stuffs
     const { background } = state.gameState;

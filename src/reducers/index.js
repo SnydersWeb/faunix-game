@@ -57,7 +57,7 @@ for (let i = 1, j = numBirds; i <= j; i++) {
 }
 
 const initialGameState = {
-    started: true,
+    started: false,
     shotsRemaining: startShotCount,
     startTime: 0,
     score: 0,

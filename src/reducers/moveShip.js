@@ -4,6 +4,7 @@ import { scaleCoords, getCanvas } from '../utils/functions';
 import { shipWidth } from '../utils/constants';
 
 const moveShip = (state, action) => {
+    if (state.gameState.started === false) return state;
     const { shipMoveDirection } = action;
     const { shipPosition } = state.gameState;
     const scaleShipWidth = scaleCoords(shipWidth);

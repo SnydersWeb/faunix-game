@@ -8,6 +8,8 @@ import ShipBullet from './ShipBullet';
 import Bird from './Bird';
 import CurrentScore from './CurrentScore';
 import ShotsRemaining from './ShotsRemaining';
+import Title from './Title';
+import StartGame from './StartGame';
 
 const Canvas = props => {
     const { innerHeight } = window;
@@ -58,6 +60,13 @@ const Canvas = props => {
                     wings={bird.wings}
                 />
             ))}
+            {
+                props.gameState.started === false &&
+                <g>
+                    <Title />
+                    <StartGame />
+                </g>
+            }
         </svg>
     );
 };

@@ -2,9 +2,11 @@ import { scaleCoords } from '../utils/functions';
 import { bulletLength, shipBarrelLength, activeShotCount } from '../utils/constants';
 
 const shoot = state => {
+    if (state.gameState.started === false) return state;
     const { shipFire } = state.gameState;
     const { shipPosition } = state.gameState;
     let { shotsRemaining } = state.gameState;
+    let { started } = state.gameState;
 
     if (shipFire.length >= activeShotCount) return state; //only 1 bullet on screen
     
@@ -19,11 +21,15 @@ const shoot = state => {
 
     //subtract it from shots remaining
     shotsRemaining -= 1;
+    if (shotsRemaining === 0) {
+        started = false;
+    }
 
     return {
         ...state,
         gameState: {
             ...state.gameState,
+            started: started,
             shipFire: [...shipFire, shipBullet],
             shotsRemaining: shotsRemaining,
         },

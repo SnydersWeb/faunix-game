@@ -1,8 +1,9 @@
-const startGame = (state, initialGameState) => {
+const startGame = (state) => {
+    const { gameState } = state;
     return {
         ...state,
         gameState: {
-            ...initialGameState,
+            ...gameState,
             started: true,
             startTime: (new Date()).getTime(),
         }

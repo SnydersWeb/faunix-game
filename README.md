@@ -19,6 +19,6 @@ Deepen my knowledge of React, familiarize myself with using SVG in the browser s
 I learned quite a bit about getting into some components that were somewhat self-running - unlike previous React apps I've built that exclusively respond to user inputs. 
 
 ## ToDo's 
-This game is now mostly functional however there is still some work remaining that will be completed soon:
-* Title screen/click to start 
+This game is fully functional!  There is still some work remaining that will be completed soon:
+* Top 10 Players on localStorage
 * Unit tests
