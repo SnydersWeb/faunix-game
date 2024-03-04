@@ -21,6 +21,8 @@ const detectBirdHits = (shipFire, birds) => {
         };
         const { left, right } = bird.wings; //Check the status of the wings before we count a "hit"
         const { status } = bird;
+
+        //Default to an unhittable hitbox for both wings
         let leftWing = {
             x1: calculatedPosition.x,
             y1: calculatedPosition.y,
@@ -41,7 +43,7 @@ const detectBirdHits = (shipFire, birds) => {
                 x2: calculatedPosition.x + birdBodyWidthScaled/2,
                 y2: calculatedPosition.y + birdBodyHeightScaled,
             };
-            if (left === 1) {
+            if (left === 1) { //Make the hitbox full size
                 leftWing = {
                     x1: calculatedPosition.x - (birdWingOffset + birdWingWidthScaled),
                     y1: calculatedPosition.y,
@@ -50,7 +52,7 @@ const detectBirdHits = (shipFire, birds) => {
                 };        
             }
             if (right === 1) {
-                rightWing = {
+                rightWing = { //Make the hitbox full size
                     x1: calculatedPosition.x,
                     y1: calculatedPosition.y,
                     x2: calculatedPosition.x + birdWingWidthScaled,
@@ -77,7 +79,7 @@ const detectBirdHits = (shipFire, birds) => {
                         });
                     }
                 } 
-                if (left === 1) {
+                if (right === 1) {
                     if (checkCollision(rightWing, bulletBox)) {
                         hit = true;
                         objectsDestroyed.push({
