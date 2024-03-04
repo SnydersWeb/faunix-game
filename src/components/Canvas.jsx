@@ -6,6 +6,8 @@ import ScrollingBackground from './ScrollingBackground';
 import Ship from './Ship';
 import ShipBullet from './ShipBullet';
 import Bird from './Bird';
+import CurrentScore from './CurrentScore';
+import ShotsRemaining from './ShotsRemaining';
 
 const Canvas = props => {
     const { innerHeight } = window;
@@ -32,6 +34,8 @@ const Canvas = props => {
                 mdStarsPos={ background.mdStarsPos } 
                 smStarsPos={ background.smStarsPos } 
             />
+            <CurrentScore score={props.gameState.score} />
+            <ShotsRemaining shotsRemaining={props.gameState.shotsRemaining} />
             { props.gameState.shipFire.map(bullet => (
                 <ShipBullet
                     key={bullet.id}
@@ -61,6 +65,9 @@ const Canvas = props => {
 Canvas.propTypes = {
     gameState: PropTypes.shape({
         started: PropTypes.bool.isRequired,
+        shotsRemaining: PropTypes.number.isRequired,
+        startTime: PropTypes.number.isRequired,
+        score: PropTypes.number.isRequired,
         shipPosition: PropTypes.shape({
             x: PropTypes.number.isRequired,
             y: PropTypes.number.isRequired,

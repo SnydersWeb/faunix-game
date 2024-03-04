@@ -89,6 +89,9 @@ class App extends Component {
 App.propTypes = {
   gameState: PropTypes.shape({
     started: PropTypes.bool.isRequired,
+    shotsRemaining: PropTypes.number.isRequired,
+    startTime: PropTypes.number.isRequired,
+    score: PropTypes.number.isRequired,
     shipPosition: PropTypes.shape({
       x: PropTypes.number.isRequired,
       y: PropTypes.number.isRequired,

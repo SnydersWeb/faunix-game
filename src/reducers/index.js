@@ -3,7 +3,7 @@ import moveObjects from './moveObjects';
 import moveShip from './moveShip';
 import shoot from './shoot';
 import startGame from './startGame';
-import { widthHeightRatio, numLgStars, numMdStars, numSmStars,  numBirds, birdVertSpacing } from '../utils/constants';
+import { widthHeightRatio, numLgStars, numMdStars, numSmStars,  numBirds, birdVertSpacing, startShotCount } from '../utils/constants';
 import { getRandomInt } from '../utils/functions';
 
 const { innerHeight } = window;
@@ -58,6 +58,9 @@ for (let i = 1, j = numBirds; i <= j; i++) {
 
 const initialGameState = {
     started: true,
+    shotsRemaining: startShotCount,
+    startTime: 0,
+    score: 0,
     shipPosition: {
         x: canvasWidth / 2,
         y: canvasHeight - 100,

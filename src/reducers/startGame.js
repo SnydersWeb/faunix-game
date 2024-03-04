@@ -4,6 +4,7 @@ const startGame = (state, initialGameState) => {
         gameState: {
             ...initialGameState,
             started: true,
+            startTime: (new Date()).getTime(),
         }
     }
 };

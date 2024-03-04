@@ -28,6 +28,8 @@ const moveObjects = (state, action) => {
     const playFieldSize = getCanvas();
     const now = (new Date()).getTime();
 
+    let { score } = state.gameState;
+
     // Handle bullets fired
     const { shipFire } = state.gameState;
     
@@ -62,6 +64,8 @@ const moveObjects = (state, action) => {
                 bird.wings.right = .1;
             } else if (/body/.test(damageBirds[0].type)) {
                 bird.status = 'struck'; //bird hit!
+                //Add to the score!
+                score += 1;
             }
         }
 
@@ -133,13 +137,14 @@ const moveObjects = (state, action) => {
         ...state,
         gameState: {
             ...state.gameState,
+            score: score,
             shipFire: [...bullets],
             birds: [...birdUpdates],
             background: {
                 smStarsPos: newSmStarPos,
                 mdStarsPos: newMdStarPos,
                 lgStarsPos: newLgStarPos,
-            }
+            },
         },
     };
     

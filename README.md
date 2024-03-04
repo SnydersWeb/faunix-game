@@ -20,7 +20,5 @@ I learned quite a bit about getting into some components that were somewhat self
 
 ## ToDo's 
 This game is now mostly functional however there is still some work remaining that will be completed soon:
-* Scoring
-* Limit shots
 * Title screen/click to start 
 * Unit tests

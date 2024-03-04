@@ -14,7 +14,8 @@ export const mdStarVelocity = 0.4;
 export const smStarVelocity = 0.2;
 
 // Ship related vars
-export const activeBulletCount = 1; //Adjust to increaes/decrease bullets on screen
+export const startShotCount = 100; //Adjust to increaes/decrease amount of bullets
+export const activeShotCount = 1; //Adjust to increaes/decrease bullets on screen
 export const bulletLength = 4.4767156; //Length of bullet
 export const bulletWidth = 0.78343964; //Width of bullet
 export const bulletVelocity = 2; //How fast bullet travels
