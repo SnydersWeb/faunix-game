@@ -12,7 +12,7 @@ const CurrentScore = (props) => {
     const id = 100;
     const scoreStyle = {
         fontFamily: '"Press Start 2P", cursive',
-        fontSize: 20,
+        fontSize: canvas.y * .022,
         fill: '#d6d33e',
     };
 

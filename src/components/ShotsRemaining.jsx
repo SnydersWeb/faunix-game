@@ -5,10 +5,9 @@ import { getCanvas } from '../utils/functions';
 const ShotsRemaining = (props) => {
     const canvas = getCanvas();
     
-    const id = 'scoreBird';
     const scoreStyle = {
         fontFamily: '"Press Start 2P", cursive',
-        fontSize: 20,
+        fontSize: canvas.y * .022,
         fill: '#d6d33e',
     };
 

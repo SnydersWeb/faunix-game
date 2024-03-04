@@ -10,7 +10,7 @@ const StartGame = props => {
         y: canvas.y - canvas.y * .30,
         style: {
             fontFamily: '"Press Start 2P", cursive',
-            fontSize: 20,
+            fontSize: canvas.y * .022,
             fill: '#e3e3e3',
         }
     };
@@ -23,7 +23,7 @@ const StartGame = props => {
         y: canvas.y - canvas.y * .15,
         style: {
             fontFamily: '"Press Start 2P", cursive',
-            fontSize: 20,
+            fontSize: canvas.y * .022,
             fill: '#FC0',
         }
     };

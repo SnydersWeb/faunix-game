@@ -16,7 +16,7 @@ const Title = () => {
         y: canvas.y / 4,
         style: {
             fontFamily: '"Press Start 2P", cursive',
-            fontSize: 60,
+            fontSize: canvas.y * .095,
             fill: '#F00',
             filter: 'url(#shadow)',
         }
@@ -24,10 +24,10 @@ const Title = () => {
     const textStyle2 = {
         textAnchor: 'middle', // center
         x: canvas.x / 2, // center relative to X axis
-        y: (canvas.y / 4) + canvas.y / 20,
+        y: (canvas.y / 4) + canvas.y / 25,
         style: {
             fontFamily: '"Press Start 2P", cursive',
-            fontSize: 10,
+            fontSize: canvas.y * .010,
             fill: '#F00',
         }
     };
