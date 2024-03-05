@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { widthHeightRatio } from '../utils/constants';
-import { storeCanvas } from '../utils/functions';
+import { calculateCanvas, storeCanvas } from '../utils/functions';
 import ScrollingBackground from './ScrollingBackground';
 import Ship from './Ship';
 import ShipBullet from './ShipBullet';
@@ -12,13 +11,8 @@ import Title from './Title';
 import StartGame from './StartGame';
 
 const Canvas = props => {
-    const { innerHeight } = window;
-    const canvasHeight = innerHeight;
-    const canvasWidth = canvasHeight * widthHeightRatio;
-    storeCanvas({
-        x: canvasWidth,
-        y: canvasHeight
-    });
+    const canvasSize = calculateCanvas();
+    storeCanvas(canvasSize);
     
     const { shipPosition } = props.gameState;
     const { shipMoving } = props.gameState;
@@ -27,10 +21,10 @@ const Canvas = props => {
     return (
         <svg
             id='fauxnix-canvas'
-            width={canvasWidth}
-            height={canvasHeight}
-            preserveAspectRatio='xMinYMin meet'
-            viewBox={`0 0 ${canvasWidth} ${canvasHeight}`}
+            width={canvasSize.x}
+            height={canvasSize.y}
+            preserveAspectRatio='xMidYMid meet'
+            
         >   
             <ScrollingBackground 
                 lgStarsPos={ background.lgStarsPos } 

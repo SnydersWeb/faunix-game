@@ -3,42 +3,40 @@ import moveObjects from './moveObjects';
 import moveShip from './moveShip';
 import shoot from './shoot';
 import startGame from './startGame';
-import { widthHeightRatio, numLgStars, numMdStars, numSmStars,  numBirds, birdVertSpacing, startShotCount } from '../utils/constants';
-import { getRandomInt } from '../utils/functions';
+import { numLgStars, numMdStars, numSmStars,  numBirds, birdVertSpacing, startShotCount } from '../utils/constants';
+import { calculateCanvas, getRandomInt } from '../utils/functions';
 
-const { innerHeight } = window;
-const canvasHeight = innerHeight;
-const canvasWidth = canvasHeight * widthHeightRatio;
+const canvasSize = calculateCanvas();
 
 //Initialize our stars
 const aryLgStars = [];
 for (let i = 0, j = numLgStars; i < j; i++) {
     aryLgStars.push({
-        x: getRandomInt(0, canvasWidth),
-        y: getRandomInt(0, canvasHeight)
+        x: getRandomInt(0, canvasSize.x),
+        y: getRandomInt(0, canvasSize.y)
     });
 }
 const aryMdStars = [];
 for (let i = 0, j = numMdStars; i < j; i++) {
     aryMdStars.push({
-        x: getRandomInt(0, canvasWidth),
-        y: getRandomInt(0, canvasHeight)
+        x: getRandomInt(0, canvasSize.x),
+        y: getRandomInt(0, canvasSize.y)
     });
 }
 const arySmStars = [];
 for (let i = 0, j = numSmStars; i < j; i++) {
     arySmStars.push({
-        x: getRandomInt(0, canvasWidth),
-        y: getRandomInt(0, canvasHeight)
+        x: getRandomInt(0, canvasSize.x),
+        y: getRandomInt(0, canvasSize.y)
     });
 }
 
 const aryBirds = [];
-let birdYPos = canvasHeight * .075;
+let birdYPos = canvasSize.y * .075;
 for (let i = 1, j = numBirds; i <= j; i++) {
     const retVal = {
         position: {
-            x: canvasWidth * (i / 10),
+            x: canvasSize.x * (i / 10),
             y: birdYPos,
         },
         id: i,
@@ -53,7 +51,7 @@ for (let i = 1, j = numBirds; i <= j; i++) {
         },
     }
     aryBirds.push(retVal);
-    birdYPos += canvasHeight * birdVertSpacing;
+    birdYPos += canvasSize.y * birdVertSpacing;
 }
 
 const initialGameState = {
@@ -62,8 +60,8 @@ const initialGameState = {
     startTime: 0,
     score: 0,
     shipPosition: {
-        x: canvasWidth / 2,
-        y: canvasHeight - 100,
+        x: canvasSize.x / 2,
+        y: canvasSize.y * .92,
     },
     shipMoving: 'none',
     shipFire: [],

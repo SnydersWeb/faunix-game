@@ -1,4 +1,36 @@
-import { baseGfxHeight, baseGfxWidth} from './constants';
+import { baseGfxHeight, baseGfxWidth, widthHeightRatio, heightWidthRatio } from './constants';
+
+export const calculateCanvas = () => {
+    const { innerHeight, innerWidth } = window;
+    const aspectRatio = (innerHeight / innerWidth);
+    
+    let canvasHeight;
+    let canvasWidth;
+    
+    if (aspectRatio > 1.4) { //Screen is way taller than it is wide, likely mobile
+        //Let's make height the bounder then
+        canvasWidth = innerWidth;
+        canvasHeight = innerWidth * heightWidthRatio;
+        setIsMobile(true);
+    } else { //Normal screen (I hope)
+        canvasHeight = innerHeight;
+        canvasWidth = canvasHeight * widthHeightRatio;
+        setIsMobile(false);
+    }
+
+    return {
+        x: canvasWidth,
+        y: canvasHeight
+    };
+};
+
+let isMobile = false;
+export const setIsMobile = mobile => {
+    isMobile = mobile;
+};
+export const getIsMobile = () => {
+    return isMobile;
+};
 
 let canvas = {};
 export const storeCanvas = canDims => {

@@ -1,7 +1,7 @@
 // Main game canvas related stuff
 export const updateInterval = 10; //Frequency (in ms) for setInterval in moveObjects (used in App.js)
-export const widthHeightRatio = .75; //Width to height aspect ratio
-export const heightWidthRatio = 1.33; //Height to width spect ratio
+export const widthHeightRatio = .753; //Width to height aspect ratio
+export const heightWidthRatio = 1.327; //Height to width spect ratio
 export const baseGfxHeight = 207; //This is what InkScape generally drew it as
 export const baseGfxWidth = 201; //This is what InkScape generally drew it as
 
@@ -28,7 +28,7 @@ export const shipPylongWiggleSpeed = 1; //Rate of change for the pylons
 export const shipPylonTimeSec = .025; //Timeout value used per frame of the pylon movement
 
 // Bird related vars
-export const numBirds = 5;
+export const numBirds = 6;
 export const birdVertSpacing = .125; //How much to space the birds apart
 export const birdWidth = 10;
 export const birdWingFlapSpeedDegMax = 5; //Flap speed increment
