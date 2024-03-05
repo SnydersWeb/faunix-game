@@ -20,7 +20,7 @@ code {
 }
 
 html, body {
-  overflow: show;
+  overflow: hidden;
   height: 100%;
 }
 

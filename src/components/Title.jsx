@@ -1,5 +1,5 @@
 import React from 'react';
-import { getCanvas } from '../utils/functions';
+import { getCanvas, scaleCoords } from '../utils/functions';
 
 const Title = () => {
     const canvas = getCanvas();
@@ -16,7 +16,7 @@ const Title = () => {
         y: canvas.y / 4,
         style: {
             fontFamily: '"Press Start 2P", cursive',
-            fontSize: canvas.y * .095,
+            fontSize: scaleCoords(20),
             fill: '#F00',
             filter: 'url(#shadow)',
         }
@@ -27,7 +27,7 @@ const Title = () => {
         y: (canvas.y / 4) + canvas.y / 25,
         style: {
             fontFamily: '"Press Start 2P", cursive',
-            fontSize: canvas.y * .010,
+            fontSize: scaleCoords(2),
             fill: '#F00',
         }
     };

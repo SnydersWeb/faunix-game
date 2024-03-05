@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { getCanvas } from '../utils/functions';
+import { getCanvas, scaleCoords } from '../utils/functions';
 import BirdBody from './BirdBody';
 import BirdEyeLeftBig from './BirdEyeLeftBig';
 import BirdEyeRightBig from './BirdEyeRightBig';
@@ -12,13 +12,13 @@ const CurrentScore = (props) => {
     const id = 100;
     const scoreStyle = {
         fontFamily: '"Press Start 2P", cursive',
-        fontSize: canvas.y * .022,
+        fontSize: scaleCoords(4),
         fill: '#d6d33e',
     };
 
     const position = {
         x: canvas.x * .2,
-        y: canvas.y * .01,
+        y: canvas.y * .015,
     };
 
     const birdStyle = {

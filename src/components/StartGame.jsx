@@ -1,5 +1,5 @@
 import React from 'react';
-import { getCanvas } from '../utils/functions';
+import { getCanvas, scaleCoords } from '../utils/functions';
 
 const StartGame = props => {
     const canvas = getCanvas();
@@ -10,7 +10,7 @@ const StartGame = props => {
         y: canvas.y - canvas.y * .30,
         style: {
             fontFamily: '"Press Start 2P", cursive',
-            fontSize: canvas.y * .022,
+            fontSize: scaleCoords(4),
             fill: '#e3e3e3',
         }
     };
@@ -23,7 +23,7 @@ const StartGame = props => {
         y: canvas.y - canvas.y * .15,
         style: {
             fontFamily: '"Press Start 2P", cursive',
-            fontSize: canvas.y * .022,
+            fontSize: scaleCoords(4),
             fill: '#FC0',
         }
     };

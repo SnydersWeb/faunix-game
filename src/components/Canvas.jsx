@@ -29,7 +29,8 @@ const Canvas = props => {
             id='fauxnix-canvas'
             width={canvasWidth}
             height={canvasHeight}
-            preserveAspectRatio='xMinYMid meet'
+            preserveAspectRatio='xMinYMin meet'
+            viewBox={`0 0 ${canvasWidth} ${canvasHeight}`}
         >   
             <ScrollingBackground 
                 lgStarsPos={ background.lgStarsPos } 

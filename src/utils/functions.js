@@ -1,4 +1,4 @@
-import { baseGfxHeight } from './constants';
+import { baseGfxHeight, baseGfxWidth} from './constants';
 
 let canvas = {};
 export const storeCanvas = canDims => {
@@ -8,7 +8,7 @@ export const getCanvas = () => {
     return canvas;
 };
 export const getScaleFactor = () => {
-    return canvas.y / baseGfxHeight;
+    return Math.min(canvas.y / baseGfxHeight, canvas.x / baseGfxWidth);
 };
 export const scaleCoords = (rawCoords, scaleFactor = getScaleFactor()) => {
     let parseCoords = ``;

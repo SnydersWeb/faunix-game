@@ -1,18 +1,18 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { getCanvas } from '../utils/functions';
+import { getCanvas, scaleCoords } from '../utils/functions';
 
 const ShotsRemaining = (props) => {
     const canvas = getCanvas();
     
     const scoreStyle = {
         fontFamily: '"Press Start 2P", cursive',
-        fontSize: canvas.y * .022,
+        fontSize: scaleCoords(4),
         fill: '#d6d33e',
     };
 
     const position = {
-        x: canvas.x * .50,
+        x: canvas.x * .60,
         y: canvas.y * .04,
     };
     
