@@ -19,12 +19,12 @@ class BirdEyeRightBig extends Component {
             opacity: 1,
         };
 
-        this.rightBigEyeX = scaleCoords(3.26322);
-        this.rightBigEyeY = scaleCoords(4.041425);
-        this.rightBigEyePupilX = scaleCoords(2.10642);
-        this.rightBigEyePupilY = scaleCoords(5.62377);
-        this.rightBigEyeRad = scaleCoords(3.0978625);
-        this.rightBigEyePupilRad = scaleCoords(1.180138);
+        this.rightBigEyeX = scaleCoords(3.263);
+        this.rightBigEyeY = scaleCoords(4.041);
+        this.rightBigEyePupilX = scaleCoords(2.106);
+        this.rightBigEyePupilY = scaleCoords(5.624);
+        this.rightBigEyeRad = scaleCoords(3.098);
+        this.rightBigEyePupilRad = scaleCoords(1.180);
     }
 
     render() {       

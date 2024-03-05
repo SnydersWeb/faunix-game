@@ -13,13 +13,13 @@ class ScrollingBackground extends Component {
             display: 'inline',
             fill: '#0066FF',
         };
-        this.starPath = scaleCoords('-0.26148,4.07365 -4.066423,0.35761 4.073653,0.26148 0.3576,4.06642 0.26148,-4.07366 4.06642,-0.3576 -4.07365,-0.26148 z');
+        this.starPath = scaleCoords('-0.261,4.074 -4.066,0.358 4.074,0.261 0.358,4.067 0.261,-4.074 4.066,-0.358 -4.074,-0.261 z');
                         
         this.mdStarStyle = {
             display: 'inline',
             fill: '#0044AA',
         };
-        this.mdCircleStarR = scaleCoords(0.75077206);
+        this.mdCircleStarR = scaleCoords(0.751);
 
         this.smStarStyle = {
             display: 'inline',

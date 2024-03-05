@@ -24,19 +24,19 @@ class BirdBeakBig extends Component {
             opacity: 1,
         };
 
-        this.bigBeakBaseX = scaleCoords(0.04313);
-        this.bigBeakBaseY = scaleCoords(9.994362);
-        this.bigBeakBaseRadX = scaleCoords(3.1379397);
-        this.bigBeakBaseRadY = scaleCoords(3.5848067);
-        this.bigBeakToungeX = scaleCoords(0.06515);
-        this.bigBeakToungeY = scaleCoords(9.897916);
-        this.bigBeakToungePath = scaleCoords('c -0.84295,-0.277125 -1.19509,-0.01358 -1.06152,0.707684 0.16083,0.868525 0.41814,1.962215 0.90069,2.058715 0.48251,0.0965 0.93285,-0.93285 1.0937,-1.962213 0.15426,-0.987281 -0.0899,-1.138243 -0.93287,-0.804186');
-        this.bigBeakUpperX = scaleCoords(0.11761);
-        this.bigBeakUpperY = scaleCoords(6.318652);
-        this.bigBeakUpperPath = scaleCoords('c 1.86869,0.05839 3.09502,1.927083 3.09502,3.562183 0,1.6351 -1.7765,-3.869555 -3.17963,-0.872974 -1.11116,-3.018248 -3.12716,2.450844 -3.12719,0.989773 -4e-5,-1.693498 1.22633,-3.737372 3.2118,-3.678977');
-        this.bigBeakLowerX = scaleCoords(2.96812);
-        this.bigBeakLowerY = scaleCoords(11.431105);
-        this.bigBeakLowerPath = scaleCoords('c 0.70713,-2.402086 -0.81121,0.82753 -2.96852,0.82753 -2.15733,0 -3.56956,-3.196647 -2.96414,-1.007317 0.18593,0.870967 0.95727,2.281207 2.99629,2.277187 1.86834,-0.004 2.93637,-2.0974 2.93637,-2.0974');
+        this.bigBeakBaseX = scaleCoords(0.043);
+        this.bigBeakBaseY = scaleCoords(9.994);
+        this.bigBeakBaseRadX = scaleCoords(3.138);
+        this.bigBeakBaseRadY = scaleCoords(3.585);
+        this.bigBeakToungeX = scaleCoords(0.065);
+        this.bigBeakToungeY = scaleCoords(9.898);
+        this.bigBeakToungePath = scaleCoords('c -.843,-.277 -1.195,-.013 -1.061,.708 .16,.869 .418,1.962 .9,2.059 .483,.096 .933,-.933 1.094,-1.962 .154,-.988 -.09,-1.139 -.933,-.805');
+        this.bigBeakUpperX = scaleCoords(0.118);
+        this.bigBeakUpperY = scaleCoords(6.319);
+        this.bigBeakUpperPath = scaleCoords('c 1.868,.059 3.095,1.927 3.095,3.562 0,1.635 -1.777,-3.87 -3.18,-.873 -1.111,-3.018 -3.127,2.451 -3.127,.99 0,-1.693 1.226,-3.737 3.212,-3.679');
+        this.bigBeakLowerX = scaleCoords(2.968);
+        this.bigBeakLowerY = scaleCoords(11.431);
+        this.bigBeakLowerPath = scaleCoords('c .707,-2.402 -.811,.827 -2.968,.827 -2.158,0 -3.57,-3.196 -2.965,-1.007 .186,.87 .958,2.281 2.997,2.277 1.868,-.004 2.936,-2.097 2.936,-2.097');
 
     }
 

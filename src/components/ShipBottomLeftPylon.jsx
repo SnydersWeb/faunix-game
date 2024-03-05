@@ -16,13 +16,13 @@ class ShipBottomLeftPylon extends Component {
             stroke: 'none',
         };
 
-        this.rPylonPath = scaleCoords('-0.0279,3.03812 -4.71895,4.89496 v -3.06512');
-        this.rPlyonXBase = scaleCoords(0.92374);
-        this.rPlyonYBase = scaleCoords(4.58442);
-        this.wPylonW = scaleCoords(0.78343964);
-        this.wPylonH = scaleCoords(5.3533936);
-        this.wPylonXBase = scaleCoords(-4.27065);
-        this.wPylonYBase = scaleCoords(7.25469);
+        this.rPylonPath = scaleCoords('-0.028,3.038 -4.719,4.895 v -3.065');
+        this.rPlyonXBase = scaleCoords(0.924);
+        this.rPlyonYBase = scaleCoords(4.584);
+        this.wPylonW = scaleCoords(0.783);
+        this.wPylonH = scaleCoords(5.353);
+        this.wPylonXBase = scaleCoords(-4.270);
+        this.wPylonYBase = scaleCoords(7.255);
     }
 
     render() {       

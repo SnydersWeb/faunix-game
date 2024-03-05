@@ -27,27 +27,28 @@ class ShipFuselage extends Component {
             fill: '#f9f9f9',
         };
 
-        this.fusealagePath = scaleCoords('0.93265 v -1.90261 h 0.70882 v 1.90261 h 0.914 v 11.78868 h -2.55547');
+        this.fusealagePath = scaleCoords('0.933 v -1.903 h 0.709 v 1.903 h 0.914 v 11.789 h -2.555');
         
-        this.shipCenter = scaleCoords(0.8900);
-        this.shipCenterBlockW = scaleCoords(0.70881999);
-        this.shipCenterBottomWhiteH = scaleCoords(2.7979465);
-        this.shipCenterBottomWhiteY = scaleCoords(7.21913);
-        this.shipCenterTopWhiteH = scaleCoords(3.4508007);
-        this.shipCenterTopYellowH = scaleCoords(1.8093387);
-        this.shipCenterTopWhiteY = scaleCoords(1.84708);
-        this.shipCenterTopYellowY = scaleCoords(2.6678);
+        this.shipCenter = scaleCoords(0.890);
+        this.shipCenterBlockW = scaleCoords(0.709);
+        this.shipCenterBottomWhiteH = scaleCoords(2.798);
+        this.shipCenterBottomWhiteY = scaleCoords(7.219);
+        this.shipCenterTopWhiteH = scaleCoords(3.451);
+        this.shipCenterTopYellowH = scaleCoords(1.809);
+        this.shipCenterTopWhiteY = scaleCoords(1.847);
+        this.shipCenterTopYellowY = scaleCoords(2.668);
         
-        this.bottomBlockW = scaleCoords(0.78341788);
-        this.bottomBlockH = scaleCoords(1.6228091);
-        this.bottomBlockYBase = scaleCoords(10.89377);
-        this.bottomBlockLeftXBase = scaleCoords(-0.78342);
-        this.bottomBlockCentXBase = scaleCoords(0.89796);
-        this.bottomBlockRightXBase = scaleCoords(2.57934);        
+        this.bottomBlockW = scaleCoords(0.783);
+        this.bottomBlockH = scaleCoords(1.623);
+        this.bottomBlockYBase = scaleCoords(10.894);
+        this.bottomBlockLeftXBase = scaleCoords(-0.783);
+        this.bottomBlockCentXBase = scaleCoords(0.898);
+        this.bottomBlockRightXBase = scaleCoords(2.579);        
     }
 
     render() {       
-        const basePositionX = this.props.position.x;        const basePositionY = this.props.position.y;
+        const basePositionX = this.props.position.x;        
+        const basePositionY = this.props.position.y;
         return (
             <g id={this.basePartName}>
                 <path style={this.fusealageStyle} d={`m ${basePositionX},${basePositionY} h ${this.fusealagePath} z`} id={`${this.basePartName}Body`} />

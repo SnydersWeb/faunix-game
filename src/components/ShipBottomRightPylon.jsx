@@ -16,17 +16,18 @@ class ShipBottomRightPylon extends Component {
             stroke: 'none',
         };
 
-        this.rPylonPath = scaleCoords('4.71895,5.06973 v -3.09395 l -4.71895,-4.65105');
-        this.rPlyonXBase = scaleCoords(1.70786);
-        this.rPlyonYBase = scaleCoords(7.45626);
-        this.wPylonW = scaleCoords(0.78343964);
-        this.wPylonH = scaleCoords(5.3534088);
-        this.wPylonXBase = scaleCoords(5.95859);
-        this.wPylonYBase = scaleCoords(7.25467);
+        this.rPylonPath = scaleCoords('4.719,5.07 v -3.094 l -4.719,-4.651');
+        this.rPlyonXBase = scaleCoords(1.708);
+        this.rPlyonYBase = scaleCoords(7.456);
+        this.wPylonW = scaleCoords(0.783);
+        this.wPylonH = scaleCoords(5.353);
+        this.wPylonXBase = scaleCoords(5.959);
+        this.wPylonYBase = scaleCoords(7.255);
     }
 
     render() {       
-        const basePositionX = this.props.position.x;        const basePositionY = this.props.position.y;
+        const basePositionX = this.props.position.x;        
+        const basePositionY = this.props.position.y;
         return (
             <g id={this.basePartName}>
                 <path style={this.rPylonStyle} d={`m ${basePositionX + this.rPlyonXBase},${basePositionY + this.rPlyonYBase} ${this.rPylonPath} z`} id={`${this.basePartName}Red`} />
