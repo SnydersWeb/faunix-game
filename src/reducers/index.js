@@ -3,33 +3,10 @@ import moveObjects from './moveObjects';
 import moveShip from './moveShip';
 import shoot from './shoot';
 import startGame from './startGame';
-import { numLgStars, numMdStars, numSmStars,  numBirds, birdVertSpacing, startShotCount } from '../utils/constants';
-import { calculateCanvas, getRandomInt } from '../utils/functions';
+import { numBirds, birdVertSpacing, startShotCount } from '../utils/constants';
+import { calculateCanvas } from '../utils/functions';
 
 const canvasSize = calculateCanvas();
-
-//Initialize our stars
-const aryLgStars = [];
-for (let i = 0, j = numLgStars; i < j; i++) {
-    aryLgStars.push({
-        x: getRandomInt(0, canvasSize.x),
-        y: getRandomInt(0, canvasSize.y)
-    });
-}
-const aryMdStars = [];
-for (let i = 0, j = numMdStars; i < j; i++) {
-    aryMdStars.push({
-        x: getRandomInt(0, canvasSize.x),
-        y: getRandomInt(0, canvasSize.y)
-    });
-}
-const arySmStars = [];
-for (let i = 0, j = numSmStars; i < j; i++) {
-    arySmStars.push({
-        x: getRandomInt(0, canvasSize.x),
-        y: getRandomInt(0, canvasSize.y)
-    });
-}
 
 const aryBirds = [];
 let birdYPos = canvasSize.y * .075;
@@ -66,11 +43,6 @@ const initialGameState = {
     shipMoving: 'none',
     shipFire: [],
     birds: aryBirds,
-    background: {
-        lgStarsPos: aryLgStars,
-        mdStarsPos: aryMdStars,
-        smStarsPos: arySmStars,
-    },
 };
 
 const initialState = {

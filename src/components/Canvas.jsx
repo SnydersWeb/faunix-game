@@ -15,10 +15,8 @@ const Canvas = props => {
     const canvasSize = calculateCanvas();
     storeCanvas(canvasSize);
     const isMobile = getIsMobile();
-    
     const { shipPosition } = props.gameState;
     const { shipMoving } = props.gameState;
-    const { background } = props.gameState;
     
     return (
         <svg
@@ -28,11 +26,7 @@ const Canvas = props => {
             preserveAspectRatio='xMidYMid meet'
             
         >   
-            <ScrollingBackground 
-                lgStarsPos={ background.lgStarsPos } 
-                mdStarsPos={ background.mdStarsPos } 
-                smStarsPos={ background.smStarsPos } 
-            />
+            <ScrollingBackground />
             <CurrentScore score={props.gameState.score} />
             <ShotsRemaining shotsRemaining={props.gameState.shotsRemaining} />
             { props.gameState.shipFire.map(bullet => (
@@ -110,23 +104,6 @@ Canvas.propTypes = {
                 statusTime: PropTypes.number.isRequired,
             }).isRequired,
         })).isRequired,
-        background: PropTypes.shape({
-            lgStarsPos: PropTypes.arrayOf(PropTypes.shape({
-                    x:  PropTypes.number.isRequired,
-                    y:  PropTypes.number.isRequired,
-                }).isRequired,
-            ).isRequired,
-            mdStarsPos: PropTypes.arrayOf(PropTypes.shape({
-                    x:  PropTypes.number.isRequired,
-                    y:  PropTypes.number.isRequired,
-                }).isRequired,
-            ).isRequired,
-            smStarsPos: PropTypes.arrayOf(PropTypes.shape({
-                    x:  PropTypes.number.isRequired,
-                    y:  PropTypes.number.isRequired,
-                }).isRequired,
-            ).isRequired,  
-        }).isRequired,
     }).isRequired,
     startGame: PropTypes.func.isRequired,
     moveShip: PropTypes.func.isRequired,

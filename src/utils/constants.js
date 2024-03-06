@@ -6,12 +6,13 @@ export const baseGfxHeight = 207; //This is what InkScape generally drew it as
 export const baseGfxWidth = 201; //This is what InkScape generally drew it as
 
 // Background Element vars
-export const numLgStars = 25;
-export const numMdStars = 50;
-export const numSmStars = 100;
-export const lgStarVelocity = 0.8;
-export const mdStarVelocity = 0.4;
-export const smStarVelocity = 0.2;
+export const backGroundNumLgStars = 25;
+export const backGroundNumMdStars = 50;
+export const backGroundNumSmStars = 100;
+export const backGroundLgStarVelocity = 0.8;
+export const backGroundMdStarVelocity = 0.4;
+export const backGroundSmStarVelocity = 0.2;
+export const backGroundTimeSec = .015; //Timeout value used per frame background
 
 // Ship related vars
 export const startShotCount = 100; //Adjust to increaes/decrease amount of bullets

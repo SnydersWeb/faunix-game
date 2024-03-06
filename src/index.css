@@ -11,7 +11,7 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color: #000;
+  background-color: #020018;
 }
 
 code {
@@ -27,6 +27,4 @@ html, body {
 svg {
   display: block;
   margin: auto;
-  border-left: 1px #FC0 solid;
-  border-right: 1px #FC0 solid;
 }
