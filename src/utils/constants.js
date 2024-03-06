@@ -22,14 +22,14 @@ export const bulletVelocity = 2; //How fast bullet travels
 export const shipBarrelLength = 1.903; //Used to adjust bullet origin point in ship
 export const shipPosGunOffset = 0.709; //Used to adjust bullet origin point in ship
 export const shipWidth = 4.75; //Ship general width
-export const shipMoveRate = 2.25; //How fast the ship moves
+export const shipMoveRate = .5; //How fast the ship moves
 export const shipPylongWiggleDist = .5; //How long the little pylons on the ship move
 export const shipPylongWiggleSpeed = 1; //Rate of change for the pylons
 export const shipPylonTimeSec = .025; //Timeout value used per frame of the pylon movement
 
 // Bird related vars
 export const numBirds = 6;
-export const birdVertSpacing = .125; //How much to space the birds apart
+export const birdVertSpacing = .105; //How much to space the birds apart
 export const birdWidth = 10;
 export const birdWingFlapSpeedDegMax = 5; //Flap speed increment
 export const birdWingFlapSpeedDegMin = 4; //Flap speed increment

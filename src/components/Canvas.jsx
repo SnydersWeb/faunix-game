@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { calculateCanvas, storeCanvas } from '../utils/functions';
+import { calculateCanvas, storeCanvas, getIsMobile } from '../utils/functions';
 import ScrollingBackground from './ScrollingBackground';
 import Ship from './Ship';
 import ShipBullet from './ShipBullet';
@@ -9,10 +9,12 @@ import CurrentScore from './CurrentScore';
 import ShotsRemaining from './ShotsRemaining';
 import Title from './Title';
 import StartGame from './StartGame';
+import MobileControl from './MobileControl';
 
 const Canvas = props => {
     const canvasSize = calculateCanvas();
     storeCanvas(canvasSize);
+    const isMobile = getIsMobile();
     
     const { shipPosition } = props.gameState;
     const { shipMoving } = props.gameState;
@@ -56,10 +58,18 @@ const Canvas = props => {
                 />
             ))}
             {
-                props.gameState.started === false &&
+                (props.gameState.started === false) &&
                 <g>
                     <Title />
-                    <StartGame />
+                    <StartGame mobile={isMobile} onClick={() => props.startGame()} />
+                </g>
+            }
+            {
+                isMobile === true &&
+                <g>
+                    <MobileControl controlType="left" onTouchStart={() => props.moveShip('left')} onTouchEnd={() => props.moveShip('none')} />
+                    <MobileControl controlType="fire" onTouchStart={() => props.shoot()} />
+                    <MobileControl controlType="right" onTouchStart={() => props.moveShip('right')} onTouchEnd={() => props.moveShip('none')} />
                 </g>
             }
         </svg>
@@ -119,6 +129,8 @@ Canvas.propTypes = {
         }).isRequired,
     }).isRequired,
     startGame: PropTypes.func.isRequired,
+    moveShip: PropTypes.func.isRequired,
+    shoot: PropTypes.func.isRequired,
 };
 
 export default Canvas;

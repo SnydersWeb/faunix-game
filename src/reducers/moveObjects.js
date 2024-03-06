@@ -1,5 +1,6 @@
 import moveShipBullets from './moveShipBullets';
 import moveBirds from './moveBirds';
+import moveShip from './moveShip';
 import { scaleCoords, getCanvas } from '../utils/functions';
 import { lgStarVelocity, mdStarVelocity, smStarVelocity, birdStruckTimeSec, birdWingRemoveTimeSec, birdFledTimeSec, birdFleeSpeed, birdWingRegrowSpeed, birdFleeRegrowEnterUpdateSec } from '../utils/constants';
 import detectBirdHits from './detectBirdHits';
@@ -29,6 +30,14 @@ const moveObjects = state => {
     const now = (new Date()).getTime();
 
     let { score } = state.gameState;
+
+    // Handle ship moving
+    const { shipMoving } = state.gameState;
+    let { shipPosition } = state.gameState;
+    if (/none/.test(shipMoving) === false) {
+        let shipMoveState = moveShip(state, shipMoving);
+        shipPosition = shipMoveState.gameState.shipPosition;
+    }
 
     // Handle bullets fired
     const { shipFire } = state.gameState;
@@ -138,6 +147,8 @@ const moveObjects = state => {
             ...state.gameState,
             score: score,
             shipFire: [...bullets],
+            shipMoving: shipMoving,
+            shipPosition: shipPosition,
             birds: [...birdUpdates],
             background: {
                 smStarsPos: newSmStarPos,

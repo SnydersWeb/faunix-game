@@ -61,7 +61,7 @@ const initialGameState = {
     score: 0,
     shipPosition: {
         x: canvasSize.x / 2,
-        y: canvasSize.y * .92,
+        y: canvasSize.y * .88,
     },
     shipMoving: 'none',
     shipFire: [],

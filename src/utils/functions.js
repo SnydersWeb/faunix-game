@@ -11,11 +11,9 @@ export const calculateCanvas = () => {
         //Let's make height the bounder then
         canvasWidth = innerWidth;
         canvasHeight = innerWidth * heightWidthRatio;
-        setIsMobile(true);
     } else { //Normal screen (I hope)
         canvasHeight = innerHeight;
         canvasWidth = canvasHeight * widthHeightRatio;
-        setIsMobile(false);
     }
 
     return {
@@ -24,12 +22,10 @@ export const calculateCanvas = () => {
     };
 };
 
-let isMobile = false;
-export const setIsMobile = mobile => {
-    isMobile = mobile;
-};
 export const getIsMobile = () => {
-    return isMobile;
+    return (('ontouchstart' in window) ||
+     (navigator.maxTouchPoints > 0) ||
+     (navigator.msMaxTouchPoints > 0));
 };
 
 let canvas = {};

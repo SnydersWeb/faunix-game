@@ -82,6 +82,8 @@ class App extends Component {
         <Canvas 
           gameState={this.props.gameState}
           startGame={this.props.startGame}
+          moveShip={this.props.moveShip}
+          shoot={this.props.shoot}
         />
       </div>
     );
