@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { scaleCoords } from '../utils/functions';
+import { scaleCoords } from '../utils/canvasFunctions';
 import { shipPylongWiggleDist, shipPylongWiggleSpeed, shipPylonTimeSec } from '../utils/constants';
 import PropTypes from 'prop-types';
 import ShipFuselage from './ShipFuselage';

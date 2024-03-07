@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { getCanvas, scaleCoords } from '../utils/functions';
+import { getCanvas, scaleCoords } from '../utils/canvasFunctions';
 
 const StartGame = props => {
     const canvas = getCanvas();

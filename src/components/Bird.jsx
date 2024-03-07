@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { birdLegWingDegRatio, birdEyeWiggle, birdBeakWiggle, birdFaceChangeTimeSec, birdWingFlapSpeedDegMin, birdWingFlapSpeedDegMax, birdWingMaxDeg, birdFlapSpeedSec } from '../utils/constants';
-import { scaleCoords, getRandomInt } from '../utils/functions';
+import { getRandomInt } from '../utils/miscFunctions';
+import { scaleCoords } from '../utils/canvasFunctions';
 import PropTypes from 'prop-types';
 import BirdFootRight from './BirdLegRight';
 import BirdFootLeft from './BirdLegLeft';

@@ -1,6 +1,6 @@
 
 import { shipMoveRate } from '../utils/constants';
-import { scaleCoords, getCanvas } from '../utils/functions';
+import { scaleCoords, getCanvas } from '../utils/canvasFunctions';
 import { shipWidth } from '../utils/constants';
 
 const moveShip = (state, action) => {

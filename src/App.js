@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Canvas from './components/Canvas';
-import { storeCanvas } from './utils/functions';
+import { storeCanvas } from './utils/canvasFunctions';
 import { widthHeightRatio, updateInterval } from './utils/constants';
 
 class App extends Component {

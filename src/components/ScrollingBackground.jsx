@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import { scaleCoords, getCanvas, getRandomInt } from '../utils/functions';
+import { scaleCoords, getCanvas } from '../utils/canvasFunctions';
+import { getRandomInt } from '../utils/miscFunctions';
 import { backGroundLgStarVelocity, backGroundMdStarVelocity, backGroundSmStarVelocity, backGroundNumLgStars, backGroundNumMdStars, backGroundNumSmStars, backGroundTimeSec } from '../utils/constants';
 
 class ScrollingBackground extends Component {

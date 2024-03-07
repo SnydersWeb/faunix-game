@@ -79,6 +79,8 @@ Last - ScrollingBackground is working - but I decided to convert it to an autono
 Day 14 - 3/7
 A lot was in Reducers that wasn't technically a reducer - they were functions!  So to that end I moved them to a more appropriate spot.  Also, I have now removed the deprecated call to what it should be and fixed the morphing issue (really weird).  The nice part is that also allowed me to fully group all the bird updates from movement to status changes so the code is better oganized.
 
+Also broke up big functions file into sub-files for readability/maintainability.
+
 Next up, implementing suggestion from another friend about a highScore using localStorage which I need to research.
 
 After that, enzyme tests for things.

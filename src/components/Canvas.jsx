@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { calculateCanvas, storeCanvas, getIsMobile } from '../utils/functions';
+import { calculateCanvas, storeCanvas } from '../utils/canvasFunctions';
+import { getIsMobile } from '../utils/miscFunctions';
 import ScrollingBackground from './ScrollingBackground';
 import Ship from './Ship';
 import ShipBullet from './ShipBullet';

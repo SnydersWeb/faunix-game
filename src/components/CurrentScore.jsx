@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { getCanvas, scaleCoords } from '../utils/functions';
+import { getCanvas, scaleCoords } from '../utils/canvasFunctions';
 import BirdBody from './BirdBody';
 import BirdEyeLeftBig from './BirdEyeLeftBig';
 import BirdEyeRightBig from './BirdEyeRightBig';

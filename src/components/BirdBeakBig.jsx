@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { scaleCoords } from '../utils/functions';
+import { scaleCoords } from '../utils/canvasFunctions';
 
 class BirdBeakBig extends Component {
     constructor(props) {

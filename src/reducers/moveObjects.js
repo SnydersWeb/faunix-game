@@ -1,6 +1,7 @@
 import moveShip from './moveShip';
 import { birdStruckTimeSec, birdWingRemoveTimeSec, birdFledTimeSec, birdFleeSpeed, birdWingRegrowSpeed, birdFleeRegrowEnterUpdateSec } from '../utils/constants';
-import { moveBird, detectBirdHits, moveShipBullets } from '../utils/functions';
+import { moveBird, detectBirdHits } from '../utils/birdFunctions';
+import { moveShipBullets } from '../utils/shipFunctions';
 
 // SnyderD - the main purpose of this file is it's our main "animaion core" that handles all autonomous actions beyond
 // player control of the ship itself.  This means it will control the bird animations, the ship bullets as well as the 

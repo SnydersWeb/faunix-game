@@ -4,7 +4,7 @@ import moveShip from './moveShip';
 import shoot from './shoot';
 import startGame from './startGame';
 import { numBirds, birdVertSpacing, startShotCount } from '../utils/constants';
-import { calculateCanvas } from '../utils/functions';
+import { calculateCanvas } from '../utils/canvasFunctions';
 
 const canvasSize = calculateCanvas();
 

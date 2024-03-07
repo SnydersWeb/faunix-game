@@ -1,5 +1,5 @@
 import React from 'react';
-import { getCanvas, scaleCoords } from '../utils/functions';
+import { getCanvas, scaleCoords } from '../utils/canvasFunctions';
 
 const Title = () => {
     const canvas = getCanvas();

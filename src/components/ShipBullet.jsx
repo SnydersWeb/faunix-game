@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { scaleCoords } from '../utils/functions';
+import { scaleCoords } from '../utils/canvasFunctions';
 import { shipPosGunOffset, bulletLength, bulletWidth } from '../utils/constants';
 
 const ShipBullet = (props) => {

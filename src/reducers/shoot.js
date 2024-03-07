@@ -1,4 +1,4 @@
-import { scaleCoords } from '../utils/functions';
+import { scaleCoords } from '../utils/canvasFunctions';
 import { bulletLength, shipBarrelLength, activeShotCount } from '../utils/constants';
 
 const shoot = state => {
