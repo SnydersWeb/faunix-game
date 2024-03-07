@@ -23,5 +23,5 @@ I learned quite a bit about getting into some components that were somewhat self
 
 ## ToDo's 
 This game is fully functional!  There is still some work remaining that will be completed soon:
-* Top 10 Players on localStorage
+* High Score from localStorage
 * Unit tests
