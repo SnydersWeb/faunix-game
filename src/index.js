@@ -1,18 +1,13 @@
 import React from 'react';
 import { createRoot } from 'react-dom/client';
 import { Provider } from 'react-redux';
-import { createStore } from 'redux';
+import { configureStore } from '@reduxjs/toolkit';
 import './index.css';
 import Game from './containers/Game.js';
 import reducer from './reducers';
 // import registerServiceWorker from './registerServiceWorker';
 
-/* eslint-disable no-underscore-dangle */
-const store = createStore(
-    reducer,
-    window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__(),
-);
-/* eslint-enable */
+const store = configureStore({ reducer: reducer });
 
 const domNode = document.getElementById('root');
 const root = createRoot(domNode);
