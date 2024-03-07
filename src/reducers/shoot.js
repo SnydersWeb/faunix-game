@@ -1,5 +1,5 @@
 import { scaleCoords } from '../utils/canvasFunctions';
-import { bulletLength, shipBarrelLength, activeShotCount } from '../utils/constants';
+import { bulletLength, shipBarrelLength, activeShotCount, HIGH_SCORE_KEY } from '../utils/constants';
 
 const shoot = state => {
     if (state.gameState.started === false) return state;
@@ -23,6 +23,11 @@ const shoot = state => {
     shotsRemaining -= 1;
     if (shotsRemaining === 0) {
         started = false;
+        const highScore = Number(localStorage.getItem(HIGH_SCORE_KEY));
+        const { score } = state.gameState;
+        if (score > highScore) {
+            localStorage.setItem(HIGH_SCORE_KEY, score.toString());
+        }
     }
 
     return {

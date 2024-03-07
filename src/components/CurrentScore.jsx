@@ -17,7 +17,7 @@ const CurrentScore = (props) => {
     };
 
     const position = {
-        x: canvas.x * .2,
+        x: canvas.x * .15,
         y: canvas.y * .015,
     };
 

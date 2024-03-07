@@ -81,7 +81,7 @@ A lot was in Reducers that wasn't technically a reducer - they were functions!  
 
 Also broke up big functions file into sub-files for readability/maintainability.
 
-Next up, implementing suggestion from another friend about a highScore using localStorage which I need to research.
+OK.. got localStorage used to implement a high score system!
 
 After that, enzyme tests for things.
 

@@ -12,6 +12,7 @@ const moveObjects = state => {
     const now = (new Date()).getTime();
 
     let { score } = state.gameState;
+    let { highScore } = state.gameState;
 
     // Handle ship moving
     const { shipMoving } = state.gameState;
@@ -67,6 +68,9 @@ const moveObjects = state => {
                 birdChanges.status = 'struck'; //bird hit!
                 //Add to the score!
                 score += 1;
+
+                //Update state highscore
+                highScore = score;
             }
         }
 
@@ -131,6 +135,7 @@ const moveObjects = state => {
         gameState: {
             ...state.gameState,
             score: score,
+            highScore: highScore,
             shipFire: [...bullets],
             shipMoving: shipMoving,
             shipPosition: shipPosition,

@@ -97,6 +97,7 @@ App.propTypes = {
     shotsRemaining: PropTypes.number.isRequired,
     startTime: PropTypes.number.isRequired,
     score: PropTypes.number.isRequired,
+    highScore: PropTypes.number.isRequired,
     shipPosition: PropTypes.shape({
       x: PropTypes.number.isRequired,
       y: PropTypes.number.isRequired,
