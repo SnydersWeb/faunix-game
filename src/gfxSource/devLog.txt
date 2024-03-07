@@ -1,0 +1,97 @@
+Day 1 - 2/20/24
+Established Project
+
+Day 2 - 2/22
+Mostly spent this time getting the project "Framed out"
+Created graphics source files
+Created my first component by importing my SVG generated from InkScape into a componenent.
+One challenge here is that InkScape had it's own scale, but my game would have another.  Because of this I created my "scaleCoords" function that could take a large string of different numbers, break it apart, multiply each by a given factor, and re-combine it back together.
+
+Day 3 - 2/23
+I ran into an issue w/the background and gradient fills on the stars - it turns out InkScape "hard pins" the gradients with a fixed location.  In the interest of simplicity, I opted to simply go with fills instead - this is probably easier for the browser to handle anyway.
+For the stars - it made more sense for placement to be random.  For now, the positioning is static  (not moving) but the stars randomly change location with each refresh.
+Added commit to GitHub
+
+Day 4 - 2/25
+Mostly tried to get positioning with the canvas, how it relates to the browser, and how to position stuff within it.  I've never quite worked with SVG like this on the browser so this is very new here.
+Working on the ship fusalage and general positioning
+
+Day 5 - 2/26
+Worked on getting general ship movement working. 
+Not sure if my inputs for keyboard controls are really in the "correct" spot for React - but it is working!
+Next up sub-animations on ship.
+
+Day 6 - 2/27
+I've gotten the ship sub-animation working!  For now everything is being handled via state - This all seems so.. cluttered to me.  It's good enough to move on for now though.
+I also went back and re-worked some of the cavas stuff.  It's now in the correct aspect ratio and the ship can now detect if it's hitting the sides and stop.   My original experience on dealing with canvases on my tutorial had a very funky origin point on it - I've now figured it out a bit more where it's no so janky to deal with.  I had to go back and fix the ScrollingBackground to compensate.
+
+Day 7 - 2/28
+I swapped things over to some class components - the benefit here is that I can use constructors to ensure that things are just caluclated one time - vs each time the items is touched. This feels a bit cleaner to me and will hopefully be more merciful on the browser.  I also went back and made some polishes to how the fusalage renders.
+After tweaking and polishing out the ship - I've also got it actually shooting!  This now involves a bit of animation now - so I borrowed from the initial tutorial and hooked in the moveObjects that is called every 10ms.  This will be the main core that will move bullets and coordinate activities that happen on screen.
+
+Now that that ship can move with animations and firing I can move on to the birds.
+
+Day 8 - 2/29 Leap Day (happy bird day)
+I was never satisfied with the background - so before starting to work on the birds I decided to look into getting the background stars moving.  For now I'm using state changes to animate the stars - I really like the effect!  It now more/less has a parallaxing background.  Though this involved moving star generation out to the main index.js reducer and other things are now "outside".
+I created the source art for the birds now - also created the source art for the "hit" state.
+I've got the bird placed in game 
+
+Day 9 - 3/1
+One challenge here is I am not really liking passing so much in game state with sub-statuses.  The game should really only care about position and overall state!
+
+Problem is when the birds re-render, they also animate the flapping and other sub animations on every 10ms update.  This makes the flapping a bit... frenetic and I'm needing something slow it down and animate them smoothly.  To fix this issue I now have internal timestamps of sorts combined with a timer variable in constants.  What it does is it checks the current time (new Date()).getTime(); and then checks to see if (now - timeStamp > (1000 * <set time spec in seconds>)) - the net effect is that even though there are 10ms between calls - the animation will not update until then, thus slowing it down to "flow".  Overall I like this approach because I can designate a simple status and the component itself will handle the rest internally - keeping it out of the game state.
+
+The birds now move back and forth, and plus I introduced some "randomness" to the bird animations so that they don't stay in absolute lock-step (the original had some of this I noticed).
+
+I also started on our collision (hit) detector.
+
+Day 10 - 3/2
+I moved some of the functions around into a central spot.  I liked how the bird sub animation system worked - I opted to convert the ship to do the same (thus also simplifying state).
+
+Day 11 - 3/3 
+BIRDS ARE NOW HITTABLE! (base game working)
+
+Though one problem I ran into now with now wings being blown off and some transforms being used to scale and rotate the parts - the scale and rotation don't play very nicely.  After a few hours of poking at it, I opted to simply leave the wing "lame" until it fully re-grows.  So it'll stay NOT rotating until the scale is back to 1.. then the animation will resume flapping.  
+
+Since I now have the baseline game completed - I decided to finally update my ReadMe to show what it is an so on on GitHub better.
+
+Also spent some time polishing and bug fixing
+
+Day 12 - 3/4
+Added Scoreboard
+Added start/end mechanic
+Added in instructional text
+
+Day 13 - 3/5
+After some testing on various devices it became (painfully) apparent that it doesn't handle mobile at all.  Spent a bit of time re-working the canvas calculation.  After a bit of trial and error, I have got it where it will now smoothly adapt to whatever screen.  The aspect ratio Height/Width on most mobile screens is the giveaway there.  When it's greater than 1.4 then the width needs be the limiter, below that, the height should be.  So I have width/height and height/width factors for either scenario.  
+
+Also per suggestions from friends, I have also simplified the SVG down.  It was 6 decimal places which is a bit excessive.  I also moved the graphics source files.  The screen fonts will also scale depending on your resolution.  Overall it's working better.
+
+Day 14 - 3/6
+I have a deprecated call in there that was bugging me a lot. (createStore).  After some research I figured out the right way to do it.  Unfortunately doing this also revealed an issue with my reducer moveObjects where it noticed I was morphing state.  So, for now, I reverted it.
+
+Beyond this I also put in mobile controls.  I had to re-work a bit of this so that the movement wouldn't just happen 1 time and quit.  So I added moveShip to my moveObjects to keep moving the ship until it was set to "none".  This part might not be really "ideal" here - but it does work!
+
+I also put in an improved mobile screen detector and then used that to determine whether or not to show the move/fire buttons.  Rendering on StartGame now looks at wheither it's mobile and will show different instructions depending on that.
+
+Last - ScrollingBackground is working - but I decided to convert it to an autonomous component where it keeps its own details/state type thing.  So now it's self contained and star positions are now fully removed from the game state since they're inert objects anyway.
+
+Day 14 - 3/7
+A lot was in Reducers that wasn't technically a reducer - they were functions!  So to that end I moved them to a more appropriate spot.  Also, I have now removed the deprecated call to what it should be and fixed the morphing issue (really weird).  The nice part is that also allowed me to fully group all the bird updates from movement to status changes so the code is better oganized.
+
+Next up, implementing suggestion from another friend about a highScore using localStorage which I need to research.
+
+After that, enzyme tests for things.
+
+
+
+
+
+
+
+
+
+
+
+
+
