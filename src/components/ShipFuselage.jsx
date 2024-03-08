@@ -47,8 +47,8 @@ class ShipFuselage extends Component {
     }
 
     render() {       
-        const basePositionX = this.props.position.x;        
-        const basePositionY = this.props.position.y;
+        const { x:basePositionX } = this.props.position;        
+        const { y:basePositionY } = this.props.position;
         return (
             <g id={this.basePartName}>
                 <path style={this.fusealageStyle} d={`m ${basePositionX},${basePositionY} h ${this.fusealagePath} z`} id={`${this.basePartName}Body`} />

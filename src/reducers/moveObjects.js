@@ -1,5 +1,5 @@
 import moveShip from './moveShip';
-import { birdStruckTimeSec, birdWingRemoveTimeSec, birdFledTimeSec, birdFleeSpeed, birdWingRegrowSpeed, birdFleeRegrowEnterUpdateSec } from '../utils/constants';
+import { birdStruckTimeSec, birdWingRemoveTimeSec, birdFledTimeSec, birdFleeSpeed, birdWingRegrowSpeed, birdFleeRegrowEnterUpdateSec, HIGH_SCORE_DATA } from '../utils/constants';
 import { moveBird, detectBirdHits } from '../utils/birdFunctions';
 import { moveShipBullets } from '../utils/shipFunctions';
 
@@ -13,6 +13,7 @@ const moveObjects = state => {
 
     let { score } = state.gameState;
     let { highScore } = state.gameState;
+    let { endTime } = state.gameState;
 
     // Handle ship moving
     const { shipMoving } = state.gameState;
@@ -24,11 +25,27 @@ const moveObjects = state => {
 
     // Handle bullets fired
     const { shipFire } = state.gameState;
-    
+    const { shotsRemaining } = state.gameState;    
+    let { started } = state.gameState;
     let bullets = [];
     if (shipFire.length > 0) {
         bullets = moveShipBullets(shipFire);
-    }
+    } else if (shipFire.length === 0 && shotsRemaining === 0) { // Handle our game over here
+        if (started === true) {
+            endTime = now;
+        }
+        started = false;
+        const highScoreData = localStorage.getItem(HIGH_SCORE_DATA);
+        const { score:highScoreStore } = highScoreData;
+        if (score > highScoreStore) {
+            const { startTime } = state.gameState;
+            const scoreStore = {
+                score: score,
+                time: startTime,
+            };
+            localStorage.setItem(HIGH_SCORE_DATA, JSON.stringify(scoreStore));
+        }
+    }        
 
     const { birds } = state.gameState;
     
@@ -68,9 +85,11 @@ const moveObjects = state => {
                 birdChanges.status = 'struck'; //bird hit!
                 //Add to the score!
                 score += 1;
-
-                //Update state highscore
-                highScore = score;
+                
+                if (score > highScore) {
+                    //Update state highscore
+                    highScore = score;
+                }
             }
         }
 
@@ -110,7 +129,7 @@ const moveObjects = state => {
         } else { //Status "normal" - need code here to check wings and regrow them
             const wingsRegrowthNeeded = (bird.wings.right < 1 || bird.wings.left < 1);
             if (wingsRegrowthNeeded) {
-                const wingStatusTime = bird.wings.statusTime;
+                const { statusTime:wingStatusTime } = bird.wings;
                 if (bird.statusTime + (1000 * birdWingRemoveTimeSec) < now) {
                     //Code to regrow the wings by +=birdWingRegrowSpeed
                     if (wingStatusTime + (1000 * birdFleeRegrowEnterUpdateSec) < now) {
@@ -134,6 +153,8 @@ const moveObjects = state => {
         ...state,
         gameState: {
             ...state.gameState,
+            started: started,
+            endTime: endTime,
             score: score,
             highScore: highScore,
             shipFire: [...bullets],

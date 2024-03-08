@@ -55,6 +55,7 @@ class App extends Component {
           this.handleKeyDown("left");
           break;
         case " ":
+        case "ArrowUp":
           started ? this.handleKeyDown("shoot") : this.handleKeyDown("start");
           break;
         default:
@@ -96,6 +97,7 @@ App.propTypes = {
     started: PropTypes.bool.isRequired,
     shotsRemaining: PropTypes.number.isRequired,
     startTime: PropTypes.number.isRequired,
+    endTime: PropTypes.number.isRequired,
     score: PropTypes.number.isRequired,
     highScore: PropTypes.number.isRequired,
     shipPosition: PropTypes.shape({

@@ -6,7 +6,7 @@ import { shipWidth } from '../utils/constants';
 const moveShip = (state, action) => {
     if (state.gameState.started === false) return state;
     
-    let shipMoveDirection = action.shipMoveDirection;
+    let { shipMoveDirection } = action;
     if (/undefined/.test(shipMoveDirection) === true) {
         //Fall back and get it from state
         shipMoveDirection = state.gameState.shipMoving;

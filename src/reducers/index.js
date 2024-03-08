@@ -3,7 +3,7 @@ import moveObjects from './moveObjects';
 import moveShip from './moveShip';
 import shoot from './shoot';
 import startGame from './startGame';
-import { numBirds, birdVertSpacing, startShotCount, HIGH_SCORE_KEY } from '../utils/constants';
+import { numBirds, birdVertSpacing, startShotCount, HIGH_SCORE_DATA } from '../utils/constants';
 import { calculateCanvas } from '../utils/canvasFunctions';
 
 const canvasSize = calculateCanvas();
@@ -32,17 +32,24 @@ for (let i = 1, j = numBirds; i <= j; i++) {
 }
 
 //Initialize high score.
-if (localStorage.getItem(HIGH_SCORE_KEY) === null) {
-    localStorage.setItem(HIGH_SCORE_KEY, "0");
+const highScoreDataRaw = localStorage.getItem(HIGH_SCORE_DATA);
+if (highScoreDataRaw === null) { //no store - initialize it
+    const scoreStore = {
+        score: 0,
+        time: 0,
+    };
+    
+    localStorage.setItem(HIGH_SCORE_DATA, JSON.stringify(scoreStore));
 }
-const highScore = Number(localStorage.getItem(HIGH_SCORE_KEY));
+const highScoreData = JSON.parse(highScoreDataRaw);
 
 const initialGameState = {
     started: false,
     shotsRemaining: startShotCount,
     startTime: 0,
+    endTime: 0,
     score: 0,
-    highScore: highScore,
+    highScore: highScoreData.score,
     shipPosition: {
         x: canvasSize.x / 2,
         y: canvasSize.y * .88,

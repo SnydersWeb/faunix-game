@@ -9,7 +9,7 @@ const StartGame = props => {
     const instText = {
         textAnchor: 'middle', // center
         x: textCenterH, // center relative to X axis
-        y: canvas.y - canvas.y * .30,
+        y: canvas.y - canvas.y * .26,
         style: {
             fontFamily: '"Press Start 2P", cursive',
             fontSize: scaleCoords(4),
@@ -17,7 +17,7 @@ const StartGame = props => {
         }
     };
     
-    const instTextSpacing = canvas.x / 20;
+    const instTextSpacing = canvas.y / 32;
 
     const text = {
         textAnchor: 'middle', // center
@@ -39,10 +39,10 @@ const StartGame = props => {
                     <text {...instText}>
                         <tspan x={textCenterH} dx={0}>A or ⬅️ moves left</tspan>
                         <tspan x={textCenterH} dx={0} dy={instTextSpacing}>D or ➡️ moves right</tspan>
-                        <tspan x={textCenterH} dx={0} dy={instTextSpacing}>Space fires</tspan>                
+                        <tspan x={textCenterH} dx={0} dy={instTextSpacing}>Space or ⬆️ fires</tspan>                
                     </text>
                     <text {...text}>                
-                        Press Space Bar to Start!
+                        Press Fire to Start!
                     </text>
                 </g>
             }

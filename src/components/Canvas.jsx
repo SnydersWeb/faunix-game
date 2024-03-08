@@ -10,6 +10,7 @@ import CurrentScore from './CurrentScore';
 import HighScore from './HighScore';
 import ShotsRemaining from './ShotsRemaining';
 import Title from './Title';
+import GameOver from './GameOver';
 import StartGame from './StartGame';
 import MobileControl from './MobileControl';
 
@@ -17,8 +18,9 @@ const Canvas = props => {
     const canvasSize = calculateCanvas();
     storeCanvas(canvasSize);
     const isMobile = getIsMobile();
-    const { shipPosition } = props.gameState;
-    const { shipMoving } = props.gameState;
+    const { gameState } = props;
+    const { shipPosition } = gameState;
+    const { shipMoving } = gameState;
     
     return (
         <svg
@@ -29,11 +31,11 @@ const Canvas = props => {
             
         >   
             <ScrollingBackground />
-            <HighScore highScore={props.gameState.highScore} />
-            <CurrentScore score={props.gameState.score} />
+            <HighScore highScore={gameState.highScore} />
+            <CurrentScore score={gameState.score} />
             
-            <ShotsRemaining shotsRemaining={props.gameState.shotsRemaining} />
-            { props.gameState.shipFire.map(bullet => (
+            <ShotsRemaining shotsRemaining={gameState.shotsRemaining} />
+            { gameState.shipFire.map(bullet => (
                 <ShipBullet
                     key={bullet.id}
                     position={bullet.position}
@@ -43,7 +45,7 @@ const Canvas = props => {
                 position={shipPosition} 
                 moving={shipMoving} 
             />
-            { props.gameState.birds.map(bird => (
+            { gameState.birds.map(bird => (
                 <Bird
                     key={bird.id}
                     id={bird.id}
@@ -56,9 +58,15 @@ const Canvas = props => {
                 />
             ))}
             {
-                (props.gameState.started === false) &&
+                (gameState.started === false) &&
                 <g>
                     <Title />
+                    <GameOver 
+                        startTime={gameState.startTime} 
+                        endTime={gameState.endTime} 
+                        score={gameState.score} 
+                        highScore={gameState.highScore} 
+                    />
                     <StartGame mobile={isMobile} onClick={() => props.startGame()} />
                 </g>
             }
@@ -79,6 +87,7 @@ Canvas.propTypes = {
         started: PropTypes.bool.isRequired,
         shotsRemaining: PropTypes.number.isRequired,
         startTime: PropTypes.number.isRequired,
+        endTime: PropTypes.number.isRequired,
         score: PropTypes.number.isRequired,
         highScore: PropTypes.number.isRequired,
         shipPosition: PropTypes.shape({
