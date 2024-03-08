@@ -19,6 +19,7 @@ const ShipBullet = (props) => {
             height={scaleCoords(bulletLength)} 
             x={props.position.x + scaleCoords(shipPosGunOffset)} 
             y={props.position.y} 
+            data-testid={`shipbullet`}
         />
     );
 };

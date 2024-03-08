@@ -17,7 +17,7 @@ const HighScore = (props) => {
     };
     
     return (
-        <text style={scoreStyle} x={position.x} y={canvas.y * .04}>
+        <text style={scoreStyle} x={position.x} y={canvas.y * .04} data-testid={`highscore`}>
             High Score:{props.highScore}
         </text>
     );

@@ -50,7 +50,7 @@ class ShipFuselage extends Component {
         const { x:basePositionX } = this.props.position;        
         const { y:basePositionY } = this.props.position;
         return (
-            <g id={this.basePartName}>
+            <g id={this.basePartName} data-testid={`${this.basePartName}`}>
                 <path style={this.fusealageStyle} d={`m ${basePositionX},${basePositionY} h ${this.fusealagePath} z`} id={`${this.basePartName}Body`} />
                 <rect style={this.bottomCenterWhiteStyle} id={`${this.basePartName}BottomCenterWhite`} width={this.shipCenterBlockW} height={this.shipCenterBottomWhiteH} x={basePositionX + this.shipCenter} y={basePositionY + this.shipCenterBottomWhiteY} />
                 <rect style={this.topCenterWhiteStyle} id={`${this.basePartName}TopCenterWhite`} width={this.shipCenterBlockW} height={this.shipCenterTopWhiteH} x={basePositionX + this.shipCenter} y={basePositionY + this.shipCenterTopWhiteY} />

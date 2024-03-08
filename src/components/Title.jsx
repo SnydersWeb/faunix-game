@@ -33,7 +33,7 @@ const Title = () => {
     };
     
     return (
-        <g>
+        <g data-testid={`title`}>
             <defs>
                 <filter id='shadow'>
                     <feDropShadow dx='1' dy='1' stdDeviation='2' floodColor="#FC0" />

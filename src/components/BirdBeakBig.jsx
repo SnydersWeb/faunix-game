@@ -44,7 +44,7 @@ class BirdBeakBig extends Component {
         const { x, y } = this.props.position;        
         
         return (
-            <g id={`${this.basePartName}${this.id}`}>
+            <g id={`${this.basePartName}${this.id}`} data-testid={`${this.basePartName}`}>
                 <ellipse style={this.bigBeakBaseStyle} id={`${this.basePartName}Base${this.id}`} cx={x + this.bigBeakBaseX} cy={y + this.bigBeakBaseY} rx={this.bigBeakBaseRadX} ry={this.bigBeakBaseRadY} />
                 <path style={this.bigBeakToungueStyle} d={`m ${x + this.bigBeakToungeX},${y + this.bigBeakToungeY} ${this.bigBeakToungePath} z`} id={`${this.basePartName}Tongue${this.id}`} />
                 <path style={this.bigBeakStyle} d={`m ${x + this.bigBeakUpperX},${y + this.bigBeakUpperY} ${this.bigBeakUpperPath} z`} id={`${this.basePartName}Upper${this.id}`} />

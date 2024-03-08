@@ -83,7 +83,7 @@ class ScrollingBackground extends Component {
         }
 
         return (
-            <g id="starryBackGround">
+            <g id="starryBackGround" data-testid={`starrybackground`}>
                 <rect width={this.width} height={this.height} x={0} y={0} style={this.bgStyle} />
 
                 { this.aryLgStars.map((starCoords, index) => (

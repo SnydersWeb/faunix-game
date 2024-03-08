@@ -16,7 +16,7 @@ const moveObjects = state => {
     let { endTime } = state.gameState;
 
     // Handle ship moving
-    const { shipMoving } = state.gameState;
+    let { shipMoving } = state.gameState;
     let { shipPosition } = state.gameState;
     if (/none/.test(shipMoving) === false) {
         let shipMoveState = moveShip(state, shipMoving);
@@ -35,6 +35,7 @@ const moveObjects = state => {
             endTime = now;
         }
         started = false;
+        shipMoving = 'none'; //Stop our ship moving
         const highScoreData = localStorage.getItem(HIGH_SCORE_KEY);
         const highScoreStore = Number(highScoreData);
         if (score > highScoreStore) {

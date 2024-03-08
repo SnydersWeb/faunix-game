@@ -64,7 +64,7 @@ class Ship extends Component {
         }
 
         return (
-            <g id="ship">
+            <g id="ship" data-testid="ship">
                 <ShipTopRightPylon position={topRightPylonPos} />
                 <ShipTopLeftPylon position={topLeftPylonPos} />
                 <ShipBottomRightPylon position={botRightPylonPos} />

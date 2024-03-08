@@ -29,7 +29,7 @@ class ShipBottomLeftPylon extends Component {
         const { x:basePositionX } = this.props.position;        
         const { y:basePositionY } = this.props.position;
         return (
-            <g id={this.basePartName}>
+            <g id={this.basePartName} data-testid={`${this.basePartName}`}>
                 <path style={this.rPylonStyle} d={`m ${basePositionX + this.rPlyonXBase},${basePositionY + this.rPlyonYBase} ${this.rPylonPath} z`} id={`${this.basePartName}Red`} />
                 <rect style={this.wPylonStyle} id={`${this.basePartName}White`} width={this.wPylonW} height={this.wPylonH} x={basePositionX + this.wPylonXBase} y={basePositionY + this.wPylonYBase} />
             </g>

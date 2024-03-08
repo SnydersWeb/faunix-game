@@ -37,9 +37,7 @@ class App extends Component {
       this.props.moveShip(command);
     } else if (/start/.test(command)) {
       this.props.startGame();
-    } else {
-      console.log(`Apps.Js - unknown: ${command}`);
-    }
+    } 
   }
 
   render() {
@@ -79,7 +77,7 @@ class App extends Component {
     };
 
     return (
-      <div className="App">
+      <div className="App" data-testid="fauxnix-app">
         <Canvas 
           gameState={this.props.gameState}
           startGame={this.props.startGame}

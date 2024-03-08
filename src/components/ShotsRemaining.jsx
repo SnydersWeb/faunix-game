@@ -17,7 +17,7 @@ const ShotsRemaining = (props) => {
     };
     
     return (
-        <g>
+        <g data-testid={`shotsremaining`}>
             <text style={style} x={position.x} y={position.y}>
                 Shots: {Math.max(0, props.shotsRemaining)}
             </text>

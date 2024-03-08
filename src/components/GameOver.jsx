@@ -36,7 +36,7 @@ const GameOver = props => {
     };
     
     const instTextSpacing = canvas.y / 32;
-
+        
     // Generate results text
     let resultsData = [];
     if (score >= highScore) { 
@@ -83,7 +83,7 @@ const GameOver = props => {
                 x={textCenterH} 
                 dx={0} 
                 dy={resultsData.length === 0 ? 0 : instTextSpacing}
-                key="gameOverAcc1"
+                key={`${accuracyStr}${accuracyComment}comment`}
             >
                 {accuracyStr} - {accuracyComment}
             </tspan>
@@ -93,23 +93,23 @@ const GameOver = props => {
                 x={textCenterH} 
                 dx={0} 
                 dy={resultsData.length === 0 ? 0 : instTextSpacing}
-                key="gameOverTime1"
+                key={`${timeTakenMin}${timeTakenSecDisp}time`}
             >
-                Time: {timeTakenMin}:{timeTakenSecDisp} Minutes
+                Time: {timeTakenMin}:{timeTakenSecDisp}
             </tspan>
         );
     }
    
     return (
-        <g>
+        <g data-testid={`gameover`}>
             <g>
-                <text {...gameOverText} key="gameOverText1">                
+                <text {...gameOverText} key={`textGameOverText`}>                
                     Game Over
                 </text>
             </g>
             {
                 timeTakenRaw > 0 &&
-                <text {...resultText} key="gameOverReport1">
+                <text {...resultText} key={`reportGameOver`}>
                     {resultsData}               
                 </text>
             }

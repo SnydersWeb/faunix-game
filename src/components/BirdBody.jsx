@@ -21,7 +21,7 @@ class BirdBody extends Component {
         const { x, y } = this.props.position;        
         
         return (
-            <path style={this.bodyStyle} d={`m ${x},${y} ${this.bodyPath} z`} id={`${this.basePartName}${this.id}`} />
+            <path style={this.bodyStyle} d={`m ${x},${y} ${this.bodyPath} z`} id={`${this.basePartName}${this.id}`} data-testid={`${this.basePartName}`} />
         );
     }
 };

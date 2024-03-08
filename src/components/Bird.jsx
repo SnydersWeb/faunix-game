@@ -89,7 +89,7 @@ class Bird extends Component {
         }    
         
         return (
-            <g id={`${this.basePartName}${this.id}`} style={style} transform={`${transform}`}>
+            <g id={`${this.basePartName}${this.id}`} style={style} transform={`${transform}`} data-testid={`${this.basePartName}`}>
                 <BirdFootLeft position={position} id={this.id} rotDeg={-legDeg} />
                 <BirdFootRight position={position} id={this.id} rotDeg={legDeg} />
                 <BirdWingLeft position={position} id={this.id} rotDeg={-this.flapDeg} scale={left} />

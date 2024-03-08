@@ -35,7 +35,7 @@ class BirdBeak extends Component {
         const { beakWiggle } = this.props;
         
         return (
-            <g id={`${this.basePartName}${this.id}`}>
+            <g id={`${this.basePartName}${this.id}`} data-testid={`${this.basePartName}`}>
                 <ellipse style={this.beakBaseStyle} id={`${this.basePartName}Base${this.id}`} cx={x + this.beakBaseX} cy={y + this.beakBaseY} rx={this.beakBaseRadX} ry={this.beakBaseRadY} />
                 <path style={this.beakStyle} d={`m ${x + this.beakUpperX},${y + this.beakUpperY - beakWiggle} ${this.beakUpperPath} z`} id={`${this.basePartName}Upper${this.id}`} />
                 <path style={this.beakStyle} d={`m ${x + this.beakLowerX},${y + this.beakLowerY + beakWiggle} ${this.beakLowerPath} z`} id={`${this.basePartName}Lower${this.id}`} />

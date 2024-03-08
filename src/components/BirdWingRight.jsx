@@ -46,6 +46,7 @@ class BirdWingRight extends Component {
                 d={`m ${x + this.rightWingX},${y + this.rightWingY} ${this.rightWingPath} z`} 
                 id={`${this.basePartName}${this.id}`} 
                 transform={`${transform}`}
+                data-testid={`${this.basePartName}`}
             />
         );
     }

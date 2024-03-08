@@ -28,11 +28,10 @@ const StartGame = props => {
             fontSize: scaleCoords(4),
             fill: '#FC0',
         },
-        onClick: props.onClick,
     };
 
     return (
-        <g filter='url(#shadow)'>
+        <g filter='url(#shadow)' data-testid={`startgame`}>
             {
                 mobile === false &&
                 <g>
@@ -48,7 +47,7 @@ const StartGame = props => {
             }
             {
                 mobile === true &&
-                <g>
+                <g onClick={props.onClick}>
                     <text {...text}>                
                         Tap Here to Start!
                     </text>

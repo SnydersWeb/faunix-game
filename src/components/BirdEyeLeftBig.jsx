@@ -31,7 +31,7 @@ class BirdEyeLeftBig extends Component {
         const { x, y } = this.props.position;        
         
         return (
-            <g id={`${this.basePartName}${this.id}`}>
+            <g id={`${this.basePartName}${this.id}`} data-testid={`${this.basePartName}`}>
                 <circle style={this.bigEyeWhiteStyle} id={`${this.basePartName}EyeWhite${this.id}`} cx={x + this.leftBigEyeX} cy={y + this.leftBigEyeY} r={this.leftBigEyeRad} />
                 <circle style={this.bigEyePupilStyle} id={`${this.basePartName}EyePupil${this.id}`} cx={x + this.leftBigEyePupilX} cy={y + this.leftBigEyePupilY} r={this.leftBigEyePupilRad} />
             </g>

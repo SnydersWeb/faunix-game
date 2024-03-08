@@ -31,6 +31,7 @@ class BirdFootLeft extends Component {
                 d={`m ${x + this.leftFootX},${y + this.leftFootY} ${this.leftFootPath} z`} 
                 id={`${this.basePartName}${this.id}`}
                 transform={`${transform}`}
+                data-testid={`${this.basePartName}`}
             />
         );
     }

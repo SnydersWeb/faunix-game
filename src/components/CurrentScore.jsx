@@ -30,7 +30,7 @@ const CurrentScore = (props) => {
     
     
     return (
-        <g>
+        <g data-testid={`currentscore`}>
             <g style={birdStyle} transform={`${transform}`}>
                 <BirdBody position={position} id={id} />
                 <BirdEyeLeftBig position={position} id={id} />

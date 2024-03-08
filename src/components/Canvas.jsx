@@ -28,7 +28,7 @@ const Canvas = props => {
             width={canvasSize.x}
             height={canvasSize.y}
             preserveAspectRatio='xMidYMid meet'
-            
+            data-testid="canvas"
         >   
             <ScrollingBackground />
             <HighScore highScore={gameState.highScore} />
@@ -57,8 +57,7 @@ const Canvas = props => {
                     wings={bird.wings}
                 />
             ))}
-            {
-                (gameState.started === false) &&
+            {   (gameState.started === false) &&
                 <g>
                     <Title />
                     <GameOver 
@@ -70,8 +69,7 @@ const Canvas = props => {
                     <StartGame mobile={isMobile} onClick={() => props.startGame()} />
                 </g>
             }
-            {
-                isMobile === true &&
+            {   isMobile === true &&
                 <g>
                     <MobileControl controlType="left" onTouchStart={() => props.moveShip('left')} onTouchEnd={() => props.moveShip('none')} />
                     <MobileControl controlType="fire" onTouchStart={() => props.shoot()} />

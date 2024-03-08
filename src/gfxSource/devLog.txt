@@ -85,6 +85,16 @@ OK.. got localStorage used to implement a high score system!
 
 After that, enzyme tests for things.
 
+Day 15 - 3/8
+Put a bit more polish in here and there.  I've corrected a few minor bugs and also implemented a "Game Over" type screen that reports results so the user knows when the game has completed.  I also added some fun snark at the very extremes.
+
+Now onto unit testing!
+
+Tests have changed a bit than what I knew.  They used to be enzyme but now it's strongly suggested to use react-testing-library which is a bit different.  So far by just implementing the canvas under various conditions I've also managed to get about 95% of the components tested.
+
+So I think next it would be best to get into the reducers and test those.  That also might knock out our functions tests too.
+
+
 
 
 

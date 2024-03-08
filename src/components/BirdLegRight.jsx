@@ -30,6 +30,7 @@ class BirdFootRight extends Component {
                 d={`m ${x + this.rightFootX},${y + this.rightFootY} ${this.rightFootPath} z`} 
                 id={`${this.basePartName}${this.id}`} 
                 transform={`${transform}`}
+                data-testid={`${this.basePartName}`}
             />
         );
     }

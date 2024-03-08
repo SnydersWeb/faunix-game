@@ -32,7 +32,7 @@ class BirdEyeRight extends Component {
         const { pupilWiggle } = this.props;
         
         return (
-            <g id={`${this.basePartName}${this.id}`}>
+            <g id={`${this.basePartName}${this.id}`} data-testid={`${this.basePartName}`}>
                 <circle style={this.regEyeWhiteStyle} id={`${this.basePartName}EyeWhite${this.id}`} cx={x + this.rightEyeX} cy={y + this.rightEyeY} r={this.rightEyeRad} />
                 <circle style={this.regEyePupilStyle} id={`${this.basePartName}EyePupil${this.id}`} cx={x + this.rightEyePupilX + pupilWiggle} cy={y + this.rightEyePupilY} r={this.rightEyePupilRad} />
             </g>
