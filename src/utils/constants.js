@@ -1,5 +1,5 @@
 // key used to access high-score value from localstorage
-export const HIGH_SCORE_DATA = "high-score-data";
+export const HIGH_SCORE_KEY = "high-score";
 
 // Main game canvas related stuff
 export const updateInterval = 10; //Frequency (in ms) for setInterval in moveObjects (used in App.js)

@@ -1,5 +1,5 @@
 import moveShip from './moveShip';
-import { birdStruckTimeSec, birdWingRemoveTimeSec, birdFledTimeSec, birdFleeSpeed, birdWingRegrowSpeed, birdFleeRegrowEnterUpdateSec, HIGH_SCORE_DATA } from '../utils/constants';
+import { birdStruckTimeSec, birdWingRemoveTimeSec, birdFledTimeSec, birdFleeSpeed, birdWingRegrowSpeed, birdFleeRegrowEnterUpdateSec, HIGH_SCORE_KEY } from '../utils/constants';
 import { moveBird, detectBirdHits } from '../utils/birdFunctions';
 import { moveShipBullets } from '../utils/shipFunctions';
 
@@ -35,15 +35,10 @@ const moveObjects = state => {
             endTime = now;
         }
         started = false;
-        const highScoreData = localStorage.getItem(HIGH_SCORE_DATA);
-        const { score:highScoreStore } = highScoreData;
+        const highScoreData = localStorage.getItem(HIGH_SCORE_KEY);
+        const highScoreStore = Number(highScoreData);
         if (score > highScoreStore) {
-            const { startTime } = state.gameState;
-            const scoreStore = {
-                score: score,
-                time: startTime,
-            };
-            localStorage.setItem(HIGH_SCORE_DATA, JSON.stringify(scoreStore));
+            localStorage.setItem(HIGH_SCORE_KEY, score.toString());
         }
     }        
 
