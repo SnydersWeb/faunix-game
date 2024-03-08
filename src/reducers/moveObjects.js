@@ -38,6 +38,10 @@ const moveObjects = state => {
         const highScoreData = localStorage.getItem(HIGH_SCORE_KEY);
         const highScoreStore = Number(highScoreData);
         if (score > highScoreStore) {
+            if (score > highScore) {
+                //Update s tate highscore
+                highScore = score;
+            }
             localStorage.setItem(HIGH_SCORE_KEY, score.toString());
         }
     }        
@@ -80,11 +84,6 @@ const moveObjects = state => {
                 birdChanges.status = 'struck'; //bird hit!
                 //Add to the score!
                 score += 1;
-                
-                if (score > highScore) {
-                    //Update state highscore
-                    highScore = score;
-                }
             }
         }
 

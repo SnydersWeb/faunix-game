@@ -13,7 +13,7 @@ const GameOver = props => {
 
     const textCenterH = canvas.x / 2;
 
-    const text = {
+    const gameOverText = {
         textAnchor: 'middle', // center
         x: textCenterH, // center relative to X axis
         y: canvas.y * .36,
@@ -39,7 +39,7 @@ const GameOver = props => {
 
     // Generate results text
     let resultsData = [];
-    if (score > highScore) {
+    if (score >= highScore) { 
         resultsData.push(
             <tspan x={textCenterH} dx={0} dy={resultsData.length === 0 ? 0 : instTextSpacing}>You beat the High Score!</tspan>
         );
@@ -103,7 +103,7 @@ const GameOver = props => {
     return (
         <g>
             <g>
-                <text {...text} key="gameOverText1">                
+                <text {...gameOverText} key="gameOverText1">                
                     Game Over
                 </text>
             </g>
