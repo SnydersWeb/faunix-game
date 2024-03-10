@@ -33,7 +33,6 @@ const MobileControl = props => {
             cursor: 'pointer',
         },
         onTouchStart: props.onTouchStart,
-        onTouchEnd: props.onTouchEnd,
     };
 
     const text = {
@@ -47,7 +46,6 @@ const MobileControl = props => {
             cursor: 'pointer',
         },
         onTouchStart: props.onTouchStart,
-        onTouchEnd: props.onTouchEnd,
     };
 
     return (
@@ -63,7 +61,6 @@ const MobileControl = props => {
 MobileControl.propTypes = {
     controlType: PropTypes.oneOf(['left', 'right', 'fire']).isRequired,
     onTouchStart: PropTypes.func.isRequired,
-    onTouchEnd: PropTypes.func,
 };
 
 export default MobileControl;

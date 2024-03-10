@@ -1,6 +1,8 @@
-import { render, screen, fireEvent } from '@testing-library/react'
+import { render, screen } from '@testing-library/react'
 import Canvas from '../../components/Canvas';
 
+window.innerHeight = 658;
+window.innerWidth = 873;
 const initialGameState = {
     started: false,
     shotsRemaining: 90,
@@ -102,384 +104,407 @@ const initialGameState = {
     }],
 };
 
-test("Canvas renders successfully in regular not started", () => {
-    const handleEvent = jest.fn();
-  
-    render(<Canvas 
-        gameState={initialGameState}
-        startGame={handleEvent}
-        moveShip={handleEvent}
-        shoot={handleEvent}
-    />);
-
-    const canvas = screen.getByTestId(/canvas/i);
-    expect(canvas).toBeInTheDocument();
-
-    const gameover = screen.getByTestId(/gameover/i);
-    expect(gameover).toBeInTheDocument();
-
-    const startgame = screen.getByTestId(/startgame/i);
-    expect(startgame).toBeInTheDocument();
-
-});
-
-test("Canvas renders successfully in mobile view not started", () => {
-    //Fake out mobile detection
-    window.ontouchstart = () => {};
-    const handleEvent = jest.fn();
-  
-    render(<Canvas 
-        gameState={initialGameState}
-        startGame={handleEvent}
-        moveShip={handleEvent}
-        shoot={handleEvent}
-    />);
-
-    const canvas = screen.getByTestId(/canvas/i);
-    expect(canvas).toBeInTheDocument();
-
-    const gameover = screen.getByTestId(/gameover/i);
-    expect(gameover).toBeInTheDocument();
-
-    const startgame = screen.getByTestId(/startgame/i);
-    expect(startgame).toBeInTheDocument();
-
-});
-
-test("Canvas renders successfully in regular view started", () => {
-    delete window.ontouchstart;
-    const handleEvent = () => {};
-    // const MockStartGame = () => {
-    //     return (<div>Start Game</div>);
-    // };
-    // const MockMobileControl = () => {
-    //     return (<div>Mobile Control</div>);
-    // };
-    // jest.mock('../../components/StartGame', () => MockStartGame);
-    // jest.mock('../../components/MobileControl', () => MockMobileControl);
-
-    const modGameState = {
-        ...initialGameState,
-        started: true,
-    };
-
-    render(<Canvas 
-        gameState={modGameState}
-        startGame={handleEvent}
-        moveShip={handleEvent}
-        shoot={handleEvent}
-    />);
+describe("Canvas Tests", () => {
+    test("Renders successfully in regular not started", () => {
+        const handleEvent = jest.fn();
     
-    const canvas = screen.getByTestId(/canvas/i);
-    expect(canvas).toBeInTheDocument();
+        render(<Canvas 
+            gameState={initialGameState}
+            startGame={handleEvent}
+            moveShip={handleEvent}
+            shoot={handleEvent}
+        />);
 
-    const gameover = screen.queryByTestId(/gameover/i);
-    expect(gameover).not.toBeInTheDocument();
+        const canvas = screen.getByTestId(/canvas/i);
+        expect(canvas).toBeInTheDocument();
 
-    const startgame = screen.queryByTestId(/startgame/i);
-    expect(startgame).not.toBeInTheDocument();
+        const gameover = screen.getByTestId(/gameover/i);
+        expect(gameover).toBeInTheDocument();
 
-});
+        const startgame = screen.getByTestId(/startgame/i);
+        expect(startgame).toBeInTheDocument();
 
-test("Canvas renders successfully with ship changes", () => {
-    delete window.ontouchstart;
-    const handleEvent = () => {};
+    });
+
+    test("Renders successfully in mobile view not started", () => {
+        //Fake out mobile detection
+        window.ontouchstart = () => {};
+        window.innerHeight = 915;
+        window.innerWidth = 412;
+        const handleEvent = jest.fn();
     
-    const modGameState = {
-        ...initialGameState,
-        started: true,
-        shipMoving: 'right',
-    };
+        render(<Canvas 
+            gameState={initialGameState}
+            startGame={handleEvent}
+            moveShip={handleEvent}
+            shoot={handleEvent}
+        />);
 
-    render(<Canvas 
-        gameState={modGameState}
-        startGame={handleEvent}
-        moveShip={handleEvent}
-        shoot={handleEvent}
-    />);
-    
-    const canvas = screen.getByTestId(/canvas/i);
-    expect(canvas).toBeInTheDocument();
+        const canvas = screen.getByTestId(/canvas/i);
+        expect(canvas).toBeInTheDocument();
 
-    const ship = screen.getByTestId("ship");
-    expect(ship).toBeInTheDocument();
-});
+        const gameover = screen.getByTestId(/gameover/i);
+        expect(gameover).toBeInTheDocument();
 
-test("Canvas renders successfully various gameover states", () => {
-    delete window.ontouchstart;
-    const handleEvent = () => {};
-    
-    const modGameState = {
-        ...initialGameState,
-        score: 1,
-        highScore: 10,
-        startTime: 1,
-        endTime: 10,
-    };
+        const startgame = screen.getByTestId(/startgame/i);
+        expect(startgame).toBeInTheDocument();
 
-    render(<Canvas 
-        gameState={modGameState}
-        startGame={handleEvent}
-        moveShip={handleEvent}
-        shoot={handleEvent}
-    />);
-    
-    const canvas = screen.getByTestId(/canvas/i);
-    expect(canvas).toBeInTheDocument();
+    });
 
-    const gameOver = screen.queryByTestId("gameover");
-    expect(gameOver).toBeInTheDocument();
-});
+    test("Renders successfully in regular view started", () => {
+        //reset to desktop
+        delete window.ontouchstart;
+        window.innerHeight = 658;
+        window.innerWidth = 873;
+        const handleEvent = () => {};
 
-test("Canvas renders successfully various gameover states no score", () => {
-    delete window.ontouchstart;
-    const handleEvent = () => {};
-    
-    const modGameState = {
-        ...initialGameState,
-        score: 0,
-        highScore: 100,
-        startTime: 10000,
-        endTime: 100000,
-    };
+        const modGameState = {
+            ...initialGameState,
+            started: true,
+        };
 
-    render(<Canvas 
-        gameState={modGameState}
-        startGame={handleEvent}
-        moveShip={handleEvent}
-        shoot={handleEvent}
-    />);
-    
-    const gameOver = screen.queryByTestId("gameover");
-    expect(gameOver).toBeInTheDocument();
-});
+        render(<Canvas 
+            gameState={modGameState}
+            startGame={handleEvent}
+            moveShip={handleEvent}
+            shoot={handleEvent}
+        />);
+        
+        const canvas = screen.getByTestId(/canvas/i);
+        expect(canvas).toBeInTheDocument();
 
-test("Canvas renders successfully various gameover states max score", () => {
-    delete window.ontouchstart;
-    const handleEvent = () => {};
-    
-    const modGameState = {
-        ...initialGameState,
-        score: 100,
-        highScore: 10,
-        startTime: 1,
-        endTime: 10000,
-    };
+        const gameover = screen.queryByTestId(/gameover/i);
+        expect(gameover).not.toBeInTheDocument();
 
-    render(<Canvas 
-        gameState={modGameState}
-        startGame={handleEvent}
-        moveShip={handleEvent}
-        shoot={handleEvent}
-    />);
-    
-    const gameOver = screen.queryByTestId("gameover");
-    expect(gameOver).toBeInTheDocument();
-});
+        const startgame = screen.queryByTestId(/startgame/i);
+        expect(startgame).not.toBeInTheDocument();
 
-test("Canvas renders successfully various gameover states 90 score", () => {
-    delete window.ontouchstart;
-    const handleEvent = () => {};
-    
-    const modGameState = {
-        ...initialGameState,
-        score: 90,
-        highScore: 10,
-        startTime: 1,
-        endTime: 10,
-    };
+    });
 
-    render(<Canvas 
-        gameState={modGameState}
-        startGame={handleEvent}
-        moveShip={handleEvent}
-        shoot={handleEvent}
-    />);
-    
-    const gameOver = screen.queryByTestId("gameover");
-    expect(gameOver).toBeInTheDocument();
-});
+    test("Renders successfully with ship changes", () => {
+        delete window.ontouchstart;
+        const handleEvent = () => {};
+        
+        const modGameState = {
+            ...initialGameState,
+            started: true,
+            shipMoving: 'right',
+        };
 
-test("Canvas renders successfully various gameover states 80 score", () => {
-    delete window.ontouchstart;
-    const handleEvent = () => {};
-    
-    const modGameState = {
-        ...initialGameState,
-        score: 80,
-        highScore: 10,
-        startTime: 1,
-        endTime: 10,
-    };
+        render(<Canvas 
+            gameState={modGameState}
+            startGame={handleEvent}
+            moveShip={handleEvent}
+            shoot={handleEvent}
+        />);
+        
+        const canvas = screen.getByTestId(/canvas/i);
+        expect(canvas).toBeInTheDocument();
 
-    render(<Canvas 
-        gameState={modGameState}
-        startGame={handleEvent}
-        moveShip={handleEvent}
-        shoot={handleEvent}
-    />);
-    
-    const gameOver = screen.queryByTestId("gameover");
-    expect(gameOver).toBeInTheDocument();
-});
+        const ship = screen.getByTestId("ship");
+        expect(ship).toBeInTheDocument();
+    });
 
-test("Canvas renders successfully various gameover states 70 score", () => {
-    delete window.ontouchstart;
-    const handleEvent = () => {};
-    
-    const modGameState = {
-        ...initialGameState,
-        score: 70,
-        highScore: 10,
-        startTime: 1,
-        endTime: 10,
-    };
 
-    render(<Canvas 
-        gameState={modGameState}
-        startGame={handleEvent}
-        moveShip={handleEvent}
-        shoot={handleEvent}
-    />);
-    
-    const gameOver = screen.queryByTestId("gameover");
-    expect(gameOver).toBeInTheDocument();
-});
+    test("Renders successfully with the right number of birds", () => {
+        delete window.ontouchstart;
+        const handleEvent = () => {};
+        
+        const modGameState = {
+            ...initialGameState,
+            started: true,
+        };
 
-test("Canvas renders successfully various gameover states 60 score", () => {
-    delete window.ontouchstart;
-    const handleEvent = () => {};
-    
-    const modGameState = {
-        ...initialGameState,
-        score: 60,
-        highScore: 10,
-        startTime: 1,
-        endTime: 10,
-    };
+        render(<Canvas 
+            gameState={modGameState}
+            startGame={handleEvent}
+            moveShip={handleEvent}
+            shoot={handleEvent}
+        />);
+        
+        const canvas = screen.getByTestId(/canvas/i);
+        expect(canvas).toBeInTheDocument();
 
-    render(<Canvas 
-        gameState={modGameState}
-        startGame={handleEvent}
-        moveShip={handleEvent}
-        shoot={handleEvent}
-    />);
-    
-    const gameOver = screen.queryByTestId("gameover");
-    expect(gameOver).toBeInTheDocument();
-});
+        const birds = screen.getAllByTestId("bird");
+        expect(birds.length).toBe(5);
+    });
 
-test("Canvas renders successfully various gameover states 50 score", () => {
-    delete window.ontouchstart;
-    const handleEvent = () => {};
-    
-    const modGameState = {
-        ...initialGameState,
-        score: 50,
-        highScore: 10,
-        startTime: 1,
-        endTime: 10,
-    };
+    test("Renders successfully various gameover states", () => {
+        delete window.ontouchstart;
+        const handleEvent = () => {};
+        
+        const modGameState = {
+            ...initialGameState,
+            score: 1,
+            highScore: 10,
+            startTime: 1,
+            endTime: 10,
+        };
 
-    render(<Canvas 
-        gameState={modGameState}
-        startGame={handleEvent}
-        moveShip={handleEvent}
-        shoot={handleEvent}
-    />);
-    
-    const gameOver = screen.queryByTestId("gameover");
-    expect(gameOver).toBeInTheDocument();
-});
+        render(<Canvas 
+            gameState={modGameState}
+            startGame={handleEvent}
+            moveShip={handleEvent}
+            shoot={handleEvent}
+        />);
+        
+        const canvas = screen.getByTestId(/canvas/i);
+        expect(canvas).toBeInTheDocument();
 
-test("Canvas renders successfully various gameover states 40 score", () => {
-    delete window.ontouchstart;
-    const handleEvent = () => {};
-    
-    const modGameState = {
-        ...initialGameState,
-        score: 40,
-        highScore: 10,
-        startTime: 1,
-        endTime: 10,
-    };
+        const gameOver = screen.queryByTestId("gameover");
+        expect(gameOver).toBeInTheDocument();
+    });
 
-    render(<Canvas 
-        gameState={modGameState}
-        startGame={handleEvent}
-        moveShip={handleEvent}
-        shoot={handleEvent}
-    />);
-    
-    const gameOver = screen.queryByTestId("gameover");
-    expect(gameOver).toBeInTheDocument();
-});
+    test("Renders successfully various gameover states no score", () => {
+        delete window.ontouchstart;
+        const handleEvent = () => {};
+        
+        const modGameState = {
+            ...initialGameState,
+            score: 0,
+            highScore: 100,
+            startTime: 10000,
+            endTime: 100000,
+        };
 
-test("Canvas renders successfully various gameover states 30 score", () => {
-    delete window.ontouchstart;
-    const handleEvent = () => {};
-    
-    const modGameState = {
-        ...initialGameState,
-        score: 30,
-        highScore: 10,
-        startTime: 1,
-        endTime: 10,
-    };
+        render(<Canvas 
+            gameState={modGameState}
+            startGame={handleEvent}
+            moveShip={handleEvent}
+            shoot={handleEvent}
+        />);
+        
+        const gameOver = screen.queryByTestId("gameover");
+        expect(gameOver).toBeInTheDocument();
+    });
 
-    render(<Canvas 
-        gameState={modGameState}
-        startGame={handleEvent}
-        moveShip={handleEvent}
-        shoot={handleEvent}
-    />);
-    
-    const gameOver = screen.queryByTestId("gameover");
-    expect(gameOver).toBeInTheDocument();
-});
+    test("Renders successfully various gameover states max score", () => {
+        delete window.ontouchstart;
+        const handleEvent = () => {};
+        
+        const modGameState = {
+            ...initialGameState,
+            score: 100,
+            highScore: 10,
+            startTime: 1,
+            endTime: 10000,
+        };
 
-test("Canvas renders successfully various gameover states 20 score", () => {
-    delete window.ontouchstart;
-    const handleEvent = () => {};
-    
-    const modGameState = {
-        ...initialGameState,
-        score: 20,
-        highScore: 10,
-        startTime: 1,
-        endTime: 10,
-    };
+        render(<Canvas 
+            gameState={modGameState}
+            startGame={handleEvent}
+            moveShip={handleEvent}
+            shoot={handleEvent}
+        />);
+        
+        const gameOver = screen.queryByTestId("gameover");
+        expect(gameOver).toBeInTheDocument();
+    });
 
-    render(<Canvas 
-        gameState={modGameState}
-        startGame={handleEvent}
-        moveShip={handleEvent}
-        shoot={handleEvent}
-    />);
-    
-    const gameOver = screen.queryByTestId("gameover");
-    expect(gameOver).toBeInTheDocument();
-});
+    test("Renders successfully various gameover states 90 score", () => {
+        delete window.ontouchstart;
+        const handleEvent = () => {};
+        
+        const modGameState = {
+            ...initialGameState,
+            score: 90,
+            highScore: 10,
+            startTime: 1,
+            endTime: 10,
+        };
 
-test("Canvas renders successfully various gameover states 10 score", () => {
-    delete window.ontouchstart;
-    const handleEvent = () => {};
-    
-    const modGameState = {
-        ...initialGameState,
-        score: 10,
-        highScore: 10,
-        startTime: 1,
-        endTime: 10,
-    };
+        render(<Canvas 
+            gameState={modGameState}
+            startGame={handleEvent}
+            moveShip={handleEvent}
+            shoot={handleEvent}
+        />);
+        
+        const gameOver = screen.queryByTestId("gameover");
+        expect(gameOver).toBeInTheDocument();
+    });
 
-    render(<Canvas 
-        gameState={modGameState}
-        startGame={handleEvent}
-        moveShip={handleEvent}
-        shoot={handleEvent}
-    />);
-    
-    const gameOver = screen.queryByTestId("gameover");
-    expect(gameOver).toBeInTheDocument();
+    test("Renders successfully various gameover states 80 score", () => {
+        delete window.ontouchstart;
+        const handleEvent = () => {};
+        
+        const modGameState = {
+            ...initialGameState,
+            score: 80,
+            highScore: 10,
+            startTime: 1,
+            endTime: 10,
+        };
+
+        render(<Canvas 
+            gameState={modGameState}
+            startGame={handleEvent}
+            moveShip={handleEvent}
+            shoot={handleEvent}
+        />);
+        
+        const gameOver = screen.queryByTestId("gameover");
+        expect(gameOver).toBeInTheDocument();
+    });
+
+    test("Renders successfully various gameover states 70 score", () => {
+        delete window.ontouchstart;
+        const handleEvent = () => {};
+        
+        const modGameState = {
+            ...initialGameState,
+            score: 70,
+            highScore: 10,
+            startTime: 1,
+            endTime: 10,
+        };
+
+        render(<Canvas 
+            gameState={modGameState}
+            startGame={handleEvent}
+            moveShip={handleEvent}
+            shoot={handleEvent}
+        />);
+        
+        const gameOver = screen.queryByTestId("gameover");
+        expect(gameOver).toBeInTheDocument();
+    });
+
+    test("Renders successfully various gameover states 60 score", () => {
+        delete window.ontouchstart;
+        const handleEvent = () => {};
+        
+        const modGameState = {
+            ...initialGameState,
+            score: 60,
+            highScore: 10,
+            startTime: 1,
+            endTime: 10,
+        };
+
+        render(<Canvas 
+            gameState={modGameState}
+            startGame={handleEvent}
+            moveShip={handleEvent}
+            shoot={handleEvent}
+        />);
+        
+        const gameOver = screen.queryByTestId("gameover");
+        expect(gameOver).toBeInTheDocument();
+    });
+
+    test("Renders successfully various gameover states 50 score", () => {
+        delete window.ontouchstart;
+        const handleEvent = () => {};
+        
+        const modGameState = {
+            ...initialGameState,
+            score: 50,
+            highScore: 10,
+            startTime: 1,
+            endTime: 10,
+        };
+
+        render(<Canvas 
+            gameState={modGameState}
+            startGame={handleEvent}
+            moveShip={handleEvent}
+            shoot={handleEvent}
+        />);
+        
+        const gameOver = screen.queryByTestId("gameover");
+        expect(gameOver).toBeInTheDocument();
+    });
+
+    test("Renders successfully various gameover states 40 score", () => {
+        delete window.ontouchstart;
+        const handleEvent = () => {};
+        
+        const modGameState = {
+            ...initialGameState,
+            score: 40,
+            highScore: 10,
+            startTime: 1,
+            endTime: 10,
+        };
+
+        render(<Canvas 
+            gameState={modGameState}
+            startGame={handleEvent}
+            moveShip={handleEvent}
+            shoot={handleEvent}
+        />);
+        
+        const gameOver = screen.queryByTestId("gameover");
+        expect(gameOver).toBeInTheDocument();
+    });
+
+    test("Renders successfully various gameover states 30 score", () => {
+        delete window.ontouchstart;
+        const handleEvent = () => {};
+        
+        const modGameState = {
+            ...initialGameState,
+            score: 30,
+            highScore: 10,
+            startTime: 1,
+            endTime: 10,
+        };
+
+        render(<Canvas 
+            gameState={modGameState}
+            startGame={handleEvent}
+            moveShip={handleEvent}
+            shoot={handleEvent}
+        />);
+        
+        const gameOver = screen.queryByTestId("gameover");
+        expect(gameOver).toBeInTheDocument();
+    });
+
+    test("Renders successfully various gameover states 20 score", () => {
+        delete window.ontouchstart;
+        const handleEvent = () => {};
+        
+        const modGameState = {
+            ...initialGameState,
+            score: 20,
+            highScore: 10,
+            startTime: 1,
+            endTime: 10,
+        };
+
+        render(<Canvas 
+            gameState={modGameState}
+            startGame={handleEvent}
+            moveShip={handleEvent}
+            shoot={handleEvent}
+        />);
+        
+        const gameOver = screen.queryByTestId("gameover");
+        expect(gameOver).toBeInTheDocument();
+    });
+
+    test("Renders successfully various gameover states 10 score", () => {
+        delete window.ontouchstart;
+        const handleEvent = () => {};
+        
+        const modGameState = {
+            ...initialGameState,
+            score: 10,
+            highScore: 10,
+            startTime: 1,
+            endTime: 10,
+        };
+
+        render(<Canvas 
+            gameState={modGameState}
+            startGame={handleEvent}
+            moveShip={handleEvent}
+            shoot={handleEvent}
+        />);
+        
+        const gameOver = screen.queryByTestId("gameover");
+        expect(gameOver).toBeInTheDocument();
+    });
 });

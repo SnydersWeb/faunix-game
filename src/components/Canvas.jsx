@@ -29,6 +29,7 @@ const Canvas = props => {
             height={canvasSize.y}
             preserveAspectRatio='xMidYMid meet'
             data-testid="canvas"
+            onTouchEnd={() => props.moveShip('none')} //Tad janky here
         >   
             <ScrollingBackground />
             <HighScore highScore={gameState.highScore} />
@@ -71,9 +72,9 @@ const Canvas = props => {
             }
             {   isMobile === true &&
                 <g>
-                    <MobileControl controlType="left" onTouchStart={() => props.moveShip('left')} onTouchEnd={() => props.moveShip('none')} />
+                    <MobileControl controlType="left" onTouchStart={() => props.moveShip('left')} />
                     <MobileControl controlType="fire" onTouchStart={() => props.shoot()} />
-                    <MobileControl controlType="right" onTouchStart={() => props.moveShip('right')} onTouchEnd={() => props.moveShip('none')} />
+                    <MobileControl controlType="right" onTouchStart={() => props.moveShip('right')} />
                 </g>
             }
         </svg>

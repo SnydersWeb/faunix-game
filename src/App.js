@@ -76,6 +76,11 @@ class App extends Component {
       }
     };
 
+    //General catch all so when we lift our finger on touch devices to stop moving
+    window.onTouchEnd = (e) => {
+      this.handleKeyDown("none");
+    };
+
     return (
       <div className="App" data-testid="fauxnix-app">
         <Canvas 

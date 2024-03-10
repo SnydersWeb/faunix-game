@@ -72,7 +72,7 @@ const moveObjects = state => {
                 statusTime: bird.wings.statusTime,
             },
         };
-
+        
         //First handle our bird damage
         const damageBirds = birdDamage.filter(obj => ( obj.id === bird.id ));
         if (damageBirds.length > 0) { //this intersects
@@ -109,6 +109,7 @@ const moveObjects = state => {
                 if (bird.fleeStatus < 1) {
                     birdChanges.fleeStatus += birdFleeSpeed;
                 } else {
+                    birdChanges.fleeStatus = 1; //Fully reset it to 1.
                     birdChanges.status = 'normal';
                 }
             }
@@ -128,11 +129,17 @@ const moveObjects = state => {
                 if (bird.statusTime + (1000 * birdWingRemoveTimeSec) < now) {
                     //Code to regrow the wings by +=birdWingRegrowSpeed
                     if (wingStatusTime + (1000 * birdFleeRegrowEnterUpdateSec) < now) {
+                        //Sometiems we get some really funky decimals - it's an odd thing but just round it off to 1
+                        //toFixed returns a string so we have to reparse it through Number
                         if (bird.wings.left < 1) {
-                            birdChanges.wings.left += birdWingRegrowSpeed;
+                            birdChanges.wings.left = Number((birdChanges.wings.left).toFixed(1)) + birdWingRegrowSpeed;
+                        } else {
+                            bird.wings.left = 1;
                         }
                         if (bird.wings.right < 1) {
-                            birdChanges.wings.right += birdWingRegrowSpeed;
+                            birdChanges.wings.right = Number((birdChanges.wings.right).toFixed(1)) + birdWingRegrowSpeed;
+                        } else {
+                            bird.wings.right = 1;
                         }
                         birdChanges.wings.statusTime = now;
                     }
