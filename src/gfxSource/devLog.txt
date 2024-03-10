@@ -94,7 +94,12 @@ Tests have changed a bit than what I knew.  They used to be enzyme but now it's 
 
 So I think next it would be best to get into the reducers and test those.  That also might knock out our functions tests too.
 
+Day 16 - 3/9
+After more testing I ran into an oddball issue where the wing grow-back routine was not working quite right - this would result in bird wings becoming "unhittable".  This is now FIXED with some rounding to keep the wings from being the unhittable .9999999.  In addition I fixed the ontouchend.  Somewhat janky on the fix, but it should make movement buttons easier to use on mible devices.
 
+In addtion I have started work on reducer unit tests. moveObjects and moveShip being the big ones here.
+
+Would like to not have NaN  show up in the tests.  And I want to find a better way to handle the statusTimestamp numbers.  I set now but this means the test can also fail due to it returning a very slight time difference.
 
 
 
