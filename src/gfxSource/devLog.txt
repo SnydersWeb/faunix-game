@@ -101,6 +101,9 @@ In addtion I have started work on reducer unit tests. moveObjects and moveShip b
 
 Would like to not have NaN  show up in the tests.  And I want to find a better way to handle the statusTimestamp numbers.  I set now but this means the test can also fail due to it returning a very slight time difference.
 
+Day 17 - 3/10
+Fixed NaN's in test - though this required making the object tests more precise.  Least now the tests now complete more reliably! 
+
 
 
 

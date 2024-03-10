@@ -53,7 +53,7 @@ const GameOver = props => {
             timeTakenSecDisp = `0${timeTakenSec}`;
         }
         const accuracy = (score/startShotCount) * 100;
-        const accuracyStr = `${accuracy}% Accuracy `;
+        const accuracyStr = `${accuracy.toFixed(0)}% Accuracy `;
         let accuracyComment = ``;
         if (accuracy === 0) {
             accuracyComment = `Are you trying to miss them?`;

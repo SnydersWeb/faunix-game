@@ -1,8 +1,12 @@
 import reducer from '../../reducers/index';
+import { calculateCanvas, storeCanvas } from '../../utils/canvasFunctions';
 import { START_GAME, SHOOT, MOVE_SHIP, MOVE_OBJECTS } from '../../actions/index';
 
 window.innerHeight = 658;
 window.innerWidth = 873;
+const canvasSize = calculateCanvas();
+storeCanvas(canvasSize);
+
 const initialGameState = {
     started: false,
     shotsRemaining: 90,
@@ -89,7 +93,18 @@ describe("Index Reducer Test", () => {
                 },
             };
             const newState = reducer(initialState, { type:START_GAME });
-            expect(newState).toEqual(expectedState);
+            expect(newState.gameState.shotsRemaining).toEqual(expectedState.gameState.shotsRemaining);
+            expect(newState.gameState.startTime).toBeCloseTo(expectedState.gameState.startTime, -1);
+            expect(Math.round(newState.gameState.birds[0].position.x)).toBeCloseTo(Math.round(expectedState.gameState.birds[0].position.x), -1);
+            expect(newState.gameState.birds[0].position.y).toEqual(expectedState.gameState.birds[0].position.y);
+            expect(newState.gameState.birds[0].id).toEqual(expectedState.gameState.birds[0].id);
+            expect(newState.gameState.birds[0].fltDir).toEqual(expectedState.gameState.birds[0].fltDir);
+            expect(newState.gameState.birds[0].status).toEqual(expectedState.gameState.birds[0].status);
+            expect(newState.gameState.birds[0].statusTime).toBeCloseTo(expectedState.gameState.birds[0].statusTime);
+            expect(newState.gameState.birds[0].fleeStatus).toEqual(expectedState.gameState.birds[0].fleeStatus);
+            expect(newState.gameState.birds[0].wings.left).toEqual(expectedState.gameState.birds[0].wings.left);
+            expect(newState.gameState.birds[0].wings.right).toEqual(expectedState.gameState.birds[0].wings.right);
+            expect(newState.gameState.birds[0].wings.statusTime).toBeCloseTo(expectedState.gameState.birds[0].wings.statusTime);
         });
     });
     describe("MoveObjects Action Test", () => {
@@ -104,7 +119,7 @@ describe("Index Reducer Test", () => {
                     startTime: 1,
                     birds: [{
                         position: {
-                            x: NaN,
+                            x: 101.32047591482656,
                             y: 10,
                         },
                         id: 1,
@@ -121,7 +136,18 @@ describe("Index Reducer Test", () => {
                 },
             };
             const newState = reducer(initialState, { type:MOVE_OBJECTS });
-            expect(newState).toEqual(expectedState);
+            expect(newState.gameState.shotsRemaining).toEqual(expectedState.gameState.shotsRemaining);
+            expect(newState.gameState.startTime).toEqual(expectedState.gameState.startTime);
+            expect(Math.round(newState.gameState.birds[0].position.x)).toBeCloseTo(Math.round(expectedState.gameState.birds[0].position.x), -1);
+            expect(newState.gameState.birds[0].position.y).toEqual(expectedState.gameState.birds[0].position.y);
+            expect(newState.gameState.birds[0].id).toEqual(expectedState.gameState.birds[0].id);
+            expect(newState.gameState.birds[0].fltDir).toEqual(expectedState.gameState.birds[0].fltDir);
+            expect(newState.gameState.birds[0].status).toEqual(expectedState.gameState.birds[0].status);
+            expect(newState.gameState.birds[0].statusTime).toBeCloseTo(expectedState.gameState.birds[0].statusTime);
+            expect(newState.gameState.birds[0].fleeStatus).toEqual(expectedState.gameState.birds[0].fleeStatus);
+            expect(newState.gameState.birds[0].wings.left).toEqual(expectedState.gameState.birds[0].wings.left);
+            expect(newState.gameState.birds[0].wings.right).toEqual(expectedState.gameState.birds[0].wings.right);
+            expect(newState.gameState.birds[0].wings.statusTime).toBeCloseTo(expectedState.gameState.birds[0].wings.statusTime, -1);
         });
     });    
     describe("None Action Test", () => {

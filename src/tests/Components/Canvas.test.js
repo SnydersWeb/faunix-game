@@ -1,8 +1,12 @@
 import { render, screen } from '@testing-library/react'
+import { calculateCanvas, storeCanvas } from '../../utils/canvasFunctions';
 import Canvas from '../../components/Canvas';
 
 window.innerHeight = 658;
 window.innerWidth = 873;
+const canvasSize = calculateCanvas();
+storeCanvas(canvasSize);
+    
 const initialGameState = {
     started: false,
     shotsRemaining: 90,
