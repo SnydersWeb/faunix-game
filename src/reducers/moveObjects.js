@@ -27,10 +27,9 @@ const moveObjects = state => {
     const { shipFire } = state.gameState;
     const { shotsRemaining } = state.gameState;    
     let { started } = state.gameState;
-    let bullets = [];
-    if (shipFire.length > 0) {
-        bullets = moveShipBullets(shipFire);
-    } else if (shipFire.length === 0 && shotsRemaining === 0) { // Handle our game over here
+    let bullets = moveShipBullets(shipFire);
+    
+    if (shipFire.length === 0 && shotsRemaining <= 0) { // Handle our game over here
         if (started === true) {
             endTime = now;
         }
@@ -40,7 +39,7 @@ const moveObjects = state => {
         const highScoreStore = Number(highScoreData);
         if (score > highScoreStore) {
             if (score > highScore) {
-                //Update s tate highscore
+                //Update state highscore
                 highScore = score;
             }
             localStorage.setItem(HIGH_SCORE_KEY, score.toString());
@@ -133,16 +132,20 @@ const moveObjects = state => {
                         //toFixed returns a string so we have to reparse it through Number
                         if (bird.wings.left < 1) {
                             birdChanges.wings.left = Number((birdChanges.wings.left).toFixed(1)) + birdWingRegrowSpeed;
-                        } else {
-                            bird.wings.left = 1;
                         }
                         if (bird.wings.right < 1) {
                             birdChanges.wings.right = Number((birdChanges.wings.right).toFixed(1)) + birdWingRegrowSpeed;
-                        } else {
-                            bird.wings.right = 1;
                         }
                         birdChanges.wings.statusTime = now;
                     }
+                }
+            } else {
+                //Check for overgrowth
+                if (birdChanges.wings.left > 1) {
+                    birdChanges.wings.left = 1;
+                }
+                if (birdChanges.wings.right > 1) {
+                    birdChanges.wings.right = 1;
                 }
             }
         }

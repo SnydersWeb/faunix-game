@@ -6,7 +6,7 @@ import './index.css';
 import Game from './containers/Game.js';
 import reducer from './reducers';
 
-const store = configureStore({ reducer: reducer })
+const store = configureStore({ reducer: reducer });
 
 const domNode = document.getElementById('root');
 const root = createRoot(domNode);

@@ -37,6 +37,69 @@ const GameOver = props => {
     
     const instTextSpacing = canvas.y / 32;
         
+    const scores = [
+        {
+            min: 0,
+            max: 1,
+            comment: `Are you trying to miss them?`,
+        },
+        {
+            min: 1,
+            max: 10,
+            comment: `You hit a few at least`,
+        },
+        {
+            min: 10,
+            max: 20,
+            comment: `Nice try!`,
+        },
+        {
+            min: 20,
+            max: 30,
+            comment: `You did OK`,
+        },
+        {
+            min: 30,
+            max: 40,
+            comment: `Solid!`,
+        },
+        {
+            min: 40,
+            max: 50,
+            comment: `Good!`,
+        },
+        {
+            min: 50,
+            max: 60,
+            comment: `Very Good!`,
+        },
+        {
+            min: 60,
+            max: 70,
+            comment: `Great!`,
+        },
+        {
+            min: 70,
+            max: 80,
+            comment: `Amazing!`,
+        },
+        {
+            min: 80,
+            max: 90,
+            comment: `Incredible!`,
+        },
+        {
+            min: 90,
+            max: 100,
+            comment: `Wow!!`,
+        },
+        {
+            min: 100,
+            max: 101,
+            comment: `Go touch some grass!!!`,
+        },
+    ];
+
     // Generate results text
     let resultsData = [];
     if (score >= highScore) { 
@@ -53,31 +116,9 @@ const GameOver = props => {
             timeTakenSecDisp = `0${timeTakenSec}`;
         }
         const accuracy = (score/startShotCount) * 100;
-        const accuracyStr = `${accuracy.toFixed(0)}% Accuracy `;
-        let accuracyComment = ``;
-        if (accuracy === 0) {
-            accuracyComment = `Are you trying to miss them?`;
-        } else if (accuracy >= 10 && accuracy < 20) {
-            accuracyComment = `Nice try!`;
-        } else if (accuracy >= 20 && accuracy < 30) {
-            accuracyComment = `You did OK`;
-        } else if (accuracy >= 30 && accuracy < 40) {
-            accuracyComment = `Solid!`;
-        } else if (accuracy >= 40 && accuracy < 50) {
-            accuracyComment = `Good!`;
-        } else if (accuracy >= 50 && accuracy < 60) {
-            accuracyComment = `Very Good!`;
-        } else if (accuracy >= 60 && accuracy < 70) {
-            accuracyComment = `Great!`;
-        } else if (accuracy >= 70 && accuracy < 80) {
-            accuracyComment = `Amazing!`; 
-        } else if (accuracy >= 80 && accuracy < 90) {
-            accuracyComment = `Incredible!`;
-        } else if (accuracy >= 90 && accuracy < 100) {
-            accuracyComment = `Wow!!`;
-        } else if (accuracy === 100) {
-            accuracyComment = `Go touch some grass!!!`;
-        }
+        const accuracyStr = `${Math.round(accuracy)}% Accuracy `;
+        const accuracyScore = scores.filter(score => (accuracy >= score.min && accuracy < score.max));
+        const accuracyComment = accuracyScore[0].comment;
         resultsData.push(
             <tspan 
                 x={textCenterH} 

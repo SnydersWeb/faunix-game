@@ -8,7 +8,7 @@ You can play the game online at [Faunix Demo](https://www.snydersweb.com/fauxnix
 ## Controls
 * W or Left Arrow = Left
 * D or Right Arrow = Right
-* Space Bar = Fire!
+* Space Bar or Up Arrow = Fire!
 
 ## Tech-Stack
 * Reactjs
@@ -23,4 +23,4 @@ I learned quite a bit about getting into some components that were somewhat self
 
 ## ToDo's 
 This game is fully functional!  There is still some work remaining that will be completed soon:
-* Unit tests
+* Maybe add sound?

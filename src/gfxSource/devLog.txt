@@ -104,7 +104,12 @@ Would like to not have NaN  show up in the tests.  And I want to find a better w
 Day 17 - 3/10
 Fixed NaN's in test - though this required making the object tests more precise.  Least now the tests now complete more reliably! 
 
+Day 18 - 3/11
+Adjusted GameOver to have better and cleaner way to determine scoring.
+Fixed moveObjects to prevent the rare circumstance where you can keep firing beyond 0.
+Finished all unit tests!
 
+Maybe add sound?  Dunno on that.
 
 
 
