@@ -155,6 +155,32 @@ describe("Canvas Tests", () => {
 
     });
 
+    
+    test("Renders successfully in mobile view (iPad) not started", () => {
+        //Fake out mobile detection
+        window.ontouchstart = () => {};
+        window.innerHeight = 1366;
+        window.innerWidth = 1024;
+        const handleEvent = jest.fn();
+    
+        render(<Canvas 
+            gameState={initialGameState}
+            startGame={handleEvent}
+            moveShip={handleEvent}
+            shoot={handleEvent}
+        />);
+
+        const canvas = screen.getByTestId(/canvas/i);
+        expect(canvas).toBeInTheDocument();
+
+        const gameover = screen.getByTestId(/gameover/i);
+        expect(gameover).toBeInTheDocument();
+
+        const startgame = screen.getByTestId(/startgame/i);
+        expect(startgame).toBeInTheDocument();
+
+    });
+
     test("Renders successfully in regular view started", () => {
         //reset to desktop
         delete window.ontouchstart;
