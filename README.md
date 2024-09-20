@@ -3,7 +3,7 @@ A simple game based on the 1980 hit game Phoenix!</br>
 ![screehshot2](./src/screenshot.png)
 
 ## Demo
-You can play the game online at [Faunix Demo](https://www.snydersweb.com/webSites/researchProjects/fauxnix/).
+You can play the game online at [Fauxnix Demo](https://www.snydersweb.com/webSites/researchProjects/fauxnix/).
 
 ## Controls
 * W or Left Arrow = Left
