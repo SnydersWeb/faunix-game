@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Canvas from './components/Canvas';
+import { getIsMobile } from './utils/miscFunctions';
 import { storeCanvas } from './utils/canvasFunctions';
 import { widthHeightRatio, updateInterval } from './utils/constants';
 
@@ -57,7 +58,6 @@ class App extends Component {
           started ? this.handleKeyDown("shoot") : this.handleKeyDown("start");
           break;
         default:
-          break;
       }
     };
     
@@ -84,6 +84,7 @@ class App extends Component {
     return (
       <div className="App" data-testid="fauxnix-app">
         <Canvas 
+          isMobile={getIsMobile()}
           gameState={this.props.gameState}
           startGame={this.props.startGame}
           moveShip={this.props.moveShip}

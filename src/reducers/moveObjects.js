@@ -178,6 +178,7 @@ const moveObjects = state => {
             } else if (birdChanges.soundType === 'wing') {
                 soundLen = (birdWingedSoundLen * 1000) * soundSpeed;
             }
+            
             if (statusTime + soundLen < now) {
                 birdChanges.sound = false;
                 birdChanges.soundType = 'none';

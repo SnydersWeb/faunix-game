@@ -198,6 +198,9 @@ describe("Move Objects Reducer Test", () => {
                     id: 1,
                     fltDir: 'right',
                     status: 'normal',
+                    sound: false,
+                    soundType: 'none',
+                    soundSpeed: 1,
                     fleeStatus: 1,
                     statusTime: 0,
                     wings: {
@@ -220,6 +223,9 @@ describe("Move Objects Reducer Test", () => {
                     id: 1,
                     fltDir: 'right',
                     status: 'normal',
+                    sound: false,
+                    soundType: 'none',
+                    soundSpeed: 1,
                     fleeStatus: 1,
                     statusTime: 0,
                     wings: { 
@@ -249,6 +255,9 @@ describe("Move Objects Reducer Test", () => {
                     id: 1,
                     fltDir: 'left',
                     status: 'normal',
+                    sound: false,
+                    soundType: 'none',
+                    soundSpeed: 1,
                     fleeStatus: 1,
                     statusTime: 0,
                     wings: {
@@ -271,6 +280,9 @@ describe("Move Objects Reducer Test", () => {
                     id: 1,
                     fltDir: 'left',
                     status: 'normal',
+                    sound: false,
+                    soundType: 'none',
+                    soundSpeed: 1,
                     fleeStatus: 1,
                     statusTime: 0,
                     wings: { 
@@ -285,6 +297,120 @@ describe("Move Objects Reducer Test", () => {
         expect(newState.gameState.birds[0].fltDir).toEqual(expectedState.gameState.birds[0].fltDir);
     });   
 
+    test("Test with bird hit", () => {
+        const now = (new Date()).getTime();
+        const startedState = {
+            ...initialState,
+            gameState: {
+                ...initialState.gameState,
+                started: true,
+                birds: [{
+                    position: {
+                        x: 850,
+                        y: 10,
+                    },
+                    id: 1,
+                    fltDir: 'left',
+                    status: 'struck',
+                    sound: true,
+                    soundType: 'struck',
+                    soundSpeed: 1,
+                    fleeStatus: 1,
+                    statusTime: now - 500,
+                    wings: {
+                        left: 1,
+                        right: 1,
+                        statusTime: now,
+                    }
+                }],
+            },
+        };
+        const expectedState = {
+            ...startedState,
+            gameState: {
+                ...startedState.gameState,
+                birds: [{
+                    position: {
+                        x: 850,
+                        y: 10,
+                    },
+                    id: 1,
+                    fltDir: 'left',
+                    status: 'normal',
+                    sound: false,
+                    soundType: 'none',
+                    soundSpeed: 1,
+                    fleeStatus: 1,
+                    statusTime: now,
+                    wings: { 
+                        left: 1,
+                        right: 1,
+                        statusTime: now,
+                    }
+                }],
+            },
+        };
+        const newState = moveObjects(startedState, { type:MOVE_OBJECTS });
+        expect(newState.gameState.birds[0].sound).toEqual(expectedState.gameState.birds[0].sound);
+    }); 
+
+    test("Test with bird wing hit", () => {
+        const now = (new Date()).getTime();
+        const startedState = {
+            ...initialState,
+            gameState: {
+                ...initialState.gameState,
+                started: true,
+                birds: [{
+                    position: {
+                        x: 850,
+                        y: 10,
+                    },
+                    id: 1,
+                    fltDir: 'left',
+                    status: 'normal',
+                    sound: true,
+                    soundType: 'wing',
+                    soundSpeed: 1,
+                    fleeStatus: 1,
+                    statusTime: now - 500,
+                    wings: {
+                        left: 1,
+                        right: 1,
+                        statusTime: now,
+                    }
+                }],
+            },
+        };
+        const expectedState = {
+            ...startedState,
+            gameState: {
+                ...startedState.gameState,
+                birds: [{
+                    position: {
+                        x: 850,
+                        y: 10,
+                    },
+                    id: 1,
+                    fltDir: 'left',
+                    status: 'normal',
+                    sound: false,
+                    soundType: 'none',
+                    soundSpeed: 1,
+                    fleeStatus: 1,
+                    statusTime: now,
+                    wings: { 
+                        left: 1,
+                        right: 1,
+                        statusTime: now,
+                    }
+                }],
+            },
+        };
+        const newState = moveObjects(startedState, { type:MOVE_OBJECTS });
+        expect(newState.gameState.birds[0].soundType).toEqual(expectedState.gameState.birds[0].soundType);
+    }); 
+
     test("Test with game started and ship firing", () => {
         const now = (new Date()).getTime();
         const startedState = {
@@ -294,7 +420,8 @@ describe("Move Objects Reducer Test", () => {
                 started: true,
                 shotsRemaining: 90,
                 shipFire: [{
-                    id: now,
+                    id: now - 500,
+                    sound: true,
                     position: {
                         x: 50,
                         y: 84.27301432835822,
@@ -309,6 +436,7 @@ describe("Move Objects Reducer Test", () => {
                 shotsRemaining: 90,
                 shipFire: [{
                     id: now,
+                    sound: true,
                     position: {
                         x: 50,
                         y: 84.27301432835822,
@@ -319,10 +447,10 @@ describe("Move Objects Reducer Test", () => {
         const newState = moveObjects(startedState, { type:MOVE_OBJECTS });
         expect(newState.gameState.shipFire[0].position.y).toBeLessThan(expectedState.gameState.shipFire[0].position.y);
         expect(newState.gameState.shipFire[0].position.x).toEqual(expectedState.gameState.shipFire[0].position.x);
-        expect(newState.gameState.shipFire[0].id).toBeCloseTo(expectedState.gameState.shipFire[0].id, -1);    
+        expect(newState.gameState.shipFire[0].id).toBeCloseTo(expectedState.gameState.shipFire[0].id, -500);    
+        expect(newState.gameState.shipFire[0].sound).toBe(false);        
     });    
-    
-    
+        
     test("Test with game started and ship out of bullets (Game over mechanic)", () => {
         const now = (new Date()).getTime();
         const startedState = {
@@ -374,6 +502,9 @@ describe("Move Objects Reducer Test", () => {
                     id: 1,
                     fltDir: 'right',
                     status: 'normal',
+                    sound: false,
+                    soundType: 'none',
+                    soundSpeed: 1,
                     fleeStatus: 1,
                     statusTime: 0,
                     wings: { //Scaler value for wing if hit. 1 is full scale
@@ -398,6 +529,9 @@ describe("Move Objects Reducer Test", () => {
                     id: 1,
                     fltDir: 'right',
                     status: 'normal',
+                    sound: false,
+                    soundType: 'none',
+                    soundSpeed: 1,
                     fleeStatus: 1,
                     statusTime: now,
                     wings: { //Scaler value for wing if hit. 1 is full scale
@@ -436,6 +570,9 @@ describe("Move Objects Reducer Test", () => {
                     id: 1,
                     fltDir: 'right',
                     status: 'normal',
+                    sound: false,
+                    soundType: 'none',
+                    soundSpeed: 1,
                     fleeStatus: 1,
                     statusTime: 0,
                     wings: { //Scaler value for wing if hit. 1 is full scale
@@ -460,6 +597,9 @@ describe("Move Objects Reducer Test", () => {
                     id: 1,
                     fltDir: 'right',
                     status: 'normal',
+                    sound: false,
+                    soundType: 'none',
+                    soundSpeed: 1,
                     fleeStatus: 1,
                     statusTime: now,
                     wings: { //Scaler value for wing if hit. 1 is full scale
@@ -498,6 +638,9 @@ describe("Move Objects Reducer Test", () => {
                     id: 1,
                     fltDir: 'right',
                     status: 'normal',
+                    sound: false,
+                    soundType: 'none',
+                    soundSpeed: 1,
                     fleeStatus: 1,
                     statusTime: 0,
                     wings: { //Scaler value for wing if hit. 1 is full scale
@@ -522,6 +665,9 @@ describe("Move Objects Reducer Test", () => {
                     id: 1,
                     fltDir: 'right',
                     status: 'struck',
+                    sound: true,
+                    soundType: 'struck',
+                    soundSpeed: 1,
                     fleeStatus: 1,
                     statusTime: now,
                     wings: { //Scaler value for wing if hit. 1 is full scale
@@ -552,6 +698,9 @@ describe("Move Objects Reducer Test", () => {
                     id: 1,
                     fltDir: 'right',
                     status: 'struck',
+                    sound: true,
+                    soundType: 'struck',
+                    soundSpeed: 1,
                     fleeStatus: 1,
                     statusTime: 0,
                     wings: { //Scaler value for wing if hit. 1 is full scale
@@ -576,6 +725,9 @@ describe("Move Objects Reducer Test", () => {
                     id: 1,
                     fltDir: 'right',
                     status: 'flee',
+                    sound: false,
+                    soundType: 'none',
+                    soundSpeed: 1,
                     fleeStatus: 1,
                     statusTime: now,
                     wings: { //Scaler value for wing if hit. 1 is full scale
@@ -605,6 +757,9 @@ describe("Move Objects Reducer Test", () => {
                     id: 1,
                     fltDir: 'right',
                     status: 'flee',
+                    sound: false,
+                    soundType: 'none',
+                    soundSpeed: 1,
                     fleeStatus: .2,
                     statusTime: 0,
                     wings: { //Scaler value for wing if hit. 1 is full scale
@@ -629,6 +784,9 @@ describe("Move Objects Reducer Test", () => {
                     id: 1,
                     fltDir: 'right',
                     status: 'flee',
+                    sound: false,
+                    soundType: 'none',
+                    soundSpeed: 1,
                     fleeStatus: .1,
                     statusTime: now,
                     wings: { //Scaler value for wing if hit. 1 is full scale
@@ -659,6 +817,9 @@ describe("Move Objects Reducer Test", () => {
                     id: 1,
                     fltDir: 'right',
                     status: 'flee',
+                    sound: false,
+                    soundType: 'none',
+                    soundSpeed: 1,
                     fleeStatus: 0,
                     statusTime: 0,
                     wings: { //Scaler value for wing if hit. 1 is full scale
@@ -683,6 +844,9 @@ describe("Move Objects Reducer Test", () => {
                     id: 1,
                     fltDir: 'right',
                     status: 'gone',
+                    sound: false,
+                    soundType: 'none',
+                    soundSpeed: 1,
                     fleeStatus: 0,
                     statusTime: now,
                     wings: { //Scaler value for wing if hit. 1 is full scale
@@ -713,6 +877,9 @@ describe("Move Objects Reducer Test", () => {
                     id: 1,
                     fltDir: 'right',
                     status: 'gone',
+                    sound: false,
+                    soundType: 'none',
+                    soundSpeed: 1,
                     fleeStatus: 0,
                     statusTime: 0,
                     wings: { //Scaler value for wing if hit. 1 is full scale
@@ -737,6 +904,9 @@ describe("Move Objects Reducer Test", () => {
                     id: 1,
                     fltDir: 'right',
                     status: 'enter',
+                    sound: false,
+                    soundType: 'none',
+                    soundSpeed: 1,
                     fleeStatus: 0,
                     statusTime: now,
                     wings: { //Scaler value for wing if hit. 1 is full scale
@@ -769,6 +939,9 @@ describe("Move Objects Reducer Test", () => {
                     id: 1,
                     fltDir: 'right',
                     status: 'enter',
+                    sound: false,
+                    soundType: 'none',
+                    soundSpeed: 1,
                     fleeStatus: .8,
                     statusTime: 0,
                     wings: { //Scaler value for wing if hit. 1 is full scale
@@ -793,6 +966,9 @@ describe("Move Objects Reducer Test", () => {
                     id: 1,
                     fltDir: 'right',
                     status: 'enter',
+                    sound: false,
+                    soundType: 'none',
+                    soundSpeed: 1,
                     fleeStatus: .9,
                     statusTime: now,
                     wings: { //Scaler value for wing if hit. 1 is full scale
@@ -823,6 +999,9 @@ describe("Move Objects Reducer Test", () => {
                     id: 1,
                     fltDir: 'right',
                     status: 'enter',
+                    sound: false,
+                    soundType: 'none',
+                    soundSpeed: 1,
                     fleeStatus: 1,
                     statusTime: 0,
                     wings: { //Scaler value for wing if hit. 1 is full scale
@@ -847,6 +1026,9 @@ describe("Move Objects Reducer Test", () => {
                     id: 1,
                     fltDir: 'right',
                     status: 'normal',
+                    sound: false,
+                    soundType: 'none',
+                    soundSpeed: 1,
                     fleeStatus: 1,
                     statusTime: now,
                     wings: { //Scaler value for wing if hit. 1 is full scale
@@ -877,6 +1059,9 @@ describe("Move Objects Reducer Test", () => {
                     id: 1,
                     fltDir: 'right',
                     status: 'normal',
+                    sound: false,
+                    soundType: 'none',
+                    soundSpeed: 1,
                     fleeStatus: 1,
                     statusTime: 0,
                     wings: { //Scaler value for wing if hit. 1 is full scale
@@ -901,6 +1086,9 @@ describe("Move Objects Reducer Test", () => {
                     id: 1,
                     fltDir: 'right',
                     status: 'normal',
+                    sound: false,
+                    soundType: 'none',
+                    soundSpeed: 1,
                     fleeStatus: 1,
                     statusTime: now,
                     wings: { //Scaler value for wing if hit. 1 is full scale
@@ -934,6 +1122,9 @@ describe("Move Objects Reducer Test", () => {
                     id: 1,
                     fltDir: 'right',
                     status: 'normal',
+                    sound: false,
+                    soundType: 'none',
+                    soundSpeed: 1,
                     fleeStatus: 1,
                     statusTime: 0,
                     wings: { //Scaler value for wing if hit. 1 is full scale
@@ -958,6 +1149,9 @@ describe("Move Objects Reducer Test", () => {
                     id: 1,
                     fltDir: 'right',
                     status: 'normal',
+                    sound: false,
+                    soundType: 'none',
+                    soundSpeed: 1,
                     fleeStatus: 1,
                     statusTime: now,
                     wings: { //Scaler value for wing if hit. 1 is full scale

@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { calculateCanvas, storeCanvas } from '../utils/canvasFunctions';
-import { getIsMobile } from '../utils/miscFunctions';
 import ScrollingBackground from './ScrollingBackground';
 import Ship from './Ship';
 import ShipBullet from './ShipBullet';
@@ -18,7 +17,7 @@ import MobileControl from './MobileControl';
 const Canvas = props => {
     const canvasSize = calculateCanvas();
     storeCanvas(canvasSize);
-    const isMobile = getIsMobile();
+    const { isMobile } = props;
     const { gameState } = props;
     const { shipPosition } = gameState;
     const { shipMoving } = gameState;
@@ -91,6 +90,7 @@ const Canvas = props => {
 };
 
 Canvas.propTypes = {
+    isMobile: PropTypes.bool.isRequired,    
     gameState: PropTypes.shape({
         started: PropTypes.bool.isRequired,
         shotsRemaining: PropTypes.number.isRequired,

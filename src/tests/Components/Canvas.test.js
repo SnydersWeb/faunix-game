@@ -25,6 +25,7 @@ const initialGameState = {
             y: 100,
         },
         id: 1,
+        sound: true,
     }],
     birds: [{
         position: {
@@ -33,7 +34,10 @@ const initialGameState = {
         },
         id: 1,
         fltDir: 'right',
-        status: 'normal',
+        status: 'struck',
+        sound: true,
+        soundType: 'struck',
+        soundSpeed: 1,
         fleeStatus: 1,
         statusTime: 0,
         wings: { //Scaler value for wing if hit. 1 is full scale
@@ -50,6 +54,9 @@ const initialGameState = {
         id: 2,
         fltDir: 'left',
         status: 'normal',
+        sound: true,
+        soundType: 'wing',
+        soundSpeed: 1,
         fleeStatus: 1,
         statusTime: 0,
         wings: { //Scaler value for wing if hit. 1 is full scale
@@ -66,6 +73,9 @@ const initialGameState = {
         id: 3,
         fltDir: 'left',
         status: 'flee',
+        sound: false,
+        soundType: 'none',
+        soundSpeed: 1,
         fleeStatus: .5,
         statusTime: 0,
         wings: { //Scaler value for wing if hit. 1 is full scale
@@ -82,6 +92,9 @@ const initialGameState = {
         id: 4,
         fltDir: 'left',
         status: 'gone',
+        sound: false,
+        soundType: 'none',
+        soundSpeed: 1,
         fleeStatus: 1,
         statusTime: 0,
         wings: { //Scaler value for wing if hit. 1 is full scale
@@ -98,6 +111,9 @@ const initialGameState = {
         id: 5,
         fltDir: 'right',
         status: 'enter',
+        sound: false,
+        soundType: 'none',
+        soundSpeed: 1,
         fleeStatus: 1,
         statusTime: 0,
         wings: { //Scaler value for wing if hit. 1 is full scale
@@ -113,6 +129,7 @@ describe("Canvas Tests", () => {
         const handleEvent = jest.fn();
     
         render(<Canvas 
+            isMobile={false}
             gameState={initialGameState}
             startGame={handleEvent}
             moveShip={handleEvent}
@@ -138,6 +155,7 @@ describe("Canvas Tests", () => {
         const handleEvent = jest.fn();
     
         render(<Canvas 
+            isMobile={false}
             gameState={initialGameState}
             startGame={handleEvent}
             moveShip={handleEvent}
@@ -164,6 +182,7 @@ describe("Canvas Tests", () => {
         const handleEvent = jest.fn();
     
         render(<Canvas 
+            isMobile={true}
             gameState={initialGameState}
             startGame={handleEvent}
             moveShip={handleEvent}
@@ -178,6 +197,50 @@ describe("Canvas Tests", () => {
 
         const startgame = screen.getByTestId(/startgame/i);
         expect(startgame).toBeInTheDocument();
+
+        const leftCtrl = screen.queryByTestId(/mobilectrol-left/i);
+        expect(leftCtrl).toBeInTheDocument();
+
+        const rightCtrl = screen.queryByTestId(/mobilectrol-right/i);
+        expect(rightCtrl).toBeInTheDocument();
+
+        const fireCtrl = screen.queryByTestId(/mobilectrol-fire/i);
+        expect(fireCtrl).toBeInTheDocument();
+
+    });
+    
+    test("Renders successfully in mobile view (iPad) started", () => {
+        //Fake out mobile detection
+        window.ontouchstart = () => {};
+        window.innerHeight = 1366;
+        window.innerWidth = 1024;
+        const handleEvent = jest.fn();
+        const newGameState = { ...initialGameState, started: true };
+        render(<Canvas 
+            isMobile={true}
+            gameState={newGameState}
+            startGame={handleEvent}
+            moveShip={handleEvent}
+            shoot={handleEvent}
+        />);
+
+        const canvas = screen.getByTestId(/canvas/i);
+        expect(canvas).toBeInTheDocument();
+
+        const gameover = screen.queryByTestId(/gameover/i);
+        expect(gameover).not.toBeInTheDocument();
+
+        const startgame = screen.queryByTestId(/startgame/i);
+        expect(startgame).not.toBeInTheDocument();
+
+        const leftCtrl = screen.queryByTestId(/mobilectrol-left/i);
+        expect(leftCtrl).toBeInTheDocument();
+
+        const rightCtrl = screen.queryByTestId(/mobilectrol-right/i);
+        expect(rightCtrl).toBeInTheDocument();
+
+        const fireCtrl = screen.queryByTestId(/mobilectrol-fire/i);
+        expect(fireCtrl).toBeInTheDocument();
 
     });
 
@@ -194,6 +257,7 @@ describe("Canvas Tests", () => {
         };
 
         render(<Canvas 
+            isMobile={false}
             gameState={modGameState}
             startGame={handleEvent}
             moveShip={handleEvent}
@@ -208,7 +272,15 @@ describe("Canvas Tests", () => {
 
         const startgame = screen.queryByTestId(/startgame/i);
         expect(startgame).not.toBeInTheDocument();
+        
+        const leftCtrl = screen.queryByTestId(/mobilectrol-left/i);
+        expect(leftCtrl).not.toBeInTheDocument();
 
+        const rightCtrl = screen.queryByTestId(/mobilectrol-right/i);
+        expect(rightCtrl).not.toBeInTheDocument();
+
+        const fireCtrl = screen.queryByTestId(/mobilectrol-fire/i);
+        expect(fireCtrl).not.toBeInTheDocument();
     });
 
     test("Renders successfully with ship changes", () => {
@@ -222,6 +294,7 @@ describe("Canvas Tests", () => {
         };
 
         render(<Canvas 
+            isMobile={false}
             gameState={modGameState}
             startGame={handleEvent}
             moveShip={handleEvent}
@@ -246,6 +319,7 @@ describe("Canvas Tests", () => {
         };
 
         render(<Canvas 
+            isMobile={false}
             gameState={modGameState}
             startGame={handleEvent}
             moveShip={handleEvent}
@@ -272,6 +346,7 @@ describe("Canvas Tests", () => {
         };
 
         render(<Canvas 
+            isMobile={false}
             gameState={modGameState}
             startGame={handleEvent}
             moveShip={handleEvent}
@@ -298,6 +373,7 @@ describe("Canvas Tests", () => {
         };
 
         render(<Canvas 
+            isMobile={false}
             gameState={modGameState}
             startGame={handleEvent}
             moveShip={handleEvent}
@@ -321,6 +397,7 @@ describe("Canvas Tests", () => {
         };
 
         render(<Canvas 
+            isMobile={false}
             gameState={modGameState}
             startGame={handleEvent}
             moveShip={handleEvent}
@@ -344,6 +421,7 @@ describe("Canvas Tests", () => {
         };
 
         render(<Canvas 
+            isMobile={false}
             gameState={modGameState}
             startGame={handleEvent}
             moveShip={handleEvent}
@@ -367,6 +445,7 @@ describe("Canvas Tests", () => {
         };
 
         render(<Canvas 
+            isMobile={false}
             gameState={modGameState}
             startGame={handleEvent}
             moveShip={handleEvent}
@@ -390,6 +469,7 @@ describe("Canvas Tests", () => {
         };
 
         render(<Canvas 
+            isMobile={false}
             gameState={modGameState}
             startGame={handleEvent}
             moveShip={handleEvent}
@@ -413,6 +493,7 @@ describe("Canvas Tests", () => {
         };
 
         render(<Canvas 
+            isMobile={false}
             gameState={modGameState}
             startGame={handleEvent}
             moveShip={handleEvent}
@@ -436,6 +517,7 @@ describe("Canvas Tests", () => {
         };
 
         render(<Canvas 
+            isMobile={false}
             gameState={modGameState}
             startGame={handleEvent}
             moveShip={handleEvent}
@@ -459,6 +541,7 @@ describe("Canvas Tests", () => {
         };
 
         render(<Canvas 
+            isMobile={false}
             gameState={modGameState}
             startGame={handleEvent}
             moveShip={handleEvent}
@@ -482,6 +565,7 @@ describe("Canvas Tests", () => {
         };
 
         render(<Canvas 
+            isMobile={false}
             gameState={modGameState}
             startGame={handleEvent}
             moveShip={handleEvent}
@@ -505,6 +589,7 @@ describe("Canvas Tests", () => {
         };
 
         render(<Canvas 
+            isMobile={false}
             gameState={modGameState}
             startGame={handleEvent}
             moveShip={handleEvent}
@@ -528,6 +613,7 @@ describe("Canvas Tests", () => {
         };
 
         render(<Canvas 
+            isMobile={false}
             gameState={modGameState}
             startGame={handleEvent}
             moveShip={handleEvent}

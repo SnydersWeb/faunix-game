@@ -114,13 +114,16 @@ Maybe add sound?  Dunno on that.
 Day 19 - 3/15
 Per feedback - adjusted (vastly increased) button size.  Also added some dynamic sizing so they will not get "sliced off" on screen.
 
-Addenda - 12/19
+Sound Day 1 - 12/19
 Looking into https://www.npmjs.com/package/use-sound?activeTab=readme
 https://www.educative.io/answers/how-to-play-sound-in-react
 
 Already did npm install use-sound
 
 Framed out most of it (hopefully) in miscFunctions.  Need to make the sound files, and test it.
+
+Opted to use chicken-based sounds.. why.. well.. they're funny.  I found a recording of general chicken sounds 
+so I cropped them down to just a couple of them.  
 
 Sound Day 2 - 12/21
 99% of the examples around seem to be about click-the-thing-play-the-sound.  This is problematic since sounds in this

@@ -62,7 +62,7 @@ const MobileControl = props => {
     };
 
     return (
-        <g data-testid={`mobilectrol${controlType}`}>
+        <g data-testid={`mobilectrol-${controlType}`}>
             <rect {...button} />
             <text {...text}>
                 {btnText}

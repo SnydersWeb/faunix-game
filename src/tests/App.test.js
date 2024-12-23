@@ -40,13 +40,15 @@ test('Renders the canvas', () => {
 });
 
 test('Tests Events', () => {
-  const handleEvent = jest.fn();
+  const handleStartEvent = jest.fn();
+  const handleMoveEvent = jest.fn();
+  const handleShootEvent = jest.fn();
   
   render(<App 
       gameState={initialGameState}
-      startGame={handleEvent}
-      moveShip={handleEvent}
-      shoot={handleEvent}
+      startGame={handleStartEvent}
+      moveShip={handleMoveEvent}
+      shoot={handleShootEvent}
       moveObjects={() => {}}
   />);
 
@@ -59,6 +61,37 @@ test('Tests Events', () => {
   fireEvent.keyUp(appElement, {key: 'ArrowRight', code: 'ArrowRight'});
   fireEvent.keyUp(appElement, {key: 'ArrowLeft', code: 'ArrowLeft'});
   fireEvent.keyUp(appElement, {key: 'Enter', code: 'Enter'});
-  expect(handleEvent).toHaveBeenCalledTimes(6)
+  expect(handleStartEvent).toHaveBeenCalledTimes(2);
+  expect(handleMoveEvent).toHaveBeenCalledTimes(4);
+  expect(handleShootEvent).toHaveBeenCalledTimes(0);
+
+});
+
+test('Tests Events with Game Started', () => {
+  const handleStartEvent = jest.fn();
+  const handleMoveEvent = jest.fn();
+  const handleShootEvent = jest.fn();
+  const newGameState = { ...initialGameState, started: true, };
+  
+  render(<App 
+      gameState={newGameState}
+      startGame={handleStartEvent}
+      moveShip={handleMoveEvent}
+      shoot={handleShootEvent}
+      moveObjects={() => {}}
+  />);
+
+  const appElement = screen.getByTestId(/fauxnix-app/i);
+  
+  fireEvent.keyDown(appElement, {key: 'ArrowRight', code: 'ArrowRight'});
+  fireEvent.keyDown(appElement, {key: 'ArrowLeft', code: 'ArrowLeft'});
+  fireEvent.keyDown(appElement, {key: 'ArrowUp', code: 'ArrowUp'});
+  fireEvent.keyDown(appElement, {key: ' ', code: 'Space'});
+  fireEvent.keyUp(appElement, {key: 'ArrowRight', code: 'ArrowRight'});
+  fireEvent.keyUp(appElement, {key: 'ArrowLeft', code: 'ArrowLeft'});
+  fireEvent.keyUp(appElement, {key: 'Enter', code: 'Enter'});
+  expect(handleStartEvent).toHaveBeenCalledTimes(0);
+  expect(handleMoveEvent).toHaveBeenCalledTimes(4);
+  expect(handleShootEvent).toHaveBeenCalledTimes(2);
 
 });

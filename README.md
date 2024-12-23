@@ -19,8 +19,5 @@ It has been 100 years since the great alien corruption of the beloved phoenix.  
 
 ## Purpose
 Deepen my knowledge of React, familiarize myself with using SVG in the browser space, and have fun doing something new and very different.  The graphics/SVG were originally drawn in InkScape and then ported into the game.  To make everything fit I created a scaler function that can grow/shrink things down depending on the size of your screen.</br>
-I learned quite a bit about getting into some components that were somewhat self-running - unlike previous React apps I've built that exclusively respond to user inputs. 
+I learned quite a bit about getting into some components that were somewhat self-running - unlike previous React apps I've built that exclusively respond to user inputs.</br>
 
-## ToDo's 
-This game is fully functional!  There is still some work remaining that will be completed soon:
-* Maybe add sound?
