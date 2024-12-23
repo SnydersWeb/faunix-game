@@ -114,11 +114,60 @@ Maybe add sound?  Dunno on that.
 Day 19 - 3/15
 Per feedback - adjusted (vastly increased) button size.  Also added some dynamic sizing so they will not get "sliced off" on screen.
 
+Addenda - 12/19
+Looking into https://www.npmjs.com/package/use-sound?activeTab=readme
+https://www.educative.io/answers/how-to-play-sound-in-react
 
+Already did npm install use-sound
 
+Framed out most of it (hopefully) in miscFunctions.  Need to make the sound files, and test it.
 
+Sound Day 2 - 12/21
+99% of the examples around seem to be about click-the-thing-play-the-sound.  This is problematic since sounds in this
+game are conditional!  One sammple I saw was this:
 
+function MyComponent() {
+  const [play] = useSound(soundFile);
+  const [shouldPlay, setShouldPlay] = useState(false);
 
+  const handleButtonClick = () => {
+    setShouldPlay(true);
+  };
 
+  useEffect(() => {
+    if (shouldPlay) {
+      play();
+      setShouldPlay(false); // Reset the flag
+    }
+  }, [shouldPlay, play]);
+
+  return (
+    <div>
+      <button onClick={handleButtonClick}>Play Sound</button>
+    </div>
+  );
+}
+
+So something like this could work.  The Bird and Ship/ShipBullet would be the best place to do this.  Thing is I can see if I
+I can maybe use the timeStamping already inherent in the game to do a window - trick is to see if that is enough of a 
+limiter to only fire it once per event.
+
+Sound Day 3 12/22
+After more playing and tinkering - for better or worse this project uses Class-Components.  This helps in a 
+lot of the coding but also creates some big challenges.  Not the least of which is use of hooks and so on.
+
+To circumvent this - I have created 2 new components - BirdSoundPlayer and ShootSoundPlayer.  They're only rendered 
+when a sound elment is true.  This sidesteps my problem about using class components and use-sound since it really
+cannot be used with them.  No worries - a functional component is fine since this has absolutely 0 need for
+some of the magic put into my other class components.
+
+Some of the biggest problems was getting the sound to play once.  I had to factor in length of the audio, speed setting
+(more on this later), and giving it enough time to fire, and then set false so it doesn't replay again and again.
+
+A bit more polishing here and there - I've also opted to make each bird instance have the speed setting set to the "instance"
+of the bird.  So that way if you have a low-voice bird, it will be consistent until it's "struck".  At that point the new "instance"
+of it will get another voice speed assignment.
+
+Overall I'm satisfied - now I need to update my test cases.
 
 

@@ -1,7 +1,8 @@
 import moveShip from './moveShip';
-import { birdStruckTimeSec, birdWingRemoveTimeSec, birdFledTimeSec, birdFleeSpeed, birdWingRegrowSpeed, birdFleeRegrowEnterUpdateSec, HIGH_SCORE_KEY } from '../utils/constants';
+import { shootSoundLen, birdStruckTimeSec, birdWingRemoveTimeSec, birdFledTimeSec, birdFleeSpeed, birdWingRegrowSpeed, birdFleeRegrowEnterUpdateSec, birdStruckSoundLen, birdWingedSoundLen, birdSoundMin, birdSoundMax, HIGH_SCORE_KEY } from '../utils/constants';
 import { moveBird, detectBirdHits } from '../utils/birdFunctions';
 import { moveShipBullets } from '../utils/shipFunctions';
+import { getRandomInt } from '../utils/miscFunctions';
 
 // SnyderD - the main purpose of this file is it's our main "animaion core" that handles all autonomous actions beyond
 // player control of the ship itself.  This means it will control the bird animations, the ship bullets as well as the 
@@ -47,7 +48,18 @@ const moveObjects = state => {
     }        
 
     const { birds } = state.gameState;
-    
+    // Set sound flags on bullets
+    bullets = bullets.map(bullet => {
+        if (bullet.sound && now > (bullet.id + (1000 * shootSoundLen))) {
+            return {
+                ...bullet,
+                sound: false,
+            };
+        } else {
+            return bullet;
+        }   
+    });
+
     const objectsDestroyed = detectBirdHits(shipFire, birds);
     const bulletsDestroyed = objectsDestroyed.map(object => (object.bulletId));
     const birdDamage = objectsDestroyed.map(object => ({ id: object.birdId, type: object.type }));
@@ -78,17 +90,23 @@ const moveObjects = state => {
             birdChanges.statusTime = now;
             if (/left/.test(damageBirds[0].type)) {
                 birdChanges.wings.left = .1;
+                birdChanges.soundType = 'wing';
+                birdChanges.sound = true;
             } else if (/right/.test(damageBirds[0].type)) {
                 birdChanges.wings.right = .1;
+                birdChanges.soundType = 'wing';
+                birdChanges.sound = true;
             } else if (/body/.test(damageBirds[0].type)) {
                 birdChanges.status = 'struck'; //bird hit!
+                birdChanges.soundType = 'struck';
+                birdChanges.sound = true;
                 //Add to the score!
                 score += 1;
-            }
+            } 
         }
-
         //Handle all conditions for our birds
         if (/struck/.test(status)) {
+            if (bird.statusTime + (1000 * .4))
             if (bird.statusTime + (1000 * birdStruckTimeSec) < now) {
                 birdChanges.status = 'flee';
                 birdChanges.statusTime = now;
@@ -109,6 +127,7 @@ const moveObjects = state => {
                     birdChanges.fleeStatus += birdFleeSpeed;
                 } else {
                     birdChanges.fleeStatus = 1; //Fully reset it to 1.
+                    birdChanges.soundSpeed = getRandomInt(birdSoundMin, birdSoundMax); //Reset our bird "voice"
                     birdChanges.status = 'normal';
                 }
             }
@@ -146,8 +165,23 @@ const moveObjects = state => {
                 }
                 if (birdChanges.wings.right > 1) {
                     birdChanges.wings.right = 1;
-                }
+                }                
             }
+        }
+            
+        //Clean up our sound
+        if (birdChanges.sound === true) {
+            let soundLen = 0;
+            const { soundType, soundSpeed, statusTime } = birdChanges;
+            if (soundType === 'struck') {
+               soundLen = (birdStruckSoundLen * 1000) * soundSpeed;
+            } else if (birdChanges.soundType === 'wing') {
+                soundLen = (birdWingedSoundLen * 1000) * soundSpeed;
+            }
+            if (statusTime + soundLen < now) {
+                birdChanges.sound = false;
+                birdChanges.soundType = 'none';
+           }
         }
 
         return birdChanges;

@@ -5,6 +5,7 @@ import { getIsMobile } from '../utils/miscFunctions';
 import ScrollingBackground from './ScrollingBackground';
 import Ship from './Ship';
 import ShipBullet from './ShipBullet';
+import ShootSoundPlayer from './ShootSoundPlayer';
 import Bird from './Bird';
 import CurrentScore from './CurrentScore';
 import HighScore from './HighScore';
@@ -21,6 +22,7 @@ const Canvas = props => {
     const { gameState } = props;
     const { shipPosition } = gameState;
     const { shipMoving } = gameState;
+    const playSound = gameState.shipFire.filter(x => x.sound === true)?.length > 0;
     
     return (
         <svg
@@ -40,8 +42,12 @@ const Canvas = props => {
                 <ShipBullet
                     key={bullet.id}
                     position={bullet.position}
+                    sound={bullet.sound}
                 />
             ))}
+            { playSound === true && 
+                <ShootSoundPlayer />
+            }
             <Ship 
                 position={shipPosition} 
                 moving={shipMoving} 
@@ -56,6 +62,9 @@ const Canvas = props => {
                     fleeStatus={bird.fleeStatus}
                     statusTime={bird.statusTime}
                     wings={bird.wings}
+                    sound={bird.sound}
+                    soundType={bird.soundType}
+                    soundSpeed={bird.soundSpeed}
                 />
             ))}
             {   (gameState.started === false) &&
@@ -99,6 +108,7 @@ Canvas.propTypes = {
                 x: PropTypes.number.isRequired,
                 y: PropTypes.number.isRequired,
             }).isRequired,
+            sound: PropTypes.bool.isRequired,
             id: PropTypes.number.isRequired,
         })).isRequired,
         birds: PropTypes.arrayOf(PropTypes.shape({
@@ -107,6 +117,9 @@ Canvas.propTypes = {
                 y: PropTypes.number.isRequired,
             }).isRequired,
             id: PropTypes.number.isRequired,
+            sound: PropTypes.bool.isRequired,
+            soundType: PropTypes.oneOf(['struck', 'wing', 'none']).isRequired,
+            soundSpeed: PropTypes.number,
             fltDir: PropTypes.oneOf(['left', 'right']).isRequired,
             status: PropTypes.oneOf(['normal', 'flee', 'enter', 'struck', 'gone']).isRequired,
             fleeStatus: PropTypes.number.isRequired,

@@ -56,4 +56,12 @@ export const birdHitSpotHeight = 13.736; //Main hit spot height
 export const birdWingWidth = 13.800; //Wing hit spot width
 export const birdWingHeight = 18.561; //Wing hit spot height
 
+// Audio related vars
+export const shootSoundLen = .037; //Audio is .37 sec long
+export const birdStruckSoundLen = .04; //Raw Audio is .4 sec
+export const birdWingedSoundLen = .01; //Raw Audio is .1 sec
+export const birdSoundMin = .5; //Min random for audio speed
+export const birdSoundMax = 2; //Max random for audio speed
+export const soundVol = .5; //will set for 1/2 vol
+
 

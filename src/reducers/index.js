@@ -3,8 +3,9 @@ import moveObjects from './moveObjects';
 import moveShip from './moveShip';
 import shoot from './shoot';
 import startGame from './startGame';
-import { numBirds, birdVertSpacing, startShotCount, HIGH_SCORE_KEY } from '../utils/constants';
+import { numBirds, birdVertSpacing, startShotCount, birdSoundMin, birdSoundMax, HIGH_SCORE_KEY } from '../utils/constants';
 import { calculateCanvas } from '../utils/canvasFunctions';
+import { getRandomInt } from '../utils/miscFunctions';
 
 const canvasSize = calculateCanvas();
 
@@ -17,6 +18,9 @@ for (let i = 1, j = numBirds; i <= j; i++) {
             y: birdYPos,
         },
         id: i,
+        sound: false,
+        soundType: 'none',
+        soundSpeed: getRandomInt(birdSoundMin, birdSoundMax),
         fltDir: 'right',
         status: 'normal',
         fleeStatus: 1,

@@ -4,12 +4,11 @@ import { bulletLength, shipBarrelLength, activeShotCount } from '../utils/consta
 const shoot = state => {
     if (state.gameState.started === false) return state;
     const { shipFire } = state.gameState;
+    if (shipFire.length >= activeShotCount) return state; //only 1 bullet on screen
+    
     const { shipPosition } = state.gameState;
     let { shotsRemaining } = state.gameState;
     let { started } = state.gameState;
-
-    if (shipFire.length >= activeShotCount) return state; //only 1 bullet on screen
-    
     const { x, y } = shipPosition;
     const yPos = y - (scaleCoords(bulletLength) + scaleCoords(shipBarrelLength));
     const id = (new Date()).getTime();
@@ -17,11 +16,12 @@ const shoot = state => {
     const shipBullet = {
         position: { x: x, y: yPos },
         id,
+        sound: true,
     };
 
     //subtract it from shots remaining
     shotsRemaining -= 1;
-
+    
     return {
         ...state,
         gameState: {

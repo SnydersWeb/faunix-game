@@ -28,7 +28,7 @@ class App extends Component {
       cnv.style.height = `${canvasHeight}px`;
     };
     window.onresize();
-  }
+  };
 
   handleKeyDown(command) {
     if (/shoot/.test(command)) {
@@ -38,7 +38,7 @@ class App extends Component {
     } else if (/start/.test(command)) {
       this.props.startGame();
     } 
-  }
+  };
 
   render() {
     const { started } = this.props.gameState;
@@ -113,6 +113,7 @@ App.propTypes = {
           x: PropTypes.number.isRequired,
           y: PropTypes.number.isRequired,
       }).isRequired,
+      sound: PropTypes.bool.isRequired,
       id: PropTypes.number.isRequired,
     })).isRequired,
     birds: PropTypes.arrayOf(PropTypes.shape({
@@ -120,6 +121,8 @@ App.propTypes = {
             x: PropTypes.number.isRequired,
             y: PropTypes.number.isRequired,
         }).isRequired,
+        sound: PropTypes.bool.isRequired,
+        soundType: PropTypes.oneOf(['struck', 'wing', 'none']).isRequired,
         id: PropTypes.number.isRequired,
         fltDir: PropTypes.oneOf(['left', 'right']).isRequired,
         status: PropTypes.oneOf(['normal', 'flee', 'enter', 'struck', 'gone']).isRequired,

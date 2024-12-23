@@ -14,6 +14,7 @@ import BirdEyeRight from './BirdEyeRight';
 import BirdEyeRightBig from './BirdEyeRightBig';
 import BirdBeak from './BirdBeak';
 import BirdBeakBig from './BirdBeakBig';
+import BirdSoundPlayer from './BirdSoundPlayer';
 
 class Bird extends Component {
     constructor(props) {
@@ -36,7 +37,6 @@ class Bird extends Component {
         this.flapTimeStamp = (new Date()).getTime();
         this.flapDeg = 0;
         this.flapDir = 'down';
-    
     }
 
     render() {
@@ -46,7 +46,10 @@ class Bird extends Component {
         const { status } = this.props;
         const { fltDir } = this.props;
         const { fleeStatus } = this.props;
-        
+        const { sound } = this.props;
+        const { soundType } = this.props;
+        const { soundSpeed } = this.props;
+
         //This will vary our birds faces to make them look less static/boring
         if (/normal/.test(status)) {
             if (now - this.faceChangeStamp > (1000 * birdFaceChangeTimeSec)) {
@@ -109,6 +112,9 @@ class Bird extends Component {
                         <BirdBeak position={position} id={this.id} beakWiggle={this.faceChangeBeak} />
                     </g>
                 }
+                {sound === true &&
+                    <BirdSoundPlayer soundType={soundType} soundSpeed={soundSpeed} />
+                }
             </g>
         );
     }
@@ -120,6 +126,9 @@ Bird.propTypes = {
         y:  PropTypes.number.isRequired,
     }).isRequired,
     fltDir: PropTypes.oneOf(['left', 'right']).isRequired,
+    sound: PropTypes.bool.isRequired,
+    soundType: PropTypes.oneOf(['struck', 'wing', 'none']).isRequired,
+    soundSpeed: PropTypes.number,
     id: PropTypes.number.isRequired,
     status: PropTypes.oneOf(['normal', 'flee', 'enter', 'struck', 'gone']).isRequired,
     fleeStatus: PropTypes.number.isRequired,
